@@ -20,7 +20,7 @@
   -->
   
   <ModulePrefs title="__MSG_title__" 
-               directory_title="Environment Canada's WeatherLink v$Revision$ ($Date$)" 
+               directory_title="Environment Canada's WeatherLink"
                title_url="http://www.weatheroffice.pyr.ec.gc.ca/" 
                description="Daily forecast and current observations for Canadian cities, based on WeatherLink service from Environment Canada" 
                screenshot="http://schultzter.googlepages.com/WeatherLink-screenshot.png" 
@@ -40,9 +40,9 @@
                author_link="http://www.schultzter.ca" 
                author_quote="Headed for the second star to the right and straight on 'til morning..." 
   > 
-    <Locale lang="en" messages="http://schultzter.googlepages.com/WeatherLink-en_ALL.xml" />
-    <Locale lang="fr" messages="http://schultzter.googlepages.com/WeatherLink-fr_ALL.xml" />
-    <Locale           messages="http://schultzter.googlepages.com/WeatherLink-en_ALL.xml" />
+    <Locale lang="en" messages="http://schultzters-gadgets.googlecode.com/svn/google/weatherlink/trunk/WeatherLink-en_ALL.xml" />
+    <Locale lang="fr" messages="http://schultzters-gadgets.googlecode.com/svn/google/weatherlink/trunk/WeatherLink-fr_ALL.xml" />
+    <Locale           messages="http://schultzters-gadgets.googlecode.com/svn/google/weatherlink/trunk/WeatherLink-en_ALL.xml" />
     <MayRequire type="plugin" value="flash"/>
   </ModulePrefs>
   
