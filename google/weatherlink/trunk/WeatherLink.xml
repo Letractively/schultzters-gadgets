@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<Module>
+  <!--
+    $Id$
+
+    $HeadURL$
+
+    This is basicly just a rebuild of the Weather on your Website service 
+    offered by Environment Canada's British Columbia and Yukon Weather Office.
+    It builds a flash animation of today's forecast and current observations
+    (if available - if not you only get the forecast) for the given city.
+    
+    See the following links for more information about these services:
+    Environment Canada: http://www.ec.gc.ca/envhome.html
+    Weather Office: http://www.weatheroffice.ec.gc.ca/canada_e.html
+    British Columbia and Yukon: http://www.weatheroffice.pyr.ec.gc.ca/default_e.html
+    WeatherLink: http://www.weatheroffice.pyr.ec.gc.ca/wxlink/index_e.asp
+    
+  -->
+  
+  <ModulePrefs title="__MSG_title__" 
+               directory_title="Environment Canada's WeatherLink v$Revision$ ($Date$)" 
+               title_url="http://www.weatheroffice.pyr.ec.gc.ca/" 
+               description="Daily forecast and current observations for Canadian cities, based on WeatherLink service from Environment Canada" 
+               screenshot="http://schultzter.googlepages.com/WeatherLink-screenshot.png" 
+               thumbnail="http://schultzter.googlepages.com/WeatherLink-thumbnail.png" 
+               render_inline="never" 
+               height="110" 
+               scaling="false" 
+               scrolling="false" 
+               singleton="false" 
+
+               author="Eric Schultz" 
+               author_email="weatherlink@schultzter.ca" 
+               author_affiliation="None/Independent" 
+               author_location="Montreal, QC" 
+               author_photo="http://schultzter.googlepages.com/MiloFace_99x99.png" 
+               author_aboutme="Computer hobbyist, home owner, outdoor adventurer, and CTI Technical Leader" 
+               author_link="http://www.schultzter.ca" 
+               author_quote="Headed for the second star to the right and straight on 'til morning..." 
+  > 
+    <Locale lang="en" messages="http://schultzter.googlepages.com/WeatherLink-en_ALL.xml" />
+    <Locale lang="fr" messages="http://schultzter.googlepages.com/WeatherLink-fr_ALL.xml" />
+    <Locale           messages="http://schultzter.googlepages.com/WeatherLink-en_ALL.xml" />
+    <MayRequire type="plugin" value="flash"/>
+  </ModulePrefs>
+  
+  <UserPref name="location" display_name="__MSG_location__" required="true"  datatype="enum"  default_value="CYUL">
+    <EnumValue value="BC-7"  display_value="100 Mile House, BC" />
+    <EnumValue value="CYXX"  display_value="Abbotsford, BC" />
+    <EnumValue value="CWZA"  display_value="Agassiz, BC" />
+    <EnumValue value="CYKD"  display_value="Aklavik, NT" />
+    <EnumValue value="QC-36" display_value="Akulivik, QC" />
+    <EnumValue value="CWLT"  display_value="Alert, NU" />
+    <EnumValue value="ON-1"  display_value="Algonquin Park, ON" />
+    <EnumValue value="CPJ2"  display_value="Alliston, ON" />
+    <EnumValue value="CYTF"  display_value="Alma, QC" />
+    <EnumValue value="MB-3"  display_value="Altona, MB" />
+    <EnumValue value="CWAH"  display_value="Amherst, NS" />
+    <EnumValue value="CYEY"  display_value="Amos, QC" />
+    <EnumValue value="CWZS"  display_value="Amqui, QC" />
+    <EnumValue value="NS-2"  display_value="Annapolis Royal, NS" />
+    <EnumValue value="NS-3"  display_value="Antigonish, NS" />
+    <EnumValue value="CXAT"  display_value="Arctic Bay, NU" />
+    <EnumValue value="CWAR"  display_value="Argentia, NF" />
+    <EnumValue value="CWYW"  display_value="Armstrong, ON" />
+    <EnumValue value="CWRE"  display_value="Arnes, MB" />
+    <EnumValue value="CYEK"  display_value="Arviat, NU" />
+    <EnumValue value="QC-38" display_value="Asbestos, QC" />
+    <EnumValue value="CWJI"  display_value="Assiniboia, SK" />
+    <EnumValue value="CYWM"  display_value="Athabasca, AB" />
+    <EnumValue value="CWCH"  display_value="Atikokan, ON" />
+    <EnumValue value="CYSQ"  display_value="Atlin, BC" />
+    <EnumValue value="CYAT"  display_value="Attawapiskat, ON" />
+    <EnumValue value="CYLA"  display_value="Aupaluk, QC" />
+    <EnumValue value="CWCP"  display_value="Baccaro Point, NS" />
+    <EnumValue value="CWBL"  display_value="Bachelors Island, MB" />
+    <EnumValue value="NS-4"  display_value="Baddeck, NS" />
+    <EnumValue value="CWDI"  display_value="Badger, NF" />
+    <EnumValue value="CYBG"  display_value="Bagotville, QC" />
+    <EnumValue value="CWIS"  display_value="Baie Saint-Paul, QC" />
+    <EnumValue value="CYBC"  display_value="Baie-Comeau, QC" />
+    <EnumValue value="CYBK"  display_value="Baker Lake, NU" />
+    <EnumValue value="CWRK"  display_value="Bancroft, ON" />
+    <EnumValue value="CWZG"  display_value="Banff, AB" />
+    <EnumValue value="AB-2"  display_value="Barrhead, AB" />
+    <EnumValue value="CWCU"  display_value="Barrie, ON" />
+    <EnumValue value="CWXS"  display_value="Bas Caraquet, NB" />
+    <EnumValue value="CZBF"  display_value="Bathurst, NB" />
+    <EnumValue value="CWHV"  display_value="Beauce, QC" />
+    <EnumValue value="QC-48" display_value="Beauceville, QC" />
+    <EnumValue value="QC-49" display_value="Beauharnois, QC" />
+    <EnumValue value="CYXQ"  display_value="Beaver Creek, YK" />
+    <EnumValue value="CWBV"  display_value="Beaver Island, NS" />
+    <EnumValue value="CWBM"  display_value="Beaverlodge, AB" />
+    <EnumValue value="QC-50" display_value="Becancour, QC" />
+    <EnumValue value="CYBD"  display_value="Bella Coola, BC" />
+    <EnumValue value="ON-3"  display_value="Belleville, ON" />
+    <EnumValue value="CYBV"  display_value="Berens River, MB" />
+    <EnumValue value="QC-51" display_value="Bernieres, QC" />
+    <EnumValue value="QC-25" display_value="Berthierville, QC" />
+    <EnumValue value="CYTL"  display_value="Big Trout Lake, ON" />
+    <EnumValue value="SK-2"  display_value="Biggar, SK" />
+    <EnumValue value="CJB9"  display_value="Bissett, MB" />
+    <EnumValue value="QC-52" display_value="Blainville, QC" />
+    <EnumValue value="CYBX"  display_value="Blanc Sablon, QC" />
+    <EnumValue value="ON-21" display_value="Blind River, ON" />
+    <EnumValue value="CZTA"  display_value="Bloodvein, MB" />
+    <EnumValue value="CYCP"  display_value="Blue River, BC" />
+    <EnumValue value="CWSV"  display_value="Blue River (Auto), BC" />
+    <EnumValue value="QC-53" display_value="Boisbriand, QC" />
+    <EnumValue value="QC-54" display_value="Bonaventure, QC" />
+    <EnumValue value="CWVA"  display_value="Bonavista, NF" />
+    <EnumValue value="NB-1"  display_value="Bouctouche, NB" />
+    <EnumValue value="CWXL"  display_value="Bow Island, AB" />
+    <EnumValue value="CWXA"  display_value="Bow Valley, AB" />
+    <EnumValue value="ON-9"  display_value="Bracebridge, ON" />
+    <EnumValue value="ON-4"  display_value="Brampton, ON" />
+    <EnumValue value="CYBR"  display_value="Brandon, MB" />
+    <EnumValue value="CYFD"  display_value="Brantford, ON" />
+    <EnumValue value="NS-5"  display_value="Bridgetown, NS" />
+    <EnumValue value="NS-6"  display_value="Bridgewater, NS" />
+    <EnumValue value="CWVU"  display_value="Brier Island, NS" />
+    <EnumValue value="CWIK"  display_value="Broadview, SK" />
+    <EnumValue value="CYBT"  display_value="Brochet , MB" />
+    <EnumValue value="ON-8"  display_value="Brockville, ON" />
+    <EnumValue value="CWBO"  display_value="Brooks, AB" />
+    <EnumValue value="NF-4"  display_value="Buchans, NF" />
+    <EnumValue value="CYVT"  display_value="Buffalo Narrows, SK" />
+    <EnumValue value="CWBF"  display_value="Burgeo, NF" />
+    <EnumValue value="CWWB"  display_value="Burlington, ON" />
+    <EnumValue value="CWPZ"  display_value="Burns Lake, BC" />
+    <EnumValue value="CYDB"  display_value="Burwash, YK" />
+    <EnumValue value="CERU"  display_value="Cabot Park, PE" />
+    <EnumValue value="CAZ5"  display_value="Cache Creek, BC" />
+    <EnumValue value="CYYC"  display_value="Calgary, AB" />
+    <EnumValue value="CPG2"  display_value="Cambridge, ON" />
+    <EnumValue value="CYCB"  display_value="Cambridge Bay, NU" />
+    <EnumValue value="CYBL"  display_value="Campbell River, BC" />
+    <EnumValue value="NF-2"  display_value="Campbellton, NF" />
+    <EnumValue value="NB-2"  display_value="Campbellton, NB" />
+    <EnumValue value="CWRV"  display_value="Camrose, AB" />
+    <EnumValue value="CWDU"  display_value="Canada Olympic Park, AB" />
+    <EnumValue value="QC-55" display_value="Candiac, QC" />
+    <EnumValue value="AB-3"  display_value="Canmore, AB" />
+    <EnumValue value="SK-3"  display_value="Canora, SK" />
+    <EnumValue value="CWSG"  display_value="Cap Chat, QC" />
+    <EnumValue value="CYTE"  display_value="Cape Dorset, NU" />
+    <EnumValue value="CWGU"  display_value="Cape George, NS" />
+    <EnumValue value="CWRA"  display_value="Cape Race, NF" />
+    <EnumValue value="CWZE"  display_value="Carberry, MB" />
+    <EnumValue value="YK-2"  display_value="Carcross, YK" />
+    <EnumValue value="CWFJ"  display_value="Cardston, AB" />
+    <EnumValue value="CWBK"  display_value="Caribou Point, NS" />
+    <EnumValue value="QC-56" display_value="Carignan, QC" />
+    <EnumValue value="QC-57" display_value="Carleton, QC" />
+    <EnumValue value="SK-4"  display_value="Carlyle, SK" />
+    <EnumValue value="CXCK"  display_value="Carmacks, YK" />
+    <EnumValue value="CWNK"  display_value="Carman, MB" />
+    <EnumValue value="CWCA"  display_value="Cartwright, NF" />
+    <EnumValue value="BC-6"  display_value="Cassiar, BC" />
+    <EnumValue value="CYCG"  display_value="Castlegar, BC" />
+    <EnumValue value="QC-58" display_value="Chambly, QC" />
+    <EnumValue value="QC-D4" display_value="Chandler, QC" />
+    <EnumValue value="CYLD"  display_value="Chapleau, ON" />
+    <EnumValue value="CYML"  display_value="Charlevoix, QC" />
+    <EnumValue value="CYYG"  display_value="Charlottetown, PE" />
+    <EnumValue value="ON-11" display_value="Chatham-Kent, ON" />
+    <EnumValue value="QC-59" display_value="Chelsea, QC" />
+    <EnumValue value="CYCS"  display_value="Chesterfield, NU" />
+    <EnumValue value="CXCH"  display_value="Cheticamp, NS" />
+    <EnumValue value="CYCQ"  display_value="Chetwynd, BC" />
+    <EnumValue value="CWDM"  display_value="Chevery, QC" />
+    <EnumValue value="CYMT"  display_value="Chibougamau, QC" />
+    <EnumValue value="CYCW"  display_value="Chilliwack, BC" />
+    <EnumValue value="NB-3"  display_value="Chipman, NB" />
+    <EnumValue value="CYYQ"  display_value="Churchill, MB" />
+    <EnumValue value="CZUM"  display_value="Churchill Falls, NF" />
+    <EnumValue value="NF-1"  display_value="Clarenville, NF" />
+    <EnumValue value="CWDK"  display_value="Claresholm, AB" />
+    <EnumValue value="CWCL"  display_value="Clinton, BC" />
+    <EnumValue value="CYCY"  display_value="Clyde River, NU" />
+    <EnumValue value="QC-60" display_value="Coaticook, QC" />
+    <EnumValue value="CWNC"  display_value="Cobourg, ON" />
+    <EnumValue value="AB-1"  display_value="Cochrane, AB" />
+    <EnumValue value="CYOD"  display_value="Cold Lake, AB" />
+    <EnumValue value="CWCO"  display_value="Collingwood, ON" />
+    <EnumValue value="CWWC"  display_value="Collins Bay, SK" />
+    <EnumValue value="CWFX"  display_value="Colville Lake, NT" />
+    <EnumValue value="CYQQ"  display_value="Comox, BC" />
+    <EnumValue value="QC-46" display_value="Contrecoeur, QC" />
+    <EnumValue value="CYZS"  display_value="Coral Harbour, NU" />
+    <EnumValue value="CWKB"  display_value="Corner Brook, NF" />
+    <EnumValue value="CWCW"  display_value="Cornwall, ON" />
+    <EnumValue value="CWAQ"  display_value="Coronach, SK" />
+    <EnumValue value="CWCT"  display_value="Coronation, AB" />
+    <EnumValue value="CAH3"  display_value="Courtenay, BC" />
+    <EnumValue value="QC-61" display_value="Cowansville, QC" />
+    <EnumValue value="CYXC"  display_value="Cranbrook, BC" />
+    <EnumValue value="CWJR"  display_value="Creston, BC" />
+    <EnumValue value="CWRT"  display_value="Crowsnest, AB" />
+    <EnumValue value="CWVP"  display_value="Cypress Hills Park, SK" />
+    <EnumValue value="CYCL"  display_value="Dalhousie, NB" />
+    <EnumValue value="CWDH"  display_value="Daniel's Harbour, NF" />
+    <EnumValue value="CYDN"  display_value="Dauphin, MB" />
+    <EnumValue value="CYDA"  display_value="Dawson City, YK" />
+    <EnumValue value="CYDQ"  display_value="Dawson Creek, BC" />
+    <EnumValue value="CWDL"  display_value="Dease Lake, BC" />
+    <EnumValue value="CYDF"  display_value="Deer Lake, NF" />
+    <EnumValue value="CXDW"  display_value="Deerwood, MB" />
+    <EnumValue value="CYWJ"  display_value="Deline, NT" />
+    <EnumValue value="QC-62" display_value="Delson, QC" />
+    <EnumValue value="CZUG"  display_value="Delta, MB" />
+    <EnumValue value="YK-4"  display_value="Dempster Highway, YK" />
+    <EnumValue value="NT-1"  display_value="Detah, NT" />
+    <EnumValue value="QC-63" display_value="Deux-Montagnes, QC" />
+    <EnumValue value="CYID"  display_value="Digby, NS" />
+    <EnumValue value="NB-4"  display_value="Doaktown, NB" />
+    <EnumValue value="QC-64" display_value="Dolbeau, QC" />
+    <EnumValue value="BC-8"  display_value="Dome Creek, BC" />
+    <EnumValue value="MB-2"  display_value="Dominion City, MB" />
+    <EnumValue value="QC-65" display_value="Donnacona, QC" />
+    <EnumValue value="CXVG"  display_value="Drayton Valley (Violet Grove), AB" />
+    <EnumValue value="CWDZ"  display_value="Drumheller, AB" />
+    <EnumValue value="QC-2"  display_value="Drummondville, QC" />
+    <EnumValue value="CYHD"  display_value="Dryden, ON" />
+    <EnumValue value="CXEA"  display_value="Ear Falls, ON" />
+    <EnumValue value="CYXR"  display_value="Earlton, ON" />
+    <EnumValue value="CWEP"  display_value="East Point, PE" />
+    <EnumValue value="CWEH"  display_value="Eastend Cypress, SK" />
+    <EnumValue value="NS-7"  display_value="Economy, NS" />
+    <EnumValue value="CYXD"  display_value="Edmonton City, AB" />
+    <EnumValue value="CYEG"  display_value="Edmonton Int'l, AB" />
+    <EnumValue value="CCN3"  display_value="Edmundston, NB" />
+    <EnumValue value="CYET"  display_value="Edson, AB" />
+    <EnumValue value="CYOA"  display_value="Ekati, NT" />
+    <EnumValue value="CWOK"  display_value="Elbow, SK" />
+    <EnumValue value="CWFE"  display_value="Elk Island National Park, AB" />
+    <EnumValue value="CYEL"  display_value="Elliot Lake, ON" />
+    <EnumValue value="CWEX"  display_value="Emerson, MB" />
+    <EnumValue value="CWJC"  display_value="Ennadai, NU" />
+    <EnumValue value="NT-2"  display_value="Enterprise, NT" />
+    <EnumValue value="QC-26" display_value="Escoumins, QC" />
+    <EnumValue value="CWPF"  display_value="Esquimalt, BC" />
+    <EnumValue value="CYEN"  display_value="Estevan, SK" />
+    <EnumValue value="CWEB"  display_value="Estevan Point, BC" />
+    <EnumValue value="CWGY"  display_value="Esther, AB" />
+    <EnumValue value="CWEU"  display_value="Eureka, NU" />
+    <EnumValue value="CSN7"  display_value="Farnham, QC" />
+    <EnumValue value="CWUM"  display_value="Faro, YK" />
+    <EnumValue value="NF-3"  display_value="Fermont, NF" />
+    <EnumValue value="QC-29" display_value="Fermont, QC" />
+    <EnumValue value="CWSZ"  display_value="Fisher Branch, MB" />
+    <EnumValue value="CYFO"  display_value="Flin Flon, MB" />
+    <EnumValue value="QC-27" display_value="Forestville, QC" />
+    <EnumValue value="QC-67" display_value="Forillon, QC" />
+    <EnumValue value="CYPY"  display_value="Fort Chipewyan, AB" />
+    <EnumValue value="ON-12" display_value="Fort Erie, ON" />
+    <EnumValue value="KINL"  display_value="Fort Frances, ON" />
+    <EnumValue value="CYGH"  display_value="Fort Good Hope, NT" />
+    <EnumValue value="CWJL"  display_value="Fort Liard, NT" />
+    <EnumValue value="CYMM"  display_value="Fort McMurray, AB" />
+    <EnumValue value="CZFM"  display_value="Fort McPherson, NT" />
+    <EnumValue value="CYYE"  display_value="Fort Nelson, BC" />
+    <EnumValue value="CWID"  display_value="Fort Providence, NT" />
+    <EnumValue value="SK-5"  display_value="Fort Qu'Appelle, SK" />
+    <EnumValue value="CYFR"  display_value="Fort Resolution, NT" />
+    <EnumValue value="CYFS"  display_value="Fort Simpson, NT" />
+    <EnumValue value="CYSM"  display_value="Fort Smith, NT" />
+    <EnumValue value="CYXJ"  display_value="Fort St John, BC" />
+    <EnumValue value="CWRW"  display_value="Fourchu Head, NS" />
+    <EnumValue value="CYFC"  display_value="Fredericton, NB" />
+    <EnumValue value="NB-5"  display_value="Fundy National Park, NB" />
+    <EnumValue value="CYQX"  display_value="Gander, NF" />
+    <EnumValue value="CWGF"  display_value="Garden River, AB" />
+    <EnumValue value="CYGP"  display_value="Gaspe, QC" />
+    <EnumValue value="CYND"  display_value="Gatineau, QC" />
+    <EnumValue value="CYGQ"  display_value="Geraldton, ON" />
+    <EnumValue value="BC-1"  display_value="Gibsons, BC" />
+    <EnumValue value="CYGX"  display_value="Gillam, MB" />
+    <EnumValue value="CYGM"  display_value="Gimli, MB" />
+    <EnumValue value="CYHK"  display_value="Gjoa Haven, NU" />
+    <EnumValue value="CWGD"  display_value="Goderich, ON" />
+    <EnumValue value="CYGO"  display_value="Gods Lake, MB" />
+    <EnumValue value="CYGE"  display_value="Golden, BC" />
+    <EnumValue value="CWLM"  display_value="Gonzales, BC" />
+    <EnumValue value="YK-5"  display_value="Good Hope Lake, YK" />
+    <EnumValue value="BC-9"  display_value="Good Hope Lake, BC" />
+    <EnumValue value="CYYR"  display_value="Goose Bay, NF" />
+    <EnumValue value="CYZE"  display_value="Gore Bay, ON" />
+    <EnumValue value="QC-5"  display_value="Granby, QC" />
+    <EnumValue value="NF-5"  display_value="Grand Bank, NF" />
+    <EnumValue value="MB-9"  display_value="Grand Beach, MB" />
+    <EnumValue value="CWZQ"  display_value="Grand etang, NS" />
+    <EnumValue value="NB-6"  display_value="Grand Falls, NB" />
+    <EnumValue value="NF-6"  display_value="Grand Falls/Windsor, NF" />
+    <EnumValue value="CZGF"  display_value="Grand Forks, BC" />
+    <EnumValue value="CXGM"  display_value="Grand Manan, NB" />
+    <EnumValue value="CWJD"  display_value="Grand Rapids, MB" />
+    <EnumValue value="CWAM"  display_value="Grande Cache, AB" />
+    <EnumValue value="CYQU"  display_value="Grande Prairie, AB" />
+    <EnumValue value="CYZX"  display_value="Greenwood, NS" />
+    <EnumValue value="CWGN"  display_value="Gretna, MB" />
+    <EnumValue value="CWGZ"  display_value="Grise Fiord, NU" />
+    <EnumValue value="NF-7"  display_value="Gros Morne, NF" />
+    <EnumValue value="ON-5"  display_value="Guelph, ON" />
+    <EnumValue value="NS-8"  display_value="Guysborough, NS" />
+    <EnumValue value="ON-22" display_value="Haileybury, ON" />
+    <EnumValue value="CWHT"  display_value="Haines Junction, YK" />
+    <EnumValue value="CND4"  display_value="Haliburton, ON" />
+    <EnumValue value="CYHZ"  display_value="Halifax, NS" />
+    <EnumValue value="CYUX"  display_value="Hall Beach, NU" />
+    <EnumValue value="CYHM"  display_value="Hamilton, ON" />
+    <EnumValue value="CWRN"  display_value="Hart Island, NS" />
+    <EnumValue value="CWVV"  display_value="Hartland, BC" />
+    <EnumValue value="CYGV"  display_value="Havre St-Pierre, QC" />
+    <EnumValue value="CPD8"  display_value="Hawkesbury, ON" />
+    <EnumValue value="CYHY"  display_value="Hay River, NT" />
+    <EnumValue value="CYHF"  display_value="Hearst, ON" />
+    <EnumValue value="CWPA"  display_value="Hendrickson Creek, AB" />
+    <EnumValue value="CYOJ"  display_value="High Level, AB" />
+    <EnumValue value="AB-4"  display_value="High River, AB" />
+    <EnumValue value="CWHA"  display_value="Highvale, AB" />
+    <EnumValue value="CWIN"  display_value="Hinton, AB" />
+    <EnumValue value="CYHI"  display_value="Holman, NT" />
+    <EnumValue value="CYHE"  display_value="Hope, BC" />
+    <EnumValue value="CWKV"  display_value="Hope Slide, BC" />
+    <EnumValue value="CWHO"  display_value="Hopedale, NF" />
+    <EnumValue value="NB-8"  display_value="Hopewell, NB" />
+    <EnumValue value="CYHB"  display_value="Hudson Bay, SK" />
+    <EnumValue value="SK-6"  display_value="Humboldt, SK" />
+    <EnumValue value="CWHH"  display_value="Hunters Point Marine, MB" />
+    <EnumValue value="QC-68" display_value="Huntingdon, QC" />
+    <EnumValue value="CPC9"  display_value="Huntsville, ON" />
+    <EnumValue value="CYGT"  display_value="Igloolik, NU" />
+    <EnumValue value="CYGR"  display_value="Iles-de-la-Madeleine, QC" />
+    <EnumValue value="CWBD"  display_value="Indian Head, SK" />
+    <EnumValue value="CWIE"  display_value="Indin river, NT" />
+    <EnumValue value="CXIB"  display_value="Ingonish, NS" />
+    <EnumValue value="CYPH"  display_value="Inukjuak, QC" />
+    <EnumValue value="CYEV"  display_value="Inuvik, NT" />
+    <EnumValue value="CAA8"  display_value="Invermere, BC" />
+    <EnumValue value="CYFB"  display_value="Iqaluit, NU" />
+    <EnumValue value="CYIK"  display_value="Ivujivik, QC" />
+    <EnumValue value="QC-69" display_value="James Bay, QC" />
+    <EnumValue value="CWJW"  display_value="Jasper, AB" />
+    <EnumValue value="CSG3"  display_value="Joliette, QC" />
+    <EnumValue value="CYKA"  display_value="Kamloops, BC" />
+    <EnumValue value="QC-70" display_value="Kamouraska, QC" />
+    <EnumValue value="SK-7"  display_value="Kamsack, SK" />
+    <EnumValue value="CYLU"  display_value="Kangiqsualujjuaq, QC" />
+    <EnumValue value="CTMZ"  display_value="Kangiqsujuaq, QC" />
+    <EnumValue value="CYAS"  display_value="Kangirsuk, QC" />
+    <EnumValue value="CYYU"  display_value="Kapuskasing, ON" />
+    <EnumValue value="CNF4"  display_value="Kawartha Lakes, ON" />
+    <EnumValue value="CWKG"  display_value="Kejimkujik Park, NS" />
+    <EnumValue value="CYLW"  display_value="Kelowna, BC" />
+    <EnumValue value="CYQK"  display_value="Kenora, ON" />
+    <EnumValue value="CXKT"  display_value="Kentville, NS" />
+    <EnumValue value="CYKJ"  display_value="Key Lake, SK" />
+    <EnumValue value="CWBE"  display_value="Killarney, ON" />
+    <EnumValue value="CYLC"  display_value="Kimmirut, NU" />
+    <EnumValue value="ON-28" display_value="Kincardine, ON" />
+    <EnumValue value="CYKY"  display_value="Kindersley, SK" />
+    <EnumValue value="CYGK"  display_value="Kingston, ON" />
+    <EnumValue value="CXKI"  display_value="Kirkland Lake, ON" />
+    <EnumValue value="CYKF"  display_value="Kitchener-Waterloo, ON" />
+    <EnumValue value="CWKI"  display_value="Kitimat, BC" />
+    <EnumValue value="YK-1"  display_value="Kluane Lake, YK" />
+    <EnumValue value="BC-11" display_value="Kootenay National Park, BC" />
+    <EnumValue value="NB-9"  display_value="Kouchibouguac, NB" />
+    <EnumValue value="CYBB"  display_value="Kugaaruk, NU" />
+    <EnumValue value="CYCO"  display_value="Kugluktuk, NU" />
+    <EnumValue value="CYVP"  display_value="Kuujjuaq, QC" />
+    <EnumValue value="CYGW"  display_value="Kuujjuarapik, QC" />
+    <EnumValue value="CYAH"  display_value="La Grande IV, QC" />
+    <EnumValue value="CYGL"  display_value="La Grande Riviere, QC" />
+    <EnumValue value="SK-13" display_value="La Loche, SK" />
+    <EnumValue value="QC-11" display_value="La Malbaie, QC" />
+    <EnumValue value="QC-71" display_value="La Prairie, QC" />
+    <EnumValue value="CYVC"  display_value="La Ronge, SK" />
+    <EnumValue value="QC-45" display_value="La Sarre, QC" />
+    <EnumValue value="NF-8"  display_value="La Scie, NF" />
+    <EnumValue value="CWDQ"  display_value="La Tuque, QC" />
+    <EnumValue value="NF-9"  display_value="Labrador City, NF" />
+    <EnumValue value="CWLB"  display_value="Lac La Biche, AB" />
+    <EnumValue value="QC-72" display_value="Lac Megantic, QC" />
+    <EnumValue value="QC-73" display_value="Lac Saint-Jean, QC" />
+    <EnumValue value="QC-14" display_value="Lachute, QC" />
+    <EnumValue value="CWQQ"  display_value="Lacombe, AB" />
+    <EnumValue value="QC-74" display_value="Lanaudiere, QC" />
+    <EnumValue value="CWLF"  display_value="Lansdowne House, ON" />
+    <EnumValue value="CWEW"  display_value="L'Assomption, QC" />
+    <EnumValue value="CWXG"  display_value="Last Mountain Lake, SK" />
+    <EnumValue value="QC-75" display_value="Laurentides, QC" />
+    <EnumValue value="QC-76" display_value="Laval, QC" />
+    <EnumValue value="QC-D3" display_value="Le Gardeur, QC" />
+    <EnumValue value="CWJX"  display_value="Leader, SK" />
+    <EnumValue value="CYLR"  display_value="Leaf Rapids, MB" />
+    <EnumValue value="ON-23" display_value="Leamington, ON" />
+    <EnumValue value="CYQL"  display_value="Lethbridge, AB" />
+    <EnumValue value="QC-78" display_value="Levis, QC" />
+    <EnumValue value="NF-10" display_value="Lewisporte, NF" />
+    <EnumValue value="CYZL"  display_value="Liard River, BC" />
+    <EnumValue value="CWKF"  display_value="Lillooet, BC" />
+    <EnumValue value="QC-77" display_value="L'Islet, QC" />
+    <EnumValue value="CZGR"  display_value="Little Grand Rapids, MB" />
+    <EnumValue value="CYAU"  display_value="Liverpool, NS" />
+    <EnumValue value="CYLL"  display_value="Lloydminster, AB" />
+    <EnumValue value="CYXU"  display_value="London, ON" />
+    <EnumValue value="CYHU"  display_value="Longueuil, QC" />
+    <EnumValue value="QC-81" display_value="Lorraine, QC" />
+    <EnumValue value="QC-D2" display_value="Louiseville, QC" />
+    <EnumValue value="CWLE"  display_value="Lucky Lake, SK" />
+    <EnumValue value="NS-9"  display_value="Lunenburg, NS" />
+    <EnumValue value="CYLK"  display_value="Lutselk'e, NT" />
+    <EnumValue value="CYYL"  display_value="Lynn Lake, MB" />
+    <EnumValue value="CWLY"  display_value="Lytton, BC" />
+    <EnumValue value="CYZY"  display_value="Mackenzie, BC" />
+    <EnumValue value="QC-83" display_value="Magog, QC" />
+    <EnumValue value="CYFT"  display_value="Makkovik, NF" />
+    <EnumValue value="CWKH"  display_value="Malahat, BC" />
+    <EnumValue value="CXMY"  display_value="Malay Falls, NS" />
+    <EnumValue value="CWDP"  display_value="Manicouagan, QC" />
+    <EnumValue value="CWMJ"  display_value="Maniwaki, QC" />
+    <EnumValue value="CWMQ"  display_value="Maple Creek, SK" />
+    <EnumValue value="CXMP"  display_value="Maple Plains, PE" />
+    <EnumValue value="CYSP"  display_value="Marathon, ON" />
+    <EnumValue value="NF-11" display_value="Marble Mountain, NF" />
+    <EnumValue value="QC-84" display_value="Marieville, QC" />
+    <EnumValue value="CYKZ"  display_value="Markham-Buttonville, ON" />
+    <EnumValue value="CYMH"  display_value="Mary's Harbour, NF" />
+    <EnumValue value="CCC2"  display_value="Marystown, NF" />
+    <EnumValue value="QC-85" display_value="Mascouche, QC" />
+    <EnumValue value="CZMT"  display_value="Masset, BC" />
+    <EnumValue value="CYNM"  display_value="Matagami, QC" />
+    <EnumValue value="QC-15" display_value="Matane, QC" />
+    <EnumValue value="CXZS"  display_value="Matapedia, QC" />
+    <EnumValue value="QC-89" display_value="Mauricie, QC" />
+    <EnumValue value="CYMA"  display_value="Mayo, YK" />
+    <EnumValue value="CAV4"  display_value="McBride, BC" />
+    <EnumValue value="CYLJ"  display_value="Meadow Lake, SK" />
+    <EnumValue value="CYXH"  display_value="Medicine Hat, AB" />
+    <EnumValue value="CWFF"  display_value="Melfort, SK" />
+    <EnumValue value="CWEI"  display_value="Melita, MB" />
+    <EnumValue value="SK-8"  display_value="Melville, SK" />
+    <EnumValue value="CYMB"  display_value="Merritt, BC" />
+    <EnumValue value="CYEE"  display_value="Midland, ON" />
+    <EnumValue value="CWMX"  display_value="Mildred Lake, AB" />
+    <EnumValue value="CWRY"  display_value="Milk River, AB" />
+    <EnumValue value="QC-90" display_value="Mingan, QC" />
+    <EnumValue value="MB-10" display_value="Minnedosa, MB" />
+    <EnumValue value="CYMX"  display_value="Mirabel, QC" />
+    <EnumValue value="CYCH"  display_value="Miramichi, NB" />
+    <EnumValue value="CWMI"  display_value="Miscou Island, NB" />
+    <EnumValue value="ON-24" display_value="Mississauga, ON" />
+    <EnumValue value="QC-91" display_value="Mistassini, QC" />
+    <EnumValue value="CYQM"  display_value="Moncton, NB" />
+    <EnumValue value="QC-92" display_value="Mont Saint-Hilaire, QC" />
+    <EnumValue value="CYYY"  display_value="Mont-Joli, QC" />
+    <EnumValue value="QC-47" display_value="Mont-Laurier, QC" />
+    <EnumValue value="CWST"  display_value="Montmagny, QC" />
+    <EnumValue value="CYUL"  display_value="Montreal, QC" />
+    <EnumValue value="QC-34" display_value="Mont-Tremblant, QC" />
+    <EnumValue value="CYMJ"  display_value="Moose Jaw, SK" />
+    <EnumValue value="CZMJ"  display_value="Moose Jaw (Auto), SK" />
+    <EnumValue value="SK-9"  display_value="Moosomin, SK" />
+    <EnumValue value="CYMO"  display_value="Moosonee, ON" />
+    <EnumValue value="CXMD"  display_value="Morden, MB" />
+    <EnumValue value="MB-11" display_value="Morris, MB" />
+    <EnumValue value="CWLS"  display_value="Mount Forest, ON" />
+    <EnumValue value="NB-10" display_value="Mt. Carleton Provincial Park, NB" />
+    <EnumValue value="CWWQ"  display_value="Muncho Lake, BC" />
+    <EnumValue value="QC-16" display_value="Murdochville, QC" />
+    <EnumValue value="NF-12" display_value="Musgrave Harbour, NF" />
+    <EnumValue value="CYQA"  display_value="Muskoka, ON" />
+    <EnumValue value="CXLL"  display_value="Nahanni Butte, NT" />
+    <EnumValue value="CYDP"  display_value="Nain, NF" />
+    <EnumValue value="CWNR"  display_value="Nakiska Ridgetop, AB" />
+    <EnumValue value="CWNP"  display_value="Nakusp, BC" />
+    <EnumValue value="CYCD"  display_value="Nanaimo, BC" />
+    <EnumValue value="CYSR"  display_value="Nanisivik, NU" />
+    <EnumValue value="CYNA"  display_value="Natashquan, QC" />
+    <EnumValue value="CWNM"  display_value="Nelson, BC" />
+    <EnumValue value="NS-1"  display_value="New Glasgow, NS" />
+    <EnumValue value="CWOC"  display_value="New-Carlisle, QC" />
+    <EnumValue value="ON-25" display_value="Newmarket, ON" />
+    <EnumValue value="KIAG"  display_value="Niagara Falls, ON" />
+    <EnumValue value="CWNQ"  display_value="Nicolet, QC" />
+    <EnumValue value="CYBU"  display_value="Nipawin, SK" />
+    <EnumValue value="ON-26" display_value="Nipigon, ON" />
+    <EnumValue value="CYVQ"  display_value="Norman Wells, NT" />
+    <EnumValue value="CYQW"  display_value="North Battleford, SK" />
+    <EnumValue value="CYYB"  display_value="North Bay, ON" />
+    <EnumValue value="PE-1"  display_value="North Cape, PE" />
+    <EnumValue value="CXNM"  display_value="North Mountain, NS" />
+    <EnumValue value="CWNE"  display_value="North Point, PE" />
+    <EnumValue value="CWNS"  display_value="Northeast Margaree, NS" />
+    <EnumValue value="CYNE"  display_value="Norway House, MB" />
+    <EnumValue value="CWOJ"  display_value="Oakpoint Marine, MB" />
+    <EnumValue value="CPE8"  display_value="Oakville, ON" />
+    <EnumValue value="CNT3"  display_value="Ogoki, ON" />
+    <EnumValue value="CYOC"  display_value="Old Crow, YK" />
+    <EnumValue value="CWOE"  display_value="Onefour, AB" />
+    <EnumValue value="CPV2"  display_value="Orangeville, ON" />
+    <EnumValue value="ON-13" display_value="Orillia, ON" />
+    <EnumValue value="NB-11" display_value="Oromocto, NB" />
+    <EnumValue value="CYOO"  display_value="Oshawa, ON" />
+    <EnumValue value="CWYY"  display_value="Osoyoos, BC" />
+    <EnumValue value="CYOW"  display_value="Ottawa, ON" />
+    <EnumValue value="QC-93" display_value="Otterburn Park, QC" />
+    <EnumValue value="CWYE"  display_value="Outlook, SK" />
+    <EnumValue value="ON-7"  display_value="Owen Sound, ON" />
+    <EnumValue value="SK-10" display_value="Oxbow, SK" />
+    <EnumValue value="CYOH"  display_value="Oxford House, MB" />
+    <EnumValue value="CYXP"  display_value="Pangnirtung, NU" />
+    <EnumValue value="QC-17" display_value="Papineau, QC" />
+    <EnumValue value="QC-94" display_value="Parc de la Gaspesie, QC" />
+    <EnumValue value="QC-95" display_value="Parc Forillon, QC" />
+    <EnumValue value="CWPQ"  display_value="Parent, QC" />
+    <EnumValue value="NS-13" display_value="Parrsboro, NS" />
+    <EnumValue value="CXPC"  display_value="Parry Sound, ON" />
+    <EnumValue value="CYPC"  display_value="Paulatuk, NT" />
+    <EnumValue value="CYPE"  display_value="Peace River, AB" />
+    <EnumValue value="CWWN"  display_value="Peawanuck, ON" />
+    <EnumValue value="CWGP"  display_value="Pemberton, BC" />
+    <EnumValue value="CYTA"  display_value="Pembroke, ON" />
+    <EnumValue value="CYYF"  display_value="Penticton, BC" />
+    <EnumValue value="QC-18" display_value="Perce, QC" />
+    <EnumValue value="CYWA"  display_value="Petawawa, ON" />
+    <EnumValue value="CYPQ"  display_value="Peterborough, ON" />
+    <EnumValue value="CYPL"  display_value="Pickle Lake, ON" />
+    <EnumValue value="ON-27" display_value="Picton, ON" />
+    <EnumValue value="CWPO"  display_value="Pilot Mound, MB" />
+    <EnumValue value="CWEA"  display_value="Pinawa, MB" />
+    <EnumValue value="CZPC"  display_value="Pincher Creek, AB" />
+    <EnumValue value="QC-96" display_value="Pincourt, QC" />
+    <EnumValue value="MB-4"  display_value="Pine Falls, MB" />
+    <EnumValue value="CWMM"  display_value="Pitt Meadows, BC" />
+    <EnumValue value="CWPJ"  display_value="Point Escuminac, NB" />
+    <EnumValue value="CWPE"  display_value="Point Lepreau, NB" />
+    <EnumValue value="CYIO"  display_value="Pond Inlet, NU" />
+    <EnumValue value="QC-19" display_value="Pontiac, QC" />
+    <EnumValue value="MB-5"  display_value="Poplar River, MB" />
+    <EnumValue value="CWQC"  display_value="Port Alberni, BC" />
+    <EnumValue value="NF-13" display_value="Port au Choix, NF" />
+    <EnumValue value="CWPC"  display_value="Port Colborne, ON" />
+    <EnumValue value="ON-19" display_value="Port Elgin, ON" />
+    <EnumValue value="CYZT"  display_value="Port Hardy, BC" />
+    <EnumValue value="CYPD"  display_value="Port Hawkesbury, NS" />
+    <EnumValue value="CWBY"  display_value="Port Menier, QC" />
+    <EnumValue value="CYPG"  display_value="Portage la Prairie, MB" />
+    <EnumValue value="CWZB"  display_value="Port-Aux-Basques, NF" />
+    <EnumValue value="QC-97" display_value="Port-Cartier, QC" />
+    <EnumValue value="CYPW"  display_value="Powell River, BC" />
+    <EnumValue value="QC-98" display_value="Prevost, QC" />
+    <EnumValue value="CWOU"  display_value="Primrose Lake, AB" />
+    <EnumValue value="CYPA"  display_value="Prince Albert, SK" />
+    <EnumValue value="CYXS"  display_value="Prince George, BC" />
+    <EnumValue value="CYPR"  display_value="Prince Rupert, BC" />
+    <EnumValue value="CWPR"  display_value="Princeton, BC" />
+    <EnumValue value="CZFG"  display_value="Pukatawagan, MB" />
+    <EnumValue value="CWPU"  display_value="Puntzi Mountain, BC" />
+    <EnumValue value="QC-40" display_value="Puvirnituq, QC" />
+    <EnumValue value="CYVM"  display_value="Qikiqtarjuaq, NU" />
+    <EnumValue value="CYHA"  display_value="Quaqtaq, QC" />
+    <EnumValue value="CYQB"  display_value="Quebec, QC" />
+    <EnumValue value="CYQZ"  display_value="Quesnel, BC" />
+    <EnumValue value="NB-12" display_value="Quispamsis, NB" />
+    <EnumValue value="CWYH"  display_value="Rae Lakes, NT" />
+    <EnumValue value="QC-99" display_value="Raglan Lake, QC" />
+    <EnumValue value="YK-3"  display_value="Rancheria, YK" />
+    <EnumValue value="CYRT"  display_value="Rankin Inlet, NU" />
+    <EnumValue value="CYQF"  display_value="Red Deer, AB" />
+    <EnumValue value="CWRD"  display_value="Red Earth, AB" />
+    <EnumValue value="CYRL"  display_value="Red Lake, ON" />
+    <EnumValue value="CYQR"  display_value="Regina, SK" />
+    <EnumValue value="QC-A0" display_value="Repentigny, QC" />
+    <EnumValue value="CYUT"  display_value="Repulse Bay, NU" />
+    <EnumValue value="CWPD"  display_value="Reserve Faunique des Laurentides, QC" />
+    <EnumValue value="QC-30" display_value="Reserve Faunique La Verendrye, QC" />
+    <EnumValue value="QC-A1" display_value="Reservoir Gouin, QC" />
+    <EnumValue value="CYRB"  display_value="Resolute, NU" />
+    <EnumValue value="QC-20" display_value="Restigouche, QC" />
+    <EnumValue value="CYRV"  display_value="Revelstoke, BC" />
+    <EnumValue value="QC-21" display_value="Richelieu, QC" />
+    <EnumValue value="MB-6"  display_value="Richer, MB" />
+    <EnumValue value="NB-13" display_value="Richibucto, NB" />
+    <EnumValue value="QC-A2" display_value="Rigaud, QC" />
+    <EnumValue value="CWYQ"  display_value="Rimouski, QC" />
+    <EnumValue value="CWNH"  display_value="Riviere-du-Loup, QC" />
+    <EnumValue value="CYRJ"  display_value="Roberval, QC" />
+    <EnumValue value="CWXB"  display_value="Roblin, MB" />
+    <EnumValue value="BC-10" display_value="Rock Creek, BC" />
+    <EnumValue value="CWRR"  display_value="Rock River, YK" />
+    <EnumValue value="CWKO"  display_value="Rockglen, SK" />
+    <EnumValue value="CXRH"  display_value="Rocky Harbour, NF" />
+    <EnumValue value="CWRM"  display_value="RockyMtnHouse, AB" />
+    <EnumValue value="NB-14" display_value="Rogersville, NB" />
+    <EnumValue value="CWAJ"  display_value="Rondeau Park(Erieau), ON" />
+    <EnumValue value="QC-A3" display_value="Rosemere, QC" />
+    <EnumValue value="CWRJ"  display_value="Rosetown, SK" />
+    <EnumValue value="CYDM"  display_value="Ross River, YK" />
+    <EnumValue value="SK-1"  display_value="Rosthern, SK" />
+    <EnumValue value="CYUY"  display_value="Rouyn-Noranda, QC" />
+    <EnumValue value="CYSY"  display_value="Sachs Harbour, NT" />
+    <EnumValue value="NB-15" display_value="Sackville, NB" />
+    <EnumValue value="CWJO"  display_value="Saguenay, QC" />
+    <EnumValue value="CYSJ"  display_value="Saint John, NB" />
+    <EnumValue value="CYSL"  display_value="Saint Leonard, NB" />
+    <EnumValue value="QC-A5" display_value="Saint-Amable, QC" />
+    <EnumValue value="QC-A6" display_value="Saint-Basile Le Grand, QC" />
+    <EnumValue value="QC-A7" display_value="Saint-Constant, QC" />
+    <EnumValue value="QC-33" display_value="Sainte-Agathe, QC" />
+    <EnumValue value="QC-A8" display_value="Sainte-Anne-Des-Monts, QC" />
+    <EnumValue value="QC-A9" display_value="Sainte-Anne-Des-Plaines, QC" />
+    <EnumValue value="QC-B0" display_value="Sainte-Catherine, QC" />
+    <EnumValue value="QC-B1" display_value="Sainte-Julie, QC" />
+    <EnumValue value="QC-B2" display_value="Sainte-Sophie, QC" />
+    <EnumValue value="QC-B3" display_value="Sainte-Therese, QC" />
+    <EnumValue value="QC-B4" display_value="Saint-Eustache, QC" />
+    <EnumValue value="QC-B5" display_value="Saint-Felicien, QC" />
+    <EnumValue value="QC-B6" display_value="Saint-Georges, QC" />
+    <EnumValue value="QC-22" display_value="Saint-Hyacinthe, QC" />
+    <EnumValue value="QC-28" display_value="Saint-Jean-sur-Richelieu, QC" />
+    <EnumValue value="QC-13" display_value="Saint-Jerôme, QC" />
+    <EnumValue value="CWJT"  display_value="Saint-Jovite, QC" />
+    <EnumValue value="QC-B7" display_value="Saint-Lazare, QC" />
+    <EnumValue value="QC-B8" display_value="Saint-Lin, QC" />
+    <EnumValue value="QC-B9" display_value="Saint-Luc, QC" />
+    <EnumValue value="QC-C0" display_value="Saint-Michel-des-Saints, QC" />
+    <EnumValue value="QC-C1" display_value="Saint-Nicephore, QC" />
+    <EnumValue value="NB-16" display_value="Saint-Quentin, NB" />
+    <EnumValue value="QC-C2" display_value="Saint-Remi, QC" />
+    <EnumValue value="QC-C3" display_value="Saint-Sauveur, QC" />
+    <EnumValue value="QC-C4" display_value="Saint-Timothee, QC" />
+    <EnumValue value="CWBZ"  display_value="Salaberry-de-Valleyfield, QC" />
+    <EnumValue value="CYZG"  display_value="Salluit, QC" />
+    <EnumValue value="CWSL"  display_value="Salmon Arm, BC" />
+    <EnumValue value="CYZP"  display_value="Sandspit, BC" />
+    <EnumValue value="CZSJ"  display_value="Sandy Lake, ON" />
+    <EnumValue value="CYSK"  display_value="Sanikiluaq, NU" />
+    <EnumValue value="CYZR"  display_value="Sarnia, ON" />
+    <EnumValue value="CYXE"  display_value="Saskatoon, SK" />
+    <EnumValue value="CYAM"  display_value="Sault Ste Marie, ON" />
+    <EnumValue value="CYKL"  display_value="Schefferville, QC" />
+    <EnumValue value="CWTS"  display_value="Scott, SK" />
+    <EnumValue value="BC-3"  display_value="Sechelt, BC" />
+    <EnumValue value="CYZV"  display_value="Sept-Îles, QC" />
+    <EnumValue value="CZTM"  display_value="Shamattawa, MB" />
+    <EnumValue value="SK-11" display_value="Shaunavon, SK" />
+    <EnumValue value="CXSH"  display_value="Shawinigan, QC" />
+    <EnumValue value="CYAW"  display_value="Shearwater, NS" />
+    <EnumValue value="NB-17" display_value="Shediac, NB" />
+    <EnumValue value="NS-10" display_value="Sheet Harbour, NS" />
+    <EnumValue value="NS-11" display_value="Shelburne, NS" />
+    <EnumValue value="CYSC"  display_value="Sherbrooke, QC" />
+    <EnumValue value="CWLO"  display_value="Shilo, MB" />
+    <EnumValue value="CWUT"  display_value="Shoal Lake, MB" />
+    <EnumValue value="CXDI"  display_value="Simcoe - Delhi, ON" />
+    <EnumValue value="CYXL"  display_value="Sioux Lookout, ON" />
+    <EnumValue value="CYZH"  display_value="Slave Lake, AB" />
+    <EnumValue value="CYYD"  display_value="Smithers, BC" />
+    <EnumValue value="CYSH"  display_value="Smiths Falls, ON" />
+    <EnumValue value="MB-12" display_value="Snow Lake, MB" />
+    <EnumValue value="QC-C6" display_value="Sorel, QC" />
+    <EnumValue value="CJX5"  display_value="Souris, MB" />
+    <EnumValue value="CWSH"  display_value="Sousa Creek, AB" />
+    <EnumValue value="CWJH"  display_value="Southend, SK" />
+    <EnumValue value="CWSW"  display_value="Sparwood, BC" />
+    <EnumValue value="CWSR"  display_value="Spiritwood West, SK" />
+    <EnumValue value="CWSU"  display_value="Sprague, MB" />
+    <EnumValue value="CWSK"  display_value="Squamish, BC" />
+    <EnumValue value="NB-18" display_value="St Andrews, NB" />
+    <EnumValue value="CYAY"  display_value="St. Anthony, NF" />
+    <EnumValue value="CYSN"  display_value="St Catharines, ON" />
+    <EnumValue value="CYYT"  display_value="St John's, NF" />
+    <EnumValue value="CWDS"  display_value="St Lawrence, NF" />
+    <EnumValue value="NS-12" display_value="St. Peters, NS" />
+    <EnumValue value="CWSS"  display_value="St Stephen, NB" />
+    <EnumValue value="CYQS"  display_value="St Thomas, ON" />
+    <EnumValue value="CWXN"  display_value="Stavely, AB" />
+    <EnumValue value="MB-13" display_value="Steinbach, MB" />
+    <EnumValue value="CYJT"  display_value="Stephenville, NF" />
+    <EnumValue value="AB-5"  display_value="Stettler, AB" />
+    <EnumValue value="CZST"  display_value="Stewart, BC" />
+    <EnumValue value="CXPS"  display_value="Stony Plain, AB" />
+    <EnumValue value="CYSF"  display_value="Stony Rapids, SK" />
+    <EnumValue value="CPK5"  display_value="Stratford, ON" />
+    <EnumValue value="AB-6"  display_value="Strathmore, AB" />
+    <EnumValue value="ON-18" display_value="Strathroy, ON" />
+    <EnumValue value="CYSB"  display_value="Sudbury, ON" />
+    <EnumValue value="CYSD"  display_value="Suffield Arpt, AB" />
+    <EnumValue value="CWUS"  display_value="Summerland, BC" />
+    <EnumValue value="CWSD"  display_value="Summerside, PE" />
+    <EnumValue value="CWAV"  display_value="Sundre Arpt, AB" />
+    <EnumValue value="NB-19" display_value="Sussex, NB" />
+    <EnumValue value="CWXF"  display_value="Sutton, QC" />
+    <EnumValue value="CWEQ"  display_value="Swan River, MB" />
+    <EnumValue value="CYYN"  display_value="Swift Current, SK" />
+    <EnumValue value="CYQY"  display_value="Sydney, NS" />
+    <EnumValue value="AB-7"  display_value="Taber, AB" />
+    <EnumValue value="CYBQ"  display_value="Tadoule Lake, MB" />
+    <EnumValue value="CSZ5"  display_value="Tadoussac, QC" />
+    <EnumValue value="CYYH"  display_value="Taloyoak, NU" />
+    <EnumValue value="CYTQ"  display_value="Tasiujaq, QC" />
+    <EnumValue value="NS-14" display_value="Tatamagouche, NS" />
+    <EnumValue value="CXTL"  display_value="Tatlayoko Lake, BC" />
+    <EnumValue value="CWBA"  display_value="Temiscamingue, QC" />
+    <EnumValue value="QC-35" display_value="Temiscouata, QC" />
+    <EnumValue value="CXTP"  display_value="Terra Nova Nat.Prk, NF" />
+    <EnumValue value="CYXT"  display_value="Terrace, BC" />
+    <EnumValue value="CYTJ"  display_value="Terrace Bay, ON" />
+    <EnumValue value="QC-C7" display_value="Terrebonne, QC" />
+    <EnumValue value="CWZW"  display_value="Teslin, YK" />
+    <EnumValue value="CWTH"  display_value="Tetsa River, BC" />
+    <EnumValue value="CYQD"  display_value="The Pas, MB" />
+    <EnumValue value="QC-C8" display_value="Thetford Mines, QC" />
+    <EnumValue value="CYTH"  display_value="Thompson, MB" />
+    <EnumValue value="CWHI"  display_value="Three Hills, AB" />
+    <EnumValue value="CYQT"  display_value="Thunder Bay, ON" />
+    <EnumValue value="ON-17" display_value="Tillsonburg, ON" />
+    <EnumValue value="CYTS"  display_value="Timmins, ON" />
+    <EnumValue value="SK-12" display_value="Tisdale, SK" />
+    <EnumValue value="CWWX"  display_value="Tobermory, ON" />
+    <EnumValue value="CYAZ"  display_value="Tofino, BC" />
+    <EnumValue value="CYYZ"  display_value="Toronto, ON" />
+    <EnumValue value="CYTZ"  display_value="Toronto/Island, ON" />
+    <EnumValue value="NB-20" display_value="Tracadie-Sheila, NB" />
+    <EnumValue value="QC-C9" display_value="Tracy, QC" />
+    <EnumValue value="CXWF"  display_value="Trail, BC" />
+    <EnumValue value="CYTR"  display_value="Trenton-Quinte West, ON" />
+    <EnumValue value="QC-24" display_value="Trois-Pistoles, QC" />
+    <EnumValue value="CWTY"  display_value="Trois-Rivieres, QC" />
+    <EnumValue value="CWTE"  display_value="Trout Lake, NT" />
+    <EnumValue value="CWUR"  display_value="Truro, NS" />
+    <EnumValue value="CYUB"  display_value="Tuktoyaktuk, NT" />
+    <EnumValue value="CZFN"  display_value="Tulita, NT" />
+    <EnumValue value="CWNT"  display_value="Turtle Mountain Prov Park, MB" />
+    <EnumValue value="CWDO"  display_value="Twillingate, NF" />
+    <EnumValue value="BC-5"  display_value="Ucluelet, BC" />
+    <EnumValue value="CYMU"  display_value="Umiujaq, QC" />
+    <EnumValue value="CWYJ"  display_value="University of Victoria, BC" />
+    <EnumValue value="CWDC"  display_value="Uranium City, SK" />
+    <EnumValue value="QC-42" display_value="Val des Monts, QC" />
+    <EnumValue value="CWVN"  display_value="Val Marie, SK" />
+    <EnumValue value="CYVO"  display_value="Val-d'Or, QC" />
+    <EnumValue value="QC-D0" display_value="Vallee de la Matapedia, QC" />
+    <EnumValue value="CYVR"  display_value="Vancouver, BC" />
+    <EnumValue value="CAU4"  display_value="Vanderhoof, BC" />
+    <EnumValue value="QC-41" display_value="Vanier, QC" />
+    <EnumValue value="CWHM"  display_value="Varennes, QC" />
+    <EnumValue value="QC-66" display_value="Vaudreuil-Dorion, QC" />
+    <EnumValue value="CWVO"  display_value="Vauxhall, AB" />
+    <EnumValue value="CWVI"  display_value="Vegreville, AB" />
+    <EnumValue value="CWJV"  display_value="Vernon, BC" />
+    <EnumValue value="CYYJ"  display_value="Victoria, BC" />
+    <EnumValue value="CWII"  display_value="Victoria Beach, MB" />
+    <EnumValue value="CYWH"  display_value="Victoria Harbour, BC" />
+    <EnumValue value="CSR3"  display_value="Victoriaville, QC" />
+    <EnumValue value="CXVN"  display_value="Vineland, ON" />
+    <EnumValue value="CJZ5"  display_value="Virden, MB" />
+    <EnumValue value="CWFV"  display_value="Virginia Falls, NT" />
+    <EnumValue value="MB-7"  display_value="Vita, MB" />
+    <EnumValue value="CYWK"  display_value="Wabush Lake, NF" />
+    <EnumValue value="CZWN"  display_value="Wainwright, AB" />
+    <EnumValue value="ON-16" display_value="Walkerton, ON" />
+    <EnumValue value="CWWP"  display_value="Wasagaming, MB" />
+    <EnumValue value="CYKQ"  display_value="Waskaganish, QC" />
+    <EnumValue value="CWLV"  display_value="Waskesiu Lake, SK" />
+    <EnumValue value="CWGM"  display_value="Waterton Park, AB" />
+    <EnumValue value="CWIW"  display_value="Watrous, SK" />
+    <EnumValue value="CYQH"  display_value="Watson Lake, YK" />
+    <EnumValue value="CYXZ"  display_value="Wawa, ON" />
+    <EnumValue value="CXLC"  display_value="Wekweti, NT" />
+    <EnumValue value="ON-14" display_value="Welland, ON" />
+    <EnumValue value="CWWE"  display_value="Western Head, NS" />
+    <EnumValue value="AB-8"  display_value="Westlock, AB" />
+    <EnumValue value="AB-9"  display_value="Wetaskiwin, AB" />
+    <EnumValue value="CWWF"  display_value="Weyburn, SK" />
+    <EnumValue value="CWMT"  display_value="Wha Ti, NT" />
+    <EnumValue value="CYXN"  display_value="Whale Cove, NU" />
+    <EnumValue value="CWAE"  display_value="Whistler, BC" />
+    <EnumValue value="CWWK"  display_value="White Rock, BC" />
+    <EnumValue value="CYZU"  display_value="Whitecourt, AB" />
+    <EnumValue value="CYXY"  display_value="Whitehorse, YK" />
+    <EnumValue value="MB-8"  display_value="Whiteshell, MB" />
+    <EnumValue value="CYVV"  display_value="Wiarton, ON" />
+    <EnumValue value="CYWL"  display_value="Williams Lake, BC" />
+    <EnumValue value="CWWO"  display_value="Willow Creek, AB" />
+    <EnumValue value="CWOO"  display_value="Wilson Creek (McCreary), MB" />
+    <EnumValue value="CYQG"  display_value="Windsor, ON" />
+    <EnumValue value="NS-15" display_value="Windsor, NS" />
+    <EnumValue value="CKZ7"  display_value="Winkler, MB" />
+    <EnumValue value="CYWG"  display_value="Winnipeg, MB" />
+    <EnumValue value="CXWN"  display_value="Winnipeg at the Forks, MB" />
+    <EnumValue value="CXWT"  display_value="Winterland, NF" />
+    <EnumValue value="ON-15" display_value="Woodstock, ON" />
+    <EnumValue value="NB-21" display_value="Woodstock, NB" />
+    <EnumValue value="CXWR"  display_value="Wreckhouse, NF" />
+    <EnumValue value="CYWY"  display_value="Wrigley, NT" />
+    <EnumValue value="CWOY"  display_value="Wynyard, SK" />
+    <EnumValue value="CYQI"  display_value="Yarmouth, NS" />
+    <EnumValue value="CYZF"  display_value="Yellowknife, NT" />
+    <EnumValue value="CWYL"  display_value="Yoho Park, BC" />
+    <EnumValue value="CZAC"  display_value="York Factory, MB" />
+    <EnumValue value="CYQV"  display_value="Yorkton, SK" />
+  </UserPref>
+
+  <Content type="html"  >
+    <![CDATA[ 
+<!-- Begin WeatherLink Flash Fragment -->
+<div id="content__MODULE_ID__" style="text-align:center;"><i>__MSG_loading__</i></div>
+<!-- End WeatherLink Flash Fragment -->
+
+<script type="text/javascript">
+  function onLoadFunc__MODULE_ID__() {
+    var output = _gel("content" + __MODULE_ID__)
+    var theLocation = "__UP_location__";
+    var theLanguage = "__MSG_prefix__";
+
+    output.innerHTML = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="180" height="110"><param name=movie value="http://www.weatheroffice.com/FlashFeed/WxLinks' + theLanguage + '/' + theLocation + '.swf"><param name=quality value=high><embed src="http://www.weatheroffice.com/FlashFeed/WxLinks' + theLanguage + '/' + theLocation + '.swf" quality="high"  pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="180" height="110"></object>';
+  }
+  
+  _IG_RegisterOnloadHandler(onLoadFunc__MODULE_ID__);
+</script>
+    ]]> 
+  </Content>
+</Module>
