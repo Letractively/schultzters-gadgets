@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<Module>
+  <!--
+    $Id$
+
+    $HeadURL$
+
+    Textual description of the Google Module (Gadget)
+
+  -->
+  
+  <ModulePrefs title="__MSG_title__" 
+               directory_title="..."
+               title_url="http://..."
+               description="..."
+               screenshot="http://..."
+               thumbnail="http://..."
+               render_inline="never" 
+               height="..." 
+               scaling="false" 
+               scrolling="false" 
+               singleton="false" 
+
+               author="Eric Schultz" 
+               author_email="eric@cameron-schultz.ca"
+               author_affiliation="None/Independent" 
+               author_location="Montreal, QC" 
+               author_photo="http://schultzter.googlepages.com/MiloFace_99x99.png" 
+               author_aboutme="Computer hobbyist, home owner, outdoor adventurer, and CTI Technical Leader" 
+               author_link="http://www.schultzter.ca" 
+               author_quote="Headed for the second star to the right and straight on 'til morning..." 
+  > 
+    <Locale lang="en" messages="http://...-en_ALL.xml" />
+    <Locale lang="fr" messages="http://...-fr_ALL.xml" />
+    <Locale           messages="http://...-en_ALL.xml" />
+
+    <MayRequire type="plugin" value="flash"/>
+  </ModulePrefs>
+  
+  <UserPref name="..." display_name="__MSG_..._" required="..."  datatype="..."  default_value="...">
+  </UserPref>
+
+  <Content type="..."  >
+    <![CDATA[ 
+<!-- Begin ... -->
+<div id="content__MODULE_ID__" style="text-align:center;"><i>__MSG_loading__</i></div>
+<!-- End ... -->
+
+<script type="text/javascript">
+  function onLoadFunc__MODULE_ID__() {
+    var output = _gel("content" + __MODULE_ID__)
+
+    output.innerHTML = ... 
+  }
+  
+  _IG_RegisterOnloadHandler(onLoadFunc__MODULE_ID__);
+</script>
+    ]]> 
+  </Content>
+</Module>
