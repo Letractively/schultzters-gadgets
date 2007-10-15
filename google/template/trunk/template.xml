@@ -11,9 +11,9 @@
   -->
   
   <ModulePrefs title="__MSG_title__" 
-               directory_title="..."
+               directory_title="__MSG_dtitle__"
                title_url="http://..."
-               description="..."
+               description="__MSG_description__"
                screenshot="http://..."
                thumbnail="http://..."
                render_inline="never" 
