@@ -1,5 +1,5 @@
 #summary To-Do list for the WeatherLink gadget
-#labels Featured,ToDo
+#labels Featured
 
 = Introduction =
 
