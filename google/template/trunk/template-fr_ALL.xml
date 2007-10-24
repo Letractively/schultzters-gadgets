@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<messagebundle>
+  <!--
+    $Id$
+    
+    $HeadURL$
+
+    Localized French (fr) messages for ??? Google Gadget.
+    
+  -->
+  
+    <msg name="title">...</msg>
+	<msg name="dirtitle">...</msg>
+	<msg name="description">...</msg>
+    <msg name="loading">Loading...</msg>
+</messagebundle> 

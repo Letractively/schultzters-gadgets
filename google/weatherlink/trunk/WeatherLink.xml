@@ -20,9 +20,9 @@
   -->
   
   <ModulePrefs title="__MSG_title__" 
-               directory_title="Environment Canada's WeatherLink"
+               directory_title="__MSG_dirtitle__"
                title_url="http://www.weatheroffice.pyr.ec.gc.ca/" 
-               description="Daily forecast and current observations for Canadian cities, based on WeatherLink service from Environment Canada" 
+               description="__MSG_description__" 
                screenshot="http://schultzters-gadgets.googlecode.com/svn/google/weatherlink/trunk/screenshot.png" 
                thumbnail="http://schultzters-gadgets.googlecode.com/svn/google/weatherlink/trunk/thumbnail.png" 
                render_inline="never" 

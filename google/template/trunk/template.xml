@@ -11,7 +11,7 @@
   -->
   
   <ModulePrefs title="__MSG_title__" 
-               directory_title="__MSG_dtitle__"
+               directory_title="__MSG_dirtitle__"
                title_url="http://..."
                description="__MSG_description__"
                screenshot="http://..."

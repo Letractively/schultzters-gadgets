@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<messagebundle>
+  <!--
+    $Id$
+    
+    $HeadURL$
+
+    Localized English (en) messages for ??? Google Gadget.  Also used as the default message bundle.
+    
+  -->
+  
+    <msg name="title">...</msg>
+	<msg name="dirtitle">...</msg>
+	<msg name="description">...</msg>
+    <msg name="loading">Loading...</msg>
+</messagebundle> 
