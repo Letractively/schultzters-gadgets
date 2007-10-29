@@ -40,9 +40,9 @@
                author_link="http://www.schultzter.ca" 
                author_quote="Headed for the second star to the right and straight on 'til morning..." 
   > 
-    <Locale lang="en" messages="http://schultzters-gadgets.googlecode.com/svn/google/weatherlink/trunk/WeatherLink-en_ALL.xml" />
-    <Locale lang="fr" messages="http://schultzters-gadgets.googlecode.com/svn/google/weatherlink/trunk/WeatherLink-fr_ALL.xml" />
-    <Locale           messages="http://schultzters-gadgets.googlecode.com/svn/google/weatherlink/trunk/WeatherLink-en_ALL.xml" />
+  <Locale lang="en" messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-en_ALL.xml" />
+  <Locale lang="fr" messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-fr_ALL.xml" />
+  <Locale           messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-en_ALL.xml" />
     <MayRequire type="plugin" value="flash"/>
   </ModulePrefs>
   
