@@ -10,8 +10,8 @@
     
   -->
   
-    <msg name="title">...</msg>
-	<msg name="dirtitle">...</msg>
-	<msg name="description">...</msg>
-    <msg name="loading">Loading...</msg>
+  <msg name="title">...</msg>
+  <msg name="dirtitle">...</msg>
+  <msg name="description">...</msg>
+  <msg name="loading">Loading...</msg>
 </messagebundle> 

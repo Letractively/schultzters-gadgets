@@ -23,7 +23,7 @@
                singleton="false" 
 
                author="Eric Schultz" 
-               author_email="eric@cameron-schultz.ca"
+               author_email="eric+feedback.gadgets@schultzter.ca"
                author_affiliation="None/Independent" 
                author_location="Montreal, QC" 
                author_photo="http://schultzter.googlepages.com/MiloFace_99x99.png" 
@@ -35,7 +35,7 @@
     <Locale lang="fr" messages="http://...-fr_ALL.xml" />
     <Locale           messages="http://...-en_ALL.xml" />
 
-    <MayRequire type="plugin" value="flash"/>
+    <MayRequire type="..." value="..."/>
   </ModulePrefs>
   
   <UserPref name="..." display_name="__MSG_..._" required="..."  datatype="..."  default_value="...">
