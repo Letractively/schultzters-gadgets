@@ -6,9 +6,24 @@
 As far as this project is concerned a gadget is small, DHTML (HTML+CSS+JavaScript) based application.  Typically run inside (i.e.: on a web page) or by a browser (ex.: [http://dev.opera.com/articles/widgets/ Opera widgets]) but other user agents are possible (ex.: [http://www.adobe.com/devnet/air/ Adobe AIR]).
 
 
-= Details =
+= Sources =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+The primary sources of information for this page are:
+  * [http://www.programmableweb.com/ Programmable Web]'s [http://www.programmableweb.com/apis/directory/1?tags%5B%5D=&tags%5B%5D=&tags%5B%5D=&apicat=Widgets&company_id=&protocol=&maxdays=0&sa=Search list of Widget APIs]; and
+  * Wikipedia [http://en.wikipedia.org/wiki/Widget_engine articles on widgets].
+
+
+= List of Environments =
+
+== Web page gadgets ==
+
+
+== Browser gadgets ==
+
+
+== Desktop gadgets ==
+
+
+= Summary =
+
+Since not all environments provide the same functionality gadgets don't always work the same way, but the intention is discover the limits and work-arounds of each environment.
