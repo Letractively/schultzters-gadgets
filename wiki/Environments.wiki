@@ -1,0 +1,14 @@
+#summary The gadget environments considered for this project - accepted and rejected.
+#labels Featured
+
+= Introduction =
+
+As far as this project is concerned a gadget is small, DHTML (HTML+CSS+JavaScript) based application.  Typically run inside (i.e.: on a web page) or by a browser (ex.: [http://dev.opera.com/articles/widgets/ Opera widgets]) but other user agents are possible (ex.: [http://www.adobe.com/devnet/air/ Adobe AIR]).
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
