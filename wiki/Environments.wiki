@@ -3,7 +3,7 @@
 
 = Introduction =
 
-As far as this project is concerned a gadget is small, DHTML (HTML+CSS+JavaScript) based application.  Typically run inside (i.e.: on a web page) or by a browser (ex.: [http://dev.opera.com/articles/widgets/ Opera widgets]) but other user agents are possible (ex.: [http://www.adobe.com/devnet/air/ Adobe AIR]).
+As far as this project is concerned a gadget is small, DHTML (HTML+CSS+!JavaScript) based application.  Typically run inside (i.e.: on a web page) or by a browser (ex.: [http://dev.opera.com/articles/widgets/ Opera widgets]) but other user agents are possible (ex.: [http://www.adobe.com/devnet/air/ Adobe AIR]).
 
 Gadgets can of course be written in other languages, such as Flash/Flex/!ActionScript, a .NET family language or a Java-based language.  For the moment at least, I'm not going to consider those types of gadgets.
 
