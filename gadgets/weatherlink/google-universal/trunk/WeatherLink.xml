@@ -1,23 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" ?> 
-
+<?xml version="1.0" encoding="UTF-8"?>
 <Module>
-  <!--
+-
+<!--
+
     $Id$
 
     $HeadURL$
 
-    This is basicly just a rebuild of the Weather on your Website service 
+    This is basically just a rebuild of the Weather on your Website service 
     offered by Environment Canada's British Columbia and Yukon Weather Office.
     It builds a flash animation of today's forecast and current observations
     (if available - if not you only get the forecast) for the given city.
+    
+    Updated in July 2010 by Peter Chynoweth to accommodate the adjustments made
+    by Environment Canada.
     
     See the following links for more information about these services:
     Environment Canada: http://www.ec.gc.ca/envhome.html
     Weather Office: http://www.weatheroffice.ec.gc.ca/canada_e.html
     British Columbia and Yukon: http://www.weatheroffice.pyr.ec.gc.ca/default_e.html
     WeatherLink: http://www.weatheroffice.pyr.ec.gc.ca/wxlink/index_e.asp
+	
+	The mysterious "siteCode" can be derived by calling: 
+	
+	http://www.weatheroffice.gc.ca/business/include/getSnipet.php?provCode=xx&cityCode=xx-yy&lang=e
+	
+	The provCode and cityCode values can be found at: http://www.weatheroffice.gc.ca/city/js/forecastQuickLinkArraysEn.js
+	
     
-  -->
+  
+-->
+-
   
   <ModulePrefs title="__MSG_title__" 
                directory_title="__MSG_dirtitle__"
@@ -45,786 +58,867 @@
   <Locale           messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-en_ALL.xml" />
     <MayRequire type="plugin" value="flash"/>
   </ModulePrefs>
-  
-  <UserPref name="location" display_name="__MSG_location__" required="true"  datatype="enum"  default_value="CYUL">
-    <EnumValue value="BC-7"  display_value="100 Mile House, BC" />
-    <EnumValue value="CYXX"  display_value="Abbotsford, BC" />
-    <EnumValue value="CWZA"  display_value="Agassiz, BC" />
-    <EnumValue value="CYKD"  display_value="Aklavik, NT" />
-    <EnumValue value="QC-36" display_value="Akulivik, QC" />
-    <EnumValue value="CWLT"  display_value="Alert, NU" />
-    <EnumValue value="ON-1"  display_value="Algonquin Park, ON" />
-    <EnumValue value="CPJ2"  display_value="Alliston, ON" />
-    <EnumValue value="CYTF"  display_value="Alma, QC" />
-    <EnumValue value="MB-3"  display_value="Altona, MB" />
-    <EnumValue value="CWAH"  display_value="Amherst, NS" />
-    <EnumValue value="CYEY"  display_value="Amos, QC" />
-    <EnumValue value="CWZS"  display_value="Amqui, QC" />
-    <EnumValue value="NS-2"  display_value="Annapolis Royal, NS" />
-    <EnumValue value="NS-3"  display_value="Antigonish, NS" />
-    <EnumValue value="CXAT"  display_value="Arctic Bay, NU" />
-    <EnumValue value="CWAR"  display_value="Argentia, NF" />
-    <EnumValue value="CWYW"  display_value="Armstrong, ON" />
-    <EnumValue value="CWRE"  display_value="Arnes, MB" />
-    <EnumValue value="CYEK"  display_value="Arviat, NU" />
-    <EnumValue value="QC-38" display_value="Asbestos, QC" />
-    <EnumValue value="CWJI"  display_value="Assiniboia, SK" />
-    <EnumValue value="CYWM"  display_value="Athabasca, AB" />
-    <EnumValue value="CWCH"  display_value="Atikokan, ON" />
-    <EnumValue value="CYSQ"  display_value="Atlin, BC" />
-    <EnumValue value="CYAT"  display_value="Attawapiskat, ON" />
-    <EnumValue value="CYLA"  display_value="Aupaluk, QC" />
-    <EnumValue value="CWCP"  display_value="Baccaro Point, NS" />
-    <EnumValue value="CWBL"  display_value="Bachelors Island, MB" />
-    <EnumValue value="NS-4"  display_value="Baddeck, NS" />
-    <EnumValue value="CWDI"  display_value="Badger, NF" />
-    <EnumValue value="CYBG"  display_value="Bagotville, QC" />
-    <EnumValue value="CWIS"  display_value="Baie Saint-Paul, QC" />
-    <EnumValue value="CYBC"  display_value="Baie-Comeau, QC" />
-    <EnumValue value="CYBK"  display_value="Baker Lake, NU" />
-    <EnumValue value="CWRK"  display_value="Bancroft, ON" />
-    <EnumValue value="CWZG"  display_value="Banff, AB" />
-    <EnumValue value="AB-2"  display_value="Barrhead, AB" />
-    <EnumValue value="CWCU"  display_value="Barrie, ON" />
-    <EnumValue value="CWXS"  display_value="Bas Caraquet, NB" />
-    <EnumValue value="CZBF"  display_value="Bathurst, NB" />
-    <EnumValue value="CWHV"  display_value="Beauce, QC" />
-    <EnumValue value="QC-48" display_value="Beauceville, QC" />
-    <EnumValue value="QC-49" display_value="Beauharnois, QC" />
-    <EnumValue value="CYXQ"  display_value="Beaver Creek, YK" />
-    <EnumValue value="CWBV"  display_value="Beaver Island, NS" />
-    <EnumValue value="CWBM"  display_value="Beaverlodge, AB" />
-    <EnumValue value="QC-50" display_value="Becancour, QC" />
-    <EnumValue value="CYBD"  display_value="Bella Coola, BC" />
-    <EnumValue value="ON-3"  display_value="Belleville, ON" />
-    <EnumValue value="CYBV"  display_value="Berens River, MB" />
-    <EnumValue value="QC-51" display_value="Bernieres, QC" />
-    <EnumValue value="QC-25" display_value="Berthierville, QC" />
-    <EnumValue value="CYTL"  display_value="Big Trout Lake, ON" />
-    <EnumValue value="SK-2"  display_value="Biggar, SK" />
-    <EnumValue value="CJB9"  display_value="Bissett, MB" />
-    <EnumValue value="QC-52" display_value="Blainville, QC" />
-    <EnumValue value="CYBX"  display_value="Blanc Sablon, QC" />
-    <EnumValue value="ON-21" display_value="Blind River, ON" />
-    <EnumValue value="CZTA"  display_value="Bloodvein, MB" />
-    <EnumValue value="CYCP"  display_value="Blue River, BC" />
-    <EnumValue value="CWSV"  display_value="Blue River (Auto), BC" />
-    <EnumValue value="QC-53" display_value="Boisbriand, QC" />
-    <EnumValue value="QC-54" display_value="Bonaventure, QC" />
-    <EnumValue value="CWVA"  display_value="Bonavista, NF" />
-    <EnumValue value="NB-1"  display_value="Bouctouche, NB" />
-    <EnumValue value="CWXL"  display_value="Bow Island, AB" />
-    <EnumValue value="CWXA"  display_value="Bow Valley, AB" />
-    <EnumValue value="ON-9"  display_value="Bracebridge, ON" />
-    <EnumValue value="ON-4"  display_value="Brampton, ON" />
-    <EnumValue value="CYBR"  display_value="Brandon, MB" />
-    <EnumValue value="CYFD"  display_value="Brantford, ON" />
-    <EnumValue value="NS-5"  display_value="Bridgetown, NS" />
-    <EnumValue value="NS-6"  display_value="Bridgewater, NS" />
-    <EnumValue value="CWVU"  display_value="Brier Island, NS" />
-    <EnumValue value="CWIK"  display_value="Broadview, SK" />
-    <EnumValue value="CYBT"  display_value="Brochet , MB" />
-    <EnumValue value="ON-8"  display_value="Brockville, ON" />
-    <EnumValue value="CWBO"  display_value="Brooks, AB" />
-    <EnumValue value="NF-4"  display_value="Buchans, NF" />
-    <EnumValue value="CYVT"  display_value="Buffalo Narrows, SK" />
-    <EnumValue value="CWBF"  display_value="Burgeo, NF" />
-    <EnumValue value="CWWB"  display_value="Burlington, ON" />
-    <EnumValue value="CWPZ"  display_value="Burns Lake, BC" />
-    <EnumValue value="CYDB"  display_value="Burwash, YK" />
-    <EnumValue value="CERU"  display_value="Cabot Park, PE" />
-    <EnumValue value="CAZ5"  display_value="Cache Creek, BC" />
-    <EnumValue value="CYYC"  display_value="Calgary, AB" />
-    <EnumValue value="CPG2"  display_value="Cambridge, ON" />
-    <EnumValue value="CYCB"  display_value="Cambridge Bay, NU" />
-    <EnumValue value="CYBL"  display_value="Campbell River, BC" />
-    <EnumValue value="NF-2"  display_value="Campbellton, NF" />
-    <EnumValue value="NB-2"  display_value="Campbellton, NB" />
-    <EnumValue value="CWRV"  display_value="Camrose, AB" />
-    <EnumValue value="CWDU"  display_value="Canada Olympic Park, AB" />
-    <EnumValue value="QC-55" display_value="Candiac, QC" />
-    <EnumValue value="AB-3"  display_value="Canmore, AB" />
-    <EnumValue value="SK-3"  display_value="Canora, SK" />
-    <EnumValue value="CWSG"  display_value="Cap Chat, QC" />
-    <EnumValue value="CYTE"  display_value="Cape Dorset, NU" />
-    <EnumValue value="CWGU"  display_value="Cape George, NS" />
-    <EnumValue value="CWRA"  display_value="Cape Race, NF" />
-    <EnumValue value="CWZE"  display_value="Carberry, MB" />
-    <EnumValue value="YK-2"  display_value="Carcross, YK" />
-    <EnumValue value="CWFJ"  display_value="Cardston, AB" />
-    <EnumValue value="CWBK"  display_value="Caribou Point, NS" />
-    <EnumValue value="QC-56" display_value="Carignan, QC" />
-    <EnumValue value="QC-57" display_value="Carleton, QC" />
-    <EnumValue value="SK-4"  display_value="Carlyle, SK" />
-    <EnumValue value="CXCK"  display_value="Carmacks, YK" />
-    <EnumValue value="CWNK"  display_value="Carman, MB" />
-    <EnumValue value="CWCA"  display_value="Cartwright, NF" />
-    <EnumValue value="BC-6"  display_value="Cassiar, BC" />
-    <EnumValue value="CYCG"  display_value="Castlegar, BC" />
-    <EnumValue value="QC-58" display_value="Chambly, QC" />
-    <EnumValue value="QC-D4" display_value="Chandler, QC" />
-    <EnumValue value="CYLD"  display_value="Chapleau, ON" />
-    <EnumValue value="CYML"  display_value="Charlevoix, QC" />
-    <EnumValue value="CYYG"  display_value="Charlottetown, PE" />
-    <EnumValue value="ON-11" display_value="Chatham-Kent, ON" />
-    <EnumValue value="QC-59" display_value="Chelsea, QC" />
-    <EnumValue value="CYCS"  display_value="Chesterfield, NU" />
-    <EnumValue value="CXCH"  display_value="Cheticamp, NS" />
-    <EnumValue value="CYCQ"  display_value="Chetwynd, BC" />
-    <EnumValue value="CWDM"  display_value="Chevery, QC" />
-    <EnumValue value="CYMT"  display_value="Chibougamau, QC" />
-    <EnumValue value="CYCW"  display_value="Chilliwack, BC" />
-    <EnumValue value="NB-3"  display_value="Chipman, NB" />
-    <EnumValue value="CYYQ"  display_value="Churchill, MB" />
-    <EnumValue value="CZUM"  display_value="Churchill Falls, NF" />
-    <EnumValue value="NF-1"  display_value="Clarenville, NF" />
-    <EnumValue value="CWDK"  display_value="Claresholm, AB" />
-    <EnumValue value="CWCL"  display_value="Clinton, BC" />
-    <EnumValue value="CYCY"  display_value="Clyde River, NU" />
-    <EnumValue value="QC-60" display_value="Coaticook, QC" />
-    <EnumValue value="CWNC"  display_value="Cobourg, ON" />
-    <EnumValue value="AB-1"  display_value="Cochrane, AB" />
-    <EnumValue value="CYOD"  display_value="Cold Lake, AB" />
-    <EnumValue value="CWCO"  display_value="Collingwood, ON" />
-    <EnumValue value="CWWC"  display_value="Collins Bay, SK" />
-    <EnumValue value="CWFX"  display_value="Colville Lake, NT" />
-    <EnumValue value="CYQQ"  display_value="Comox, BC" />
-    <EnumValue value="QC-46" display_value="Contrecoeur, QC" />
-    <EnumValue value="CYZS"  display_value="Coral Harbour, NU" />
-    <EnumValue value="CWKB"  display_value="Corner Brook, NF" />
-    <EnumValue value="CWCW"  display_value="Cornwall, ON" />
-    <EnumValue value="CWAQ"  display_value="Coronach, SK" />
-    <EnumValue value="CWCT"  display_value="Coronation, AB" />
-    <EnumValue value="CAH3"  display_value="Courtenay, BC" />
-    <EnumValue value="QC-61" display_value="Cowansville, QC" />
-    <EnumValue value="CYXC"  display_value="Cranbrook, BC" />
-    <EnumValue value="CWJR"  display_value="Creston, BC" />
-    <EnumValue value="CWRT"  display_value="Crowsnest, AB" />
-    <EnumValue value="CWVP"  display_value="Cypress Hills Park, SK" />
-    <EnumValue value="CYCL"  display_value="Dalhousie, NB" />
-    <EnumValue value="CWDH"  display_value="Daniel's Harbour, NF" />
-    <EnumValue value="CYDN"  display_value="Dauphin, MB" />
-    <EnumValue value="CYDA"  display_value="Dawson City, YK" />
-    <EnumValue value="CYDQ"  display_value="Dawson Creek, BC" />
-    <EnumValue value="CWDL"  display_value="Dease Lake, BC" />
-    <EnumValue value="CYDF"  display_value="Deer Lake, NF" />
-    <EnumValue value="CXDW"  display_value="Deerwood, MB" />
-    <EnumValue value="CYWJ"  display_value="Deline, NT" />
-    <EnumValue value="QC-62" display_value="Delson, QC" />
-    <EnumValue value="CZUG"  display_value="Delta, MB" />
-    <EnumValue value="YK-4"  display_value="Dempster Highway, YK" />
-    <EnumValue value="NT-1"  display_value="Detah, NT" />
-    <EnumValue value="QC-63" display_value="Deux-Montagnes, QC" />
-    <EnumValue value="CYID"  display_value="Digby, NS" />
-    <EnumValue value="NB-4"  display_value="Doaktown, NB" />
-    <EnumValue value="QC-64" display_value="Dolbeau, QC" />
-    <EnumValue value="BC-8"  display_value="Dome Creek, BC" />
-    <EnumValue value="MB-2"  display_value="Dominion City, MB" />
-    <EnumValue value="QC-65" display_value="Donnacona, QC" />
-    <EnumValue value="CXVG"  display_value="Drayton Valley (Violet Grove), AB" />
-    <EnumValue value="CWDZ"  display_value="Drumheller, AB" />
-    <EnumValue value="QC-2"  display_value="Drummondville, QC" />
-    <EnumValue value="CYHD"  display_value="Dryden, ON" />
-    <EnumValue value="CXEA"  display_value="Ear Falls, ON" />
-    <EnumValue value="CYXR"  display_value="Earlton, ON" />
-    <EnumValue value="CWEP"  display_value="East Point, PE" />
-    <EnumValue value="CWEH"  display_value="Eastend Cypress, SK" />
-    <EnumValue value="NS-7"  display_value="Economy, NS" />
-    <EnumValue value="CYXD"  display_value="Edmonton City, AB" />
-    <EnumValue value="CYEG"  display_value="Edmonton Int'l, AB" />
-    <EnumValue value="CCN3"  display_value="Edmundston, NB" />
-    <EnumValue value="CYET"  display_value="Edson, AB" />
-    <EnumValue value="CYOA"  display_value="Ekati, NT" />
-    <EnumValue value="CWOK"  display_value="Elbow, SK" />
-    <EnumValue value="CWFE"  display_value="Elk Island National Park, AB" />
-    <EnumValue value="CYEL"  display_value="Elliot Lake, ON" />
-    <EnumValue value="CWEX"  display_value="Emerson, MB" />
-    <EnumValue value="CWJC"  display_value="Ennadai, NU" />
-    <EnumValue value="NT-2"  display_value="Enterprise, NT" />
-    <EnumValue value="QC-26" display_value="Escoumins, QC" />
-    <EnumValue value="CWPF"  display_value="Esquimalt, BC" />
-    <EnumValue value="CYEN"  display_value="Estevan, SK" />
-    <EnumValue value="CWEB"  display_value="Estevan Point, BC" />
-    <EnumValue value="CWGY"  display_value="Esther, AB" />
-    <EnumValue value="CWEU"  display_value="Eureka, NU" />
-    <EnumValue value="CSN7"  display_value="Farnham, QC" />
-    <EnumValue value="CWUM"  display_value="Faro, YK" />
-    <EnumValue value="NF-3"  display_value="Fermont, NF" />
-    <EnumValue value="QC-29" display_value="Fermont, QC" />
-    <EnumValue value="CWSZ"  display_value="Fisher Branch, MB" />
-    <EnumValue value="CYFO"  display_value="Flin Flon, MB" />
-    <EnumValue value="QC-27" display_value="Forestville, QC" />
-    <EnumValue value="QC-67" display_value="Forillon, QC" />
-    <EnumValue value="CYPY"  display_value="Fort Chipewyan, AB" />
-    <EnumValue value="ON-12" display_value="Fort Erie, ON" />
-    <EnumValue value="KINL"  display_value="Fort Frances, ON" />
-    <EnumValue value="CYGH"  display_value="Fort Good Hope, NT" />
-    <EnumValue value="CWJL"  display_value="Fort Liard, NT" />
-    <EnumValue value="CYMM"  display_value="Fort McMurray, AB" />
-    <EnumValue value="CZFM"  display_value="Fort McPherson, NT" />
-    <EnumValue value="CYYE"  display_value="Fort Nelson, BC" />
-    <EnumValue value="CWID"  display_value="Fort Providence, NT" />
-    <EnumValue value="SK-5"  display_value="Fort Qu'Appelle, SK" />
-    <EnumValue value="CYFR"  display_value="Fort Resolution, NT" />
-    <EnumValue value="CYFS"  display_value="Fort Simpson, NT" />
-    <EnumValue value="CYSM"  display_value="Fort Smith, NT" />
-    <EnumValue value="CYXJ"  display_value="Fort St John, BC" />
-    <EnumValue value="CWRW"  display_value="Fourchu Head, NS" />
-    <EnumValue value="CYFC"  display_value="Fredericton, NB" />
-    <EnumValue value="NB-5"  display_value="Fundy National Park, NB" />
-    <EnumValue value="CYQX"  display_value="Gander, NF" />
-    <EnumValue value="CWGF"  display_value="Garden River, AB" />
-    <EnumValue value="CYGP"  display_value="Gaspe, QC" />
-    <EnumValue value="CYND"  display_value="Gatineau, QC" />
-    <EnumValue value="CYGQ"  display_value="Geraldton, ON" />
-    <EnumValue value="BC-1"  display_value="Gibsons, BC" />
-    <EnumValue value="CYGX"  display_value="Gillam, MB" />
-    <EnumValue value="CYGM"  display_value="Gimli, MB" />
-    <EnumValue value="CYHK"  display_value="Gjoa Haven, NU" />
-    <EnumValue value="CWGD"  display_value="Goderich, ON" />
-    <EnumValue value="CYGO"  display_value="Gods Lake, MB" />
-    <EnumValue value="CYGE"  display_value="Golden, BC" />
-    <EnumValue value="CWLM"  display_value="Gonzales, BC" />
-    <EnumValue value="YK-5"  display_value="Good Hope Lake, YK" />
-    <EnumValue value="BC-9"  display_value="Good Hope Lake, BC" />
-    <EnumValue value="CYYR"  display_value="Goose Bay, NF" />
-    <EnumValue value="CYZE"  display_value="Gore Bay, ON" />
-    <EnumValue value="QC-5"  display_value="Granby, QC" />
-    <EnumValue value="NF-5"  display_value="Grand Bank, NF" />
-    <EnumValue value="MB-9"  display_value="Grand Beach, MB" />
-    <EnumValue value="CWZQ"  display_value="Grand etang, NS" />
-    <EnumValue value="NB-6"  display_value="Grand Falls, NB" />
-    <EnumValue value="NF-6"  display_value="Grand Falls/Windsor, NF" />
-    <EnumValue value="CZGF"  display_value="Grand Forks, BC" />
-    <EnumValue value="CXGM"  display_value="Grand Manan, NB" />
-    <EnumValue value="CWJD"  display_value="Grand Rapids, MB" />
-    <EnumValue value="CWAM"  display_value="Grande Cache, AB" />
-    <EnumValue value="CYQU"  display_value="Grande Prairie, AB" />
-    <EnumValue value="CYZX"  display_value="Greenwood, NS" />
-    <EnumValue value="CWGN"  display_value="Gretna, MB" />
-    <EnumValue value="CWGZ"  display_value="Grise Fiord, NU" />
-    <EnumValue value="NF-7"  display_value="Gros Morne, NF" />
-    <EnumValue value="ON-5"  display_value="Guelph, ON" />
-    <EnumValue value="NS-8"  display_value="Guysborough, NS" />
-    <EnumValue value="ON-22" display_value="Haileybury, ON" />
-    <EnumValue value="CWHT"  display_value="Haines Junction, YK" />
-    <EnumValue value="CND4"  display_value="Haliburton, ON" />
-    <EnumValue value="CYHZ"  display_value="Halifax, NS" />
-    <EnumValue value="CYUX"  display_value="Hall Beach, NU" />
-    <EnumValue value="CYHM"  display_value="Hamilton, ON" />
-    <EnumValue value="CWRN"  display_value="Hart Island, NS" />
-    <EnumValue value="CWVV"  display_value="Hartland, BC" />
-    <EnumValue value="CYGV"  display_value="Havre St-Pierre, QC" />
-    <EnumValue value="CPD8"  display_value="Hawkesbury, ON" />
-    <EnumValue value="CYHY"  display_value="Hay River, NT" />
-    <EnumValue value="CYHF"  display_value="Hearst, ON" />
-    <EnumValue value="CWPA"  display_value="Hendrickson Creek, AB" />
-    <EnumValue value="CYOJ"  display_value="High Level, AB" />
-    <EnumValue value="AB-4"  display_value="High River, AB" />
-    <EnumValue value="CWHA"  display_value="Highvale, AB" />
-    <EnumValue value="CWIN"  display_value="Hinton, AB" />
-    <EnumValue value="CYHI"  display_value="Holman, NT" />
-    <EnumValue value="CYHE"  display_value="Hope, BC" />
-    <EnumValue value="CWKV"  display_value="Hope Slide, BC" />
-    <EnumValue value="CWHO"  display_value="Hopedale, NF" />
-    <EnumValue value="NB-8"  display_value="Hopewell, NB" />
-    <EnumValue value="CYHB"  display_value="Hudson Bay, SK" />
-    <EnumValue value="SK-6"  display_value="Humboldt, SK" />
-    <EnumValue value="CWHH"  display_value="Hunters Point Marine, MB" />
-    <EnumValue value="QC-68" display_value="Huntingdon, QC" />
-    <EnumValue value="CPC9"  display_value="Huntsville, ON" />
-    <EnumValue value="CYGT"  display_value="Igloolik, NU" />
-    <EnumValue value="CYGR"  display_value="Iles-de-la-Madeleine, QC" />
-    <EnumValue value="CWBD"  display_value="Indian Head, SK" />
-    <EnumValue value="CWIE"  display_value="Indin river, NT" />
-    <EnumValue value="CXIB"  display_value="Ingonish, NS" />
-    <EnumValue value="CYPH"  display_value="Inukjuak, QC" />
-    <EnumValue value="CYEV"  display_value="Inuvik, NT" />
-    <EnumValue value="CAA8"  display_value="Invermere, BC" />
-    <EnumValue value="CYFB"  display_value="Iqaluit, NU" />
-    <EnumValue value="CYIK"  display_value="Ivujivik, QC" />
-    <EnumValue value="QC-69" display_value="James Bay, QC" />
-    <EnumValue value="CWJW"  display_value="Jasper, AB" />
-    <EnumValue value="CSG3"  display_value="Joliette, QC" />
-    <EnumValue value="CYKA"  display_value="Kamloops, BC" />
-    <EnumValue value="QC-70" display_value="Kamouraska, QC" />
-    <EnumValue value="SK-7"  display_value="Kamsack, SK" />
-    <EnumValue value="CYLU"  display_value="Kangiqsualujjuaq, QC" />
-    <EnumValue value="CTMZ"  display_value="Kangiqsujuaq, QC" />
-    <EnumValue value="CYAS"  display_value="Kangirsuk, QC" />
-    <EnumValue value="CYYU"  display_value="Kapuskasing, ON" />
-    <EnumValue value="CNF4"  display_value="Kawartha Lakes, ON" />
-    <EnumValue value="CWKG"  display_value="Kejimkujik Park, NS" />
-    <EnumValue value="CYLW"  display_value="Kelowna, BC" />
-    <EnumValue value="CYQK"  display_value="Kenora, ON" />
-    <EnumValue value="CXKT"  display_value="Kentville, NS" />
-    <EnumValue value="CYKJ"  display_value="Key Lake, SK" />
-    <EnumValue value="CWBE"  display_value="Killarney, ON" />
-    <EnumValue value="CYLC"  display_value="Kimmirut, NU" />
-    <EnumValue value="ON-28" display_value="Kincardine, ON" />
-    <EnumValue value="CYKY"  display_value="Kindersley, SK" />
-    <EnumValue value="CYGK"  display_value="Kingston, ON" />
-    <EnumValue value="CXKI"  display_value="Kirkland Lake, ON" />
-    <EnumValue value="CYKF"  display_value="Kitchener-Waterloo, ON" />
-    <EnumValue value="CWKI"  display_value="Kitimat, BC" />
-    <EnumValue value="YK-1"  display_value="Kluane Lake, YK" />
-    <EnumValue value="BC-11" display_value="Kootenay National Park, BC" />
-    <EnumValue value="NB-9"  display_value="Kouchibouguac, NB" />
-    <EnumValue value="CYBB"  display_value="Kugaaruk, NU" />
-    <EnumValue value="CYCO"  display_value="Kugluktuk, NU" />
-    <EnumValue value="CYVP"  display_value="Kuujjuaq, QC" />
-    <EnumValue value="CYGW"  display_value="Kuujjuarapik, QC" />
-    <EnumValue value="CYAH"  display_value="La Grande IV, QC" />
-    <EnumValue value="CYGL"  display_value="La Grande Riviere, QC" />
-    <EnumValue value="SK-13" display_value="La Loche, SK" />
-    <EnumValue value="QC-11" display_value="La Malbaie, QC" />
-    <EnumValue value="QC-71" display_value="La Prairie, QC" />
-    <EnumValue value="CYVC"  display_value="La Ronge, SK" />
-    <EnumValue value="QC-45" display_value="La Sarre, QC" />
-    <EnumValue value="NF-8"  display_value="La Scie, NF" />
-    <EnumValue value="CWDQ"  display_value="La Tuque, QC" />
-    <EnumValue value="NF-9"  display_value="Labrador City, NF" />
-    <EnumValue value="CWLB"  display_value="Lac La Biche, AB" />
-    <EnumValue value="QC-72" display_value="Lac Megantic, QC" />
-    <EnumValue value="QC-73" display_value="Lac Saint-Jean, QC" />
-    <EnumValue value="QC-14" display_value="Lachute, QC" />
-    <EnumValue value="CWQQ"  display_value="Lacombe, AB" />
-    <EnumValue value="QC-74" display_value="Lanaudiere, QC" />
-    <EnumValue value="CWLF"  display_value="Lansdowne House, ON" />
-    <EnumValue value="CWEW"  display_value="L'Assomption, QC" />
-    <EnumValue value="CWXG"  display_value="Last Mountain Lake, SK" />
-    <EnumValue value="QC-75" display_value="Laurentides, QC" />
-    <EnumValue value="QC-76" display_value="Laval, QC" />
-    <EnumValue value="QC-D3" display_value="Le Gardeur, QC" />
-    <EnumValue value="CWJX"  display_value="Leader, SK" />
-    <EnumValue value="CYLR"  display_value="Leaf Rapids, MB" />
-    <EnumValue value="ON-23" display_value="Leamington, ON" />
-    <EnumValue value="CYQL"  display_value="Lethbridge, AB" />
-    <EnumValue value="QC-78" display_value="Levis, QC" />
-    <EnumValue value="NF-10" display_value="Lewisporte, NF" />
-    <EnumValue value="CYZL"  display_value="Liard River, BC" />
-    <EnumValue value="CWKF"  display_value="Lillooet, BC" />
-    <EnumValue value="QC-77" display_value="L'Islet, QC" />
-    <EnumValue value="CZGR"  display_value="Little Grand Rapids, MB" />
-    <EnumValue value="CYAU"  display_value="Liverpool, NS" />
-    <EnumValue value="CYLL"  display_value="Lloydminster, AB" />
-    <EnumValue value="CYXU"  display_value="London, ON" />
-    <EnumValue value="CYHU"  display_value="Longueuil, QC" />
-    <EnumValue value="QC-81" display_value="Lorraine, QC" />
-    <EnumValue value="QC-D2" display_value="Louiseville, QC" />
-    <EnumValue value="CWLE"  display_value="Lucky Lake, SK" />
-    <EnumValue value="NS-9"  display_value="Lunenburg, NS" />
-    <EnumValue value="CYLK"  display_value="Lutselk'e, NT" />
-    <EnumValue value="CYYL"  display_value="Lynn Lake, MB" />
-    <EnumValue value="CWLY"  display_value="Lytton, BC" />
-    <EnumValue value="CYZY"  display_value="Mackenzie, BC" />
-    <EnumValue value="QC-83" display_value="Magog, QC" />
-    <EnumValue value="CYFT"  display_value="Makkovik, NF" />
-    <EnumValue value="CWKH"  display_value="Malahat, BC" />
-    <EnumValue value="CXMY"  display_value="Malay Falls, NS" />
-    <EnumValue value="CWDP"  display_value="Manicouagan, QC" />
-    <EnumValue value="CWMJ"  display_value="Maniwaki, QC" />
-    <EnumValue value="CWMQ"  display_value="Maple Creek, SK" />
-    <EnumValue value="CXMP"  display_value="Maple Plains, PE" />
-    <EnumValue value="CYSP"  display_value="Marathon, ON" />
-    <EnumValue value="NF-11" display_value="Marble Mountain, NF" />
-    <EnumValue value="QC-84" display_value="Marieville, QC" />
-    <EnumValue value="CYKZ"  display_value="Markham-Buttonville, ON" />
-    <EnumValue value="CYMH"  display_value="Mary's Harbour, NF" />
-    <EnumValue value="CCC2"  display_value="Marystown, NF" />
-    <EnumValue value="QC-85" display_value="Mascouche, QC" />
-    <EnumValue value="CZMT"  display_value="Masset, BC" />
-    <EnumValue value="CYNM"  display_value="Matagami, QC" />
-    <EnumValue value="QC-15" display_value="Matane, QC" />
-    <EnumValue value="CXZS"  display_value="Matapedia, QC" />
-    <EnumValue value="QC-89" display_value="Mauricie, QC" />
-    <EnumValue value="CYMA"  display_value="Mayo, YK" />
-    <EnumValue value="CAV4"  display_value="McBride, BC" />
-    <EnumValue value="CYLJ"  display_value="Meadow Lake, SK" />
-    <EnumValue value="CYXH"  display_value="Medicine Hat, AB" />
-    <EnumValue value="CWFF"  display_value="Melfort, SK" />
-    <EnumValue value="CWEI"  display_value="Melita, MB" />
-    <EnumValue value="SK-8"  display_value="Melville, SK" />
-    <EnumValue value="CYMB"  display_value="Merritt, BC" />
-    <EnumValue value="CYEE"  display_value="Midland, ON" />
-    <EnumValue value="CWMX"  display_value="Mildred Lake, AB" />
-    <EnumValue value="CWRY"  display_value="Milk River, AB" />
-    <EnumValue value="QC-90" display_value="Mingan, QC" />
-    <EnumValue value="MB-10" display_value="Minnedosa, MB" />
-    <EnumValue value="CYMX"  display_value="Mirabel, QC" />
-    <EnumValue value="CYCH"  display_value="Miramichi, NB" />
-    <EnumValue value="CWMI"  display_value="Miscou Island, NB" />
-    <EnumValue value="ON-24" display_value="Mississauga, ON" />
-    <EnumValue value="QC-91" display_value="Mistassini, QC" />
-    <EnumValue value="CYQM"  display_value="Moncton, NB" />
-    <EnumValue value="QC-92" display_value="Mont Saint-Hilaire, QC" />
-    <EnumValue value="CYYY"  display_value="Mont-Joli, QC" />
-    <EnumValue value="QC-47" display_value="Mont-Laurier, QC" />
-    <EnumValue value="CWST"  display_value="Montmagny, QC" />
-    <EnumValue value="CYUL"  display_value="Montreal, QC" />
-    <EnumValue value="QC-34" display_value="Mont-Tremblant, QC" />
-    <EnumValue value="CYMJ"  display_value="Moose Jaw, SK" />
-    <EnumValue value="CZMJ"  display_value="Moose Jaw (Auto), SK" />
-    <EnumValue value="SK-9"  display_value="Moosomin, SK" />
-    <EnumValue value="CYMO"  display_value="Moosonee, ON" />
-    <EnumValue value="CXMD"  display_value="Morden, MB" />
-    <EnumValue value="MB-11" display_value="Morris, MB" />
-    <EnumValue value="CWLS"  display_value="Mount Forest, ON" />
-    <EnumValue value="NB-10" display_value="Mt. Carleton Provincial Park, NB" />
-    <EnumValue value="CWWQ"  display_value="Muncho Lake, BC" />
-    <EnumValue value="QC-16" display_value="Murdochville, QC" />
-    <EnumValue value="NF-12" display_value="Musgrave Harbour, NF" />
-    <EnumValue value="CYQA"  display_value="Muskoka, ON" />
-    <EnumValue value="CXLL"  display_value="Nahanni Butte, NT" />
-    <EnumValue value="CYDP"  display_value="Nain, NF" />
-    <EnumValue value="CWNR"  display_value="Nakiska Ridgetop, AB" />
-    <EnumValue value="CWNP"  display_value="Nakusp, BC" />
-    <EnumValue value="CYCD"  display_value="Nanaimo, BC" />
-    <EnumValue value="CYSR"  display_value="Nanisivik, NU" />
-    <EnumValue value="CYNA"  display_value="Natashquan, QC" />
-    <EnumValue value="CWNM"  display_value="Nelson, BC" />
-    <EnumValue value="NS-1"  display_value="New Glasgow, NS" />
-    <EnumValue value="CWOC"  display_value="New-Carlisle, QC" />
-    <EnumValue value="ON-25" display_value="Newmarket, ON" />
-    <EnumValue value="KIAG"  display_value="Niagara Falls, ON" />
-    <EnumValue value="CWNQ"  display_value="Nicolet, QC" />
-    <EnumValue value="CYBU"  display_value="Nipawin, SK" />
-    <EnumValue value="ON-26" display_value="Nipigon, ON" />
-    <EnumValue value="CYVQ"  display_value="Norman Wells, NT" />
-    <EnumValue value="CYQW"  display_value="North Battleford, SK" />
-    <EnumValue value="CYYB"  display_value="North Bay, ON" />
-    <EnumValue value="PE-1"  display_value="North Cape, PE" />
-    <EnumValue value="CXNM"  display_value="North Mountain, NS" />
-    <EnumValue value="CWNE"  display_value="North Point, PE" />
-    <EnumValue value="CWNS"  display_value="Northeast Margaree, NS" />
-    <EnumValue value="CYNE"  display_value="Norway House, MB" />
-    <EnumValue value="CWOJ"  display_value="Oakpoint Marine, MB" />
-    <EnumValue value="CPE8"  display_value="Oakville, ON" />
-    <EnumValue value="CNT3"  display_value="Ogoki, ON" />
-    <EnumValue value="CYOC"  display_value="Old Crow, YK" />
-    <EnumValue value="CWOE"  display_value="Onefour, AB" />
-    <EnumValue value="CPV2"  display_value="Orangeville, ON" />
-    <EnumValue value="ON-13" display_value="Orillia, ON" />
-    <EnumValue value="NB-11" display_value="Oromocto, NB" />
-    <EnumValue value="CYOO"  display_value="Oshawa, ON" />
-    <EnumValue value="CWYY"  display_value="Osoyoos, BC" />
-    <EnumValue value="CYOW"  display_value="Ottawa, ON" />
-    <EnumValue value="QC-93" display_value="Otterburn Park, QC" />
-    <EnumValue value="CWYE"  display_value="Outlook, SK" />
-    <EnumValue value="ON-7"  display_value="Owen Sound, ON" />
-    <EnumValue value="SK-10" display_value="Oxbow, SK" />
-    <EnumValue value="CYOH"  display_value="Oxford House, MB" />
-    <EnumValue value="CYXP"  display_value="Pangnirtung, NU" />
-    <EnumValue value="QC-17" display_value="Papineau, QC" />
-    <EnumValue value="QC-94" display_value="Parc de la Gaspesie, QC" />
-    <EnumValue value="QC-95" display_value="Parc Forillon, QC" />
-    <EnumValue value="CWPQ"  display_value="Parent, QC" />
-    <EnumValue value="NS-13" display_value="Parrsboro, NS" />
-    <EnumValue value="CXPC"  display_value="Parry Sound, ON" />
-    <EnumValue value="CYPC"  display_value="Paulatuk, NT" />
-    <EnumValue value="CYPE"  display_value="Peace River, AB" />
-    <EnumValue value="CWWN"  display_value="Peawanuck, ON" />
-    <EnumValue value="CWGP"  display_value="Pemberton, BC" />
-    <EnumValue value="CYTA"  display_value="Pembroke, ON" />
-    <EnumValue value="CYYF"  display_value="Penticton, BC" />
-    <EnumValue value="QC-18" display_value="Perce, QC" />
-    <EnumValue value="CYWA"  display_value="Petawawa, ON" />
-    <EnumValue value="CYPQ"  display_value="Peterborough, ON" />
-    <EnumValue value="CYPL"  display_value="Pickle Lake, ON" />
-    <EnumValue value="ON-27" display_value="Picton, ON" />
-    <EnumValue value="CWPO"  display_value="Pilot Mound, MB" />
-    <EnumValue value="CWEA"  display_value="Pinawa, MB" />
-    <EnumValue value="CZPC"  display_value="Pincher Creek, AB" />
-    <EnumValue value="QC-96" display_value="Pincourt, QC" />
-    <EnumValue value="MB-4"  display_value="Pine Falls, MB" />
-    <EnumValue value="CWMM"  display_value="Pitt Meadows, BC" />
-    <EnumValue value="CWPJ"  display_value="Point Escuminac, NB" />
-    <EnumValue value="CWPE"  display_value="Point Lepreau, NB" />
-    <EnumValue value="CYIO"  display_value="Pond Inlet, NU" />
-    <EnumValue value="QC-19" display_value="Pontiac, QC" />
-    <EnumValue value="MB-5"  display_value="Poplar River, MB" />
-    <EnumValue value="CWQC"  display_value="Port Alberni, BC" />
-    <EnumValue value="NF-13" display_value="Port au Choix, NF" />
-    <EnumValue value="CWPC"  display_value="Port Colborne, ON" />
-    <EnumValue value="ON-19" display_value="Port Elgin, ON" />
-    <EnumValue value="CYZT"  display_value="Port Hardy, BC" />
-    <EnumValue value="CYPD"  display_value="Port Hawkesbury, NS" />
-    <EnumValue value="CWBY"  display_value="Port Menier, QC" />
-    <EnumValue value="CYPG"  display_value="Portage la Prairie, MB" />
-    <EnumValue value="CWZB"  display_value="Port-Aux-Basques, NF" />
-    <EnumValue value="QC-97" display_value="Port-Cartier, QC" />
-    <EnumValue value="CYPW"  display_value="Powell River, BC" />
-    <EnumValue value="QC-98" display_value="Prevost, QC" />
-    <EnumValue value="CWOU"  display_value="Primrose Lake, AB" />
-    <EnumValue value="CYPA"  display_value="Prince Albert, SK" />
-    <EnumValue value="CYXS"  display_value="Prince George, BC" />
-    <EnumValue value="CYPR"  display_value="Prince Rupert, BC" />
-    <EnumValue value="CWPR"  display_value="Princeton, BC" />
-    <EnumValue value="CZFG"  display_value="Pukatawagan, MB" />
-    <EnumValue value="CWPU"  display_value="Puntzi Mountain, BC" />
-    <EnumValue value="QC-40" display_value="Puvirnituq, QC" />
-    <EnumValue value="CYVM"  display_value="Qikiqtarjuaq, NU" />
-    <EnumValue value="CYHA"  display_value="Quaqtaq, QC" />
-    <EnumValue value="CYQB"  display_value="Quebec, QC" />
-    <EnumValue value="CYQZ"  display_value="Quesnel, BC" />
-    <EnumValue value="NB-12" display_value="Quispamsis, NB" />
-    <EnumValue value="CWYH"  display_value="Rae Lakes, NT" />
-    <EnumValue value="QC-99" display_value="Raglan Lake, QC" />
-    <EnumValue value="YK-3"  display_value="Rancheria, YK" />
-    <EnumValue value="CYRT"  display_value="Rankin Inlet, NU" />
-    <EnumValue value="CYQF"  display_value="Red Deer, AB" />
-    <EnumValue value="CWRD"  display_value="Red Earth, AB" />
-    <EnumValue value="CYRL"  display_value="Red Lake, ON" />
-    <EnumValue value="CYQR"  display_value="Regina, SK" />
-    <EnumValue value="QC-A0" display_value="Repentigny, QC" />
-    <EnumValue value="CYUT"  display_value="Repulse Bay, NU" />
-    <EnumValue value="CWPD"  display_value="Reserve Faunique des Laurentides, QC" />
-    <EnumValue value="QC-30" display_value="Reserve Faunique La Verendrye, QC" />
-    <EnumValue value="QC-A1" display_value="Reservoir Gouin, QC" />
-    <EnumValue value="CYRB"  display_value="Resolute, NU" />
-    <EnumValue value="QC-20" display_value="Restigouche, QC" />
-    <EnumValue value="CYRV"  display_value="Revelstoke, BC" />
-    <EnumValue value="QC-21" display_value="Richelieu, QC" />
-    <EnumValue value="MB-6"  display_value="Richer, MB" />
-    <EnumValue value="NB-13" display_value="Richibucto, NB" />
-    <EnumValue value="QC-A2" display_value="Rigaud, QC" />
-    <EnumValue value="CWYQ"  display_value="Rimouski, QC" />
-    <EnumValue value="CWNH"  display_value="Riviere-du-Loup, QC" />
-    <EnumValue value="CYRJ"  display_value="Roberval, QC" />
-    <EnumValue value="CWXB"  display_value="Roblin, MB" />
-    <EnumValue value="BC-10" display_value="Rock Creek, BC" />
-    <EnumValue value="CWRR"  display_value="Rock River, YK" />
-    <EnumValue value="CWKO"  display_value="Rockglen, SK" />
-    <EnumValue value="CXRH"  display_value="Rocky Harbour, NF" />
-    <EnumValue value="CWRM"  display_value="RockyMtnHouse, AB" />
-    <EnumValue value="NB-14" display_value="Rogersville, NB" />
-    <EnumValue value="CWAJ"  display_value="Rondeau Park(Erieau), ON" />
-    <EnumValue value="QC-A3" display_value="Rosemere, QC" />
-    <EnumValue value="CWRJ"  display_value="Rosetown, SK" />
-    <EnumValue value="CYDM"  display_value="Ross River, YK" />
-    <EnumValue value="SK-1"  display_value="Rosthern, SK" />
-    <EnumValue value="CYUY"  display_value="Rouyn-Noranda, QC" />
-    <EnumValue value="CYSY"  display_value="Sachs Harbour, NT" />
-    <EnumValue value="NB-15" display_value="Sackville, NB" />
-    <EnumValue value="CWJO"  display_value="Saguenay, QC" />
-    <EnumValue value="CYSJ"  display_value="Saint John, NB" />
-    <EnumValue value="CYSL"  display_value="Saint Leonard, NB" />
-    <EnumValue value="QC-A5" display_value="Saint-Amable, QC" />
-    <EnumValue value="QC-A6" display_value="Saint-Basile Le Grand, QC" />
-    <EnumValue value="QC-A7" display_value="Saint-Constant, QC" />
-    <EnumValue value="QC-33" display_value="Sainte-Agathe, QC" />
-    <EnumValue value="QC-A8" display_value="Sainte-Anne-Des-Monts, QC" />
-    <EnumValue value="QC-A9" display_value="Sainte-Anne-Des-Plaines, QC" />
-    <EnumValue value="QC-B0" display_value="Sainte-Catherine, QC" />
-    <EnumValue value="QC-B1" display_value="Sainte-Julie, QC" />
-    <EnumValue value="QC-B2" display_value="Sainte-Sophie, QC" />
-    <EnumValue value="QC-B3" display_value="Sainte-Therese, QC" />
-    <EnumValue value="QC-B4" display_value="Saint-Eustache, QC" />
-    <EnumValue value="QC-B5" display_value="Saint-Felicien, QC" />
-    <EnumValue value="QC-B6" display_value="Saint-Georges, QC" />
-    <EnumValue value="QC-22" display_value="Saint-Hyacinthe, QC" />
-    <EnumValue value="QC-28" display_value="Saint-Jean-sur-Richelieu, QC" />
-    <EnumValue value="QC-13" display_value="Saint-Jerôme, QC" />
-    <EnumValue value="CWJT"  display_value="Saint-Jovite, QC" />
-    <EnumValue value="QC-B7" display_value="Saint-Lazare, QC" />
-    <EnumValue value="QC-B8" display_value="Saint-Lin, QC" />
-    <EnumValue value="QC-B9" display_value="Saint-Luc, QC" />
-    <EnumValue value="QC-C0" display_value="Saint-Michel-des-Saints, QC" />
-    <EnumValue value="QC-C1" display_value="Saint-Nicephore, QC" />
-    <EnumValue value="NB-16" display_value="Saint-Quentin, NB" />
-    <EnumValue value="QC-C2" display_value="Saint-Remi, QC" />
-    <EnumValue value="QC-C3" display_value="Saint-Sauveur, QC" />
-    <EnumValue value="QC-C4" display_value="Saint-Timothee, QC" />
-    <EnumValue value="CWBZ"  display_value="Salaberry-de-Valleyfield, QC" />
-    <EnumValue value="CYZG"  display_value="Salluit, QC" />
-    <EnumValue value="CWSL"  display_value="Salmon Arm, BC" />
-    <EnumValue value="CYZP"  display_value="Sandspit, BC" />
-    <EnumValue value="CZSJ"  display_value="Sandy Lake, ON" />
-    <EnumValue value="CYSK"  display_value="Sanikiluaq, NU" />
-    <EnumValue value="CYZR"  display_value="Sarnia, ON" />
-    <EnumValue value="CYXE"  display_value="Saskatoon, SK" />
-    <EnumValue value="CYAM"  display_value="Sault Ste Marie, ON" />
-    <EnumValue value="CYKL"  display_value="Schefferville, QC" />
-    <EnumValue value="CWTS"  display_value="Scott, SK" />
-    <EnumValue value="BC-3"  display_value="Sechelt, BC" />
-    <EnumValue value="CYZV"  display_value="Sept-Îles, QC" />
-    <EnumValue value="CZTM"  display_value="Shamattawa, MB" />
-    <EnumValue value="SK-11" display_value="Shaunavon, SK" />
-    <EnumValue value="CXSH"  display_value="Shawinigan, QC" />
-    <EnumValue value="CYAW"  display_value="Shearwater, NS" />
-    <EnumValue value="NB-17" display_value="Shediac, NB" />
-    <EnumValue value="NS-10" display_value="Sheet Harbour, NS" />
-    <EnumValue value="NS-11" display_value="Shelburne, NS" />
-    <EnumValue value="CYSC"  display_value="Sherbrooke, QC" />
-    <EnumValue value="CWLO"  display_value="Shilo, MB" />
-    <EnumValue value="CWUT"  display_value="Shoal Lake, MB" />
-    <EnumValue value="CXDI"  display_value="Simcoe - Delhi, ON" />
-    <EnumValue value="CYXL"  display_value="Sioux Lookout, ON" />
-    <EnumValue value="CYZH"  display_value="Slave Lake, AB" />
-    <EnumValue value="CYYD"  display_value="Smithers, BC" />
-    <EnumValue value="CYSH"  display_value="Smiths Falls, ON" />
-    <EnumValue value="MB-12" display_value="Snow Lake, MB" />
-    <EnumValue value="QC-C6" display_value="Sorel, QC" />
-    <EnumValue value="CJX5"  display_value="Souris, MB" />
-    <EnumValue value="CWSH"  display_value="Sousa Creek, AB" />
-    <EnumValue value="CWJH"  display_value="Southend, SK" />
-    <EnumValue value="CWSW"  display_value="Sparwood, BC" />
-    <EnumValue value="CWSR"  display_value="Spiritwood West, SK" />
-    <EnumValue value="CWSU"  display_value="Sprague, MB" />
-    <EnumValue value="CWSK"  display_value="Squamish, BC" />
-    <EnumValue value="NB-18" display_value="St Andrews, NB" />
-    <EnumValue value="CYAY"  display_value="St. Anthony, NF" />
-    <EnumValue value="CYSN"  display_value="St Catharines, ON" />
-    <EnumValue value="CYYT"  display_value="St John's, NF" />
-    <EnumValue value="CWDS"  display_value="St Lawrence, NF" />
-    <EnumValue value="NS-12" display_value="St. Peters, NS" />
-    <EnumValue value="CWSS"  display_value="St Stephen, NB" />
-    <EnumValue value="CYQS"  display_value="St Thomas, ON" />
-    <EnumValue value="CWXN"  display_value="Stavely, AB" />
-    <EnumValue value="MB-13" display_value="Steinbach, MB" />
-    <EnumValue value="CYJT"  display_value="Stephenville, NF" />
-    <EnumValue value="AB-5"  display_value="Stettler, AB" />
-    <EnumValue value="CZST"  display_value="Stewart, BC" />
-    <EnumValue value="CXPS"  display_value="Stony Plain, AB" />
-    <EnumValue value="CYSF"  display_value="Stony Rapids, SK" />
-    <EnumValue value="CPK5"  display_value="Stratford, ON" />
-    <EnumValue value="AB-6"  display_value="Strathmore, AB" />
-    <EnumValue value="ON-18" display_value="Strathroy, ON" />
-    <EnumValue value="CYSB"  display_value="Sudbury, ON" />
-    <EnumValue value="CYSD"  display_value="Suffield Arpt, AB" />
-    <EnumValue value="CWUS"  display_value="Summerland, BC" />
-    <EnumValue value="CWSD"  display_value="Summerside, PE" />
-    <EnumValue value="CWAV"  display_value="Sundre Arpt, AB" />
-    <EnumValue value="NB-19" display_value="Sussex, NB" />
-    <EnumValue value="CWXF"  display_value="Sutton, QC" />
-    <EnumValue value="CWEQ"  display_value="Swan River, MB" />
-    <EnumValue value="CYYN"  display_value="Swift Current, SK" />
-    <EnumValue value="CYQY"  display_value="Sydney, NS" />
-    <EnumValue value="AB-7"  display_value="Taber, AB" />
-    <EnumValue value="CYBQ"  display_value="Tadoule Lake, MB" />
-    <EnumValue value="CSZ5"  display_value="Tadoussac, QC" />
-    <EnumValue value="CYYH"  display_value="Taloyoak, NU" />
-    <EnumValue value="CYTQ"  display_value="Tasiujaq, QC" />
-    <EnumValue value="NS-14" display_value="Tatamagouche, NS" />
-    <EnumValue value="CXTL"  display_value="Tatlayoko Lake, BC" />
-    <EnumValue value="CWBA"  display_value="Temiscamingue, QC" />
-    <EnumValue value="QC-35" display_value="Temiscouata, QC" />
-    <EnumValue value="CXTP"  display_value="Terra Nova Nat.Prk, NF" />
-    <EnumValue value="CYXT"  display_value="Terrace, BC" />
-    <EnumValue value="CYTJ"  display_value="Terrace Bay, ON" />
-    <EnumValue value="QC-C7" display_value="Terrebonne, QC" />
-    <EnumValue value="CWZW"  display_value="Teslin, YK" />
-    <EnumValue value="CWTH"  display_value="Tetsa River, BC" />
-    <EnumValue value="CYQD"  display_value="The Pas, MB" />
-    <EnumValue value="QC-C8" display_value="Thetford Mines, QC" />
-    <EnumValue value="CYTH"  display_value="Thompson, MB" />
-    <EnumValue value="CWHI"  display_value="Three Hills, AB" />
-    <EnumValue value="CYQT"  display_value="Thunder Bay, ON" />
-    <EnumValue value="ON-17" display_value="Tillsonburg, ON" />
-    <EnumValue value="CYTS"  display_value="Timmins, ON" />
-    <EnumValue value="SK-12" display_value="Tisdale, SK" />
-    <EnumValue value="CWWX"  display_value="Tobermory, ON" />
-    <EnumValue value="CYAZ"  display_value="Tofino, BC" />
-    <EnumValue value="CYYZ"  display_value="Toronto, ON" />
-    <EnumValue value="CYTZ"  display_value="Toronto/Island, ON" />
-    <EnumValue value="NB-20" display_value="Tracadie-Sheila, NB" />
-    <EnumValue value="QC-C9" display_value="Tracy, QC" />
-    <EnumValue value="CXWF"  display_value="Trail, BC" />
-    <EnumValue value="CYTR"  display_value="Trenton-Quinte West, ON" />
-    <EnumValue value="QC-24" display_value="Trois-Pistoles, QC" />
-    <EnumValue value="CWTY"  display_value="Trois-Rivieres, QC" />
-    <EnumValue value="CWTE"  display_value="Trout Lake, NT" />
-    <EnumValue value="CWUR"  display_value="Truro, NS" />
-    <EnumValue value="CYUB"  display_value="Tuktoyaktuk, NT" />
-    <EnumValue value="CZFN"  display_value="Tulita, NT" />
-    <EnumValue value="CWNT"  display_value="Turtle Mountain Prov Park, MB" />
-    <EnumValue value="CWDO"  display_value="Twillingate, NF" />
-    <EnumValue value="BC-5"  display_value="Ucluelet, BC" />
-    <EnumValue value="CYMU"  display_value="Umiujaq, QC" />
-    <EnumValue value="CWYJ"  display_value="University of Victoria, BC" />
-    <EnumValue value="CWDC"  display_value="Uranium City, SK" />
-    <EnumValue value="QC-42" display_value="Val des Monts, QC" />
-    <EnumValue value="CWVN"  display_value="Val Marie, SK" />
-    <EnumValue value="CYVO"  display_value="Val-d'Or, QC" />
-    <EnumValue value="QC-D0" display_value="Vallee de la Matapedia, QC" />
-    <EnumValue value="CYVR"  display_value="Vancouver, BC" />
-    <EnumValue value="CAU4"  display_value="Vanderhoof, BC" />
-    <EnumValue value="QC-41" display_value="Vanier, QC" />
-    <EnumValue value="CWHM"  display_value="Varennes, QC" />
-    <EnumValue value="QC-66" display_value="Vaudreuil-Dorion, QC" />
-    <EnumValue value="CWVO"  display_value="Vauxhall, AB" />
-    <EnumValue value="CWVI"  display_value="Vegreville, AB" />
-    <EnumValue value="CWJV"  display_value="Vernon, BC" />
-    <EnumValue value="CYYJ"  display_value="Victoria, BC" />
-    <EnumValue value="CWII"  display_value="Victoria Beach, MB" />
-    <EnumValue value="CYWH"  display_value="Victoria Harbour, BC" />
-    <EnumValue value="CSR3"  display_value="Victoriaville, QC" />
-    <EnumValue value="CXVN"  display_value="Vineland, ON" />
-    <EnumValue value="CJZ5"  display_value="Virden, MB" />
-    <EnumValue value="CWFV"  display_value="Virginia Falls, NT" />
-    <EnumValue value="MB-7"  display_value="Vita, MB" />
-    <EnumValue value="CYWK"  display_value="Wabush Lake, NF" />
-    <EnumValue value="CZWN"  display_value="Wainwright, AB" />
-    <EnumValue value="ON-16" display_value="Walkerton, ON" />
-    <EnumValue value="CWWP"  display_value="Wasagaming, MB" />
-    <EnumValue value="CYKQ"  display_value="Waskaganish, QC" />
-    <EnumValue value="CWLV"  display_value="Waskesiu Lake, SK" />
-    <EnumValue value="CWGM"  display_value="Waterton Park, AB" />
-    <EnumValue value="CWIW"  display_value="Watrous, SK" />
-    <EnumValue value="CYQH"  display_value="Watson Lake, YK" />
-    <EnumValue value="CYXZ"  display_value="Wawa, ON" />
-    <EnumValue value="CXLC"  display_value="Wekweti, NT" />
-    <EnumValue value="ON-14" display_value="Welland, ON" />
-    <EnumValue value="CWWE"  display_value="Western Head, NS" />
-    <EnumValue value="AB-8"  display_value="Westlock, AB" />
-    <EnumValue value="AB-9"  display_value="Wetaskiwin, AB" />
-    <EnumValue value="CWWF"  display_value="Weyburn, SK" />
-    <EnumValue value="CWMT"  display_value="Wha Ti, NT" />
-    <EnumValue value="CYXN"  display_value="Whale Cove, NU" />
-    <EnumValue value="CWAE"  display_value="Whistler, BC" />
-    <EnumValue value="CWWK"  display_value="White Rock, BC" />
-    <EnumValue value="CYZU"  display_value="Whitecourt, AB" />
-    <EnumValue value="CYXY"  display_value="Whitehorse, YK" />
-    <EnumValue value="MB-8"  display_value="Whiteshell, MB" />
-    <EnumValue value="CYVV"  display_value="Wiarton, ON" />
-    <EnumValue value="CYWL"  display_value="Williams Lake, BC" />
-    <EnumValue value="CWWO"  display_value="Willow Creek, AB" />
-    <EnumValue value="CWOO"  display_value="Wilson Creek (McCreary), MB" />
-    <EnumValue value="CYQG"  display_value="Windsor, ON" />
-    <EnumValue value="NS-15" display_value="Windsor, NS" />
-    <EnumValue value="CKZ7"  display_value="Winkler, MB" />
-    <EnumValue value="CYWG"  display_value="Winnipeg, MB" />
-    <EnumValue value="CXWN"  display_value="Winnipeg at the Forks, MB" />
-    <EnumValue value="CXWT"  display_value="Winterland, NF" />
-    <EnumValue value="ON-15" display_value="Woodstock, ON" />
-    <EnumValue value="NB-21" display_value="Woodstock, NB" />
-    <EnumValue value="CXWR"  display_value="Wreckhouse, NF" />
-    <EnumValue value="CYWY"  display_value="Wrigley, NT" />
-    <EnumValue value="CWOY"  display_value="Wynyard, SK" />
-    <EnumValue value="CYQI"  display_value="Yarmouth, NS" />
-    <EnumValue value="CYZF"  display_value="Yellowknife, NT" />
-    <EnumValue value="CWYL"  display_value="Yoho Park, BC" />
-    <EnumValue value="CZAC"  display_value="York Factory, MB" />
-    <EnumValue value="CYQV"  display_value="Yorkton, SK" />
-  </UserPref>
-
-  <Content type="html"  >
-    <![CDATA[ 
+<UserPref name="location" display_name="__MSG_location__" required="true" datatype="enum" default_value="cityCode=NT-24&amp;siteCode=s0000366&amp;provCode=NT&amp;language=">
+<EnumValue value="cityCode=BC-7&amp;siteCode=s0000106&amp;provCode=BC&amp;language=" display_value="100 Mile House, BC" />
+<EnumValue value="cityCode=BC-81&amp;siteCode=s0000758&amp;provCode=BC&amp;language=" display_value="Abbotsford, BC" />
+<EnumValue value="cityCode=BC-70&amp;siteCode=s0000399&amp;provCode=BC&amp;language=" display_value="Agassiz, BC" />
+<EnumValue value="cityCode=AB-12&amp;siteCode=s0000768&amp;provCode=AB&amp;language=" display_value="Airdrie, AB" />
+<EnumValue value="cityCode=NT-13&amp;siteCode=s0000570&amp;provCode=NT&amp;language=" display_value="Aklavik, NT" />
+<EnumValue value="cityCode=QC-36&amp;siteCode=s0000578&amp;provCode=QC&amp;language=" display_value="Akulivik, QC" />
+<EnumValue value="cityCode=NU-22&amp;siteCode=s0000821&amp;provCode=NU&amp;language=" display_value="Alert, NU" />
+<EnumValue value="cityCode=ON-122&amp;siteCode=s0000070&amp;provCode=ON&amp;language=" display_value="Alexandria, ON" />
+<EnumValue value="cityCode=ON-1&amp;siteCode=s0000073&amp;provCode=ON&amp;language=" display_value="Algonquin Park (Brent), ON" />
+<EnumValue value="cityCode=ON-29&amp;siteCode=s0000074&amp;provCode=ON&amp;language=" display_value="Algonquin Park (Lake of Two Rivers), ON" />
+<EnumValue value="cityCode=ON-114&amp;siteCode=s0000489&amp;provCode=ON&amp;language=" display_value="Alliston, ON" />
+<EnumValue value="cityCode=QC-145&amp;siteCode=s0000699&amp;provCode=QC&amp;language=" display_value="Alma, QC" />
+<EnumValue value="cityCode=MB-3&amp;siteCode=s0000171&amp;provCode=MB&amp;language=" display_value="Altona, MB" />
+<EnumValue value="cityCode=NS-33&amp;siteCode=s0000450&amp;provCode=NS&amp;language=" display_value="Amherst, NS" />
+<EnumValue value="cityCode=QC-168&amp;siteCode=s0000718&amp;provCode=QC&amp;language=" display_value="Amos, QC" />
+<EnumValue value="cityCode=QC-147&amp;siteCode=s0000635&amp;provCode=QC&amp;language=" display_value="Amqui, QC" />
+<EnumValue value="cityCode=NS-2&amp;siteCode=s0000802&amp;provCode=NS&amp;language=" display_value="Annapolis Royal, NS" />
+<EnumValue value="cityCode=NS-3&amp;siteCode=s0000462&amp;provCode=NS&amp;language=" display_value="Antigonish, NS" />
+<EnumValue value="cityCode=ON-30&amp;siteCode=s0000304&amp;provCode=ON&amp;language=" display_value="Apsley, ON" />
+<EnumValue value="cityCode=NU-10&amp;siteCode=s0000412&amp;provCode=NU&amp;language=" display_value="Arctic Bay, NU" />
+<EnumValue value="cityCode=NL-30&amp;siteCode=s0000082&amp;provCode=NL&amp;language=" display_value="Argentia, NL" />
+<EnumValue value="cityCode=ON-111&amp;siteCode=s0000520&amp;provCode=ON&amp;language=" display_value="Armstrong, ON" />
+<EnumValue value="cityCode=MB-21&amp;siteCode=s0000533&amp;provCode=MB&amp;language=" display_value="Arnes, MB" />
+<EnumValue value="cityCode=NU-20&amp;siteCode=s0000511&amp;provCode=NU&amp;language=" display_value="Arviat, NU" />
+<EnumValue value="cityCode=QC-38&amp;siteCode=s0000682&amp;provCode=QC&amp;language=" display_value="Asbestos, QC" />
+<EnumValue value="cityCode=SK-51&amp;siteCode=s0000209&amp;provCode=SK&amp;language=" display_value="Assiniboia, SK" />
+<EnumValue value="cityCode=AB-10&amp;siteCode=s0000001&amp;provCode=AB&amp;language=" display_value="Athabasca, AB" />
+<EnumValue value="cityCode=ON-148&amp;siteCode=s0000103&amp;provCode=ON&amp;language=" display_value="Atikokan, ON" />
+<EnumValue value="cityCode=BC-67&amp;siteCode=s0000409&amp;provCode=BC&amp;language=" display_value="Atlin, BC" />
+<EnumValue value="cityCode=ON-164&amp;siteCode=s0000024&amp;provCode=ON&amp;language=" display_value="Attawapiskat, ON" />
+<EnumValue value="cityCode=QC-118&amp;siteCode=s0000591&amp;provCode=QC&amp;language=" display_value="Aupaluk, QC" />
+<EnumValue value="cityCode=NS-37&amp;siteCode=s0000110&amp;provCode=NS&amp;language=" display_value="Baccaro Point, NS" />
+<EnumValue value="cityCode=MB-43&amp;siteCode=s0000091&amp;provCode=MB&amp;language=" display_value="Bachelors Island, MB" />
+<EnumValue value="cityCode=NS-4&amp;siteCode=s0000265&amp;provCode=NS&amp;language=" display_value="Baddeck, NS" />
+<EnumValue value="cityCode=NL-34&amp;siteCode=s0000116&amp;provCode=NL&amp;language=" display_value="Badger, NL" />
+<EnumValue value="cityCode=QC-162&amp;siteCode=s0000180&amp;provCode=QC&amp;language=" display_value="Bagotville, QC" />
+<EnumValue value="cityCode=QC-161&amp;siteCode=s0000486&amp;provCode=QC&amp;language=" display_value="Baie-Comeau, QC" />
+<EnumValue value="cityCode=QC-69&amp;siteCode=s0000580&amp;provCode=QC&amp;language=" display_value="Baie-James, QC" />
+<EnumValue value="cityCode=QC-165&amp;siteCode=s0000342&amp;provCode=QC&amp;language=" display_value="Baie-Saint-Paul, QC" />
+<EnumValue value="cityCode=NU-14&amp;siteCode=s0000487&amp;provCode=NU&amp;language=" display_value="Baker Lake, NU" />
+<EnumValue value="cityCode=ON-102&amp;siteCode=s0000301&amp;provCode=ON&amp;language=" display_value="Bancroft, ON" />
+<EnumValue value="cityCode=AB-49&amp;siteCode=s0000404&amp;provCode=AB&amp;language=" display_value="Banff, AB" />
+<EnumValue value="cityCode=AB-2&amp;siteCode=s0000413&amp;provCode=AB&amp;language=" display_value="Barrhead, AB" />
+<EnumValue value="cityCode=ON-151&amp;siteCode=s0000415&amp;provCode=ON&amp;language=" display_value="Barrie, ON" />
+<EnumValue value="cityCode=ON-133&amp;siteCode=s0000302&amp;provCode=ON&amp;language=" display_value="Barry's Bay, ON" />
+<EnumValue value="cityCode=NB-22&amp;siteCode=s0000386&amp;provCode=NB&amp;language=" display_value="Bas-Caraquet, NB" />
+<EnumValue value="cityCode=NB-28&amp;siteCode=s0000806&amp;provCode=NB&amp;language=" display_value="Bathurst, NB" />
+<EnumValue value="cityCode=NL-43&amp;siteCode=s0000018&amp;provCode=NL&amp;language=" display_value="Bay Roberts, NL" />
+<EnumValue value="cityCode=QC-48&amp;siteCode=s0000185&amp;provCode=QC&amp;language=" display_value="Beauceville, QC" />
+<EnumValue value="cityCode=QC-49&amp;siteCode=s0000044&amp;provCode=QC&amp;language=" display_value="Beauharnois, QC" />
+<EnumValue value="cityCode=YT-15&amp;siteCode=s0000751&amp;provCode=YT&amp;language=" display_value="Beaver Creek, YT" />
+<EnumValue value="cityCode=NS-36&amp;siteCode=s0000096&amp;provCode=NS&amp;language=" display_value="Beaver Island, NS" />
+<EnumValue value="cityCode=AB-57&amp;siteCode=s0000092&amp;provCode=AB&amp;language=" display_value="Beaverlodge, AB" />
+<EnumValue value="cityCode=QC-50&amp;siteCode=s0000347&amp;provCode=QC&amp;language=" display_value="B&#233;cancour, QC" />
+<EnumValue value="cityCode=BC-94&amp;siteCode=s0000834&amp;provCode=BC&amp;language=" display_value="Bella Bella, BC" />
+<EnumValue value="cityCode=BC-18&amp;siteCode=s0000485&amp;provCode=BC&amp;language=" display_value="Bella Coola, BC" />
+<EnumValue value="cityCode=ON-3&amp;siteCode=s0000703&amp;provCode=ON&amp;language=" display_value="Belleville, ON" />
+<EnumValue value="cityCode=MB-54&amp;siteCode=s0000102&amp;provCode=MB&amp;language=" display_value="Berens River, MB" />
+<EnumValue value="cityCode=QC-51&amp;siteCode=s0000205&amp;provCode=QC&amp;language=" display_value="Berni&#232;res, QC" />
+<EnumValue value="cityCode=QC-25&amp;siteCode=s0000143&amp;provCode=QC&amp;language=" display_value="Berthierville, QC" />
+<EnumValue value="cityCode=ON-124&amp;siteCode=s0000697&amp;provCode=ON&amp;language=" display_value="Big Trout Lake, ON" />
+<EnumValue value="cityCode=SK-2&amp;siteCode=s0000343&amp;provCode=SK&amp;language=" display_value="Biggar, SK" />
+<EnumValue value="cityCode=MB-33&amp;siteCode=s0000012&amp;provCode=MB&amp;language=" display_value="Bissett, MB" />
+<EnumValue value="cityCode=QC-52&amp;siteCode=s0000603&amp;provCode=QC&amp;language=" display_value="Blainville, QC" />
+<EnumValue value="cityCode=QC-164&amp;siteCode=s0000184&amp;provCode=QC&amp;language=" display_value="Blanc-Sablon, QC" />
+<EnumValue value="cityCode=ON-21&amp;siteCode=s0000513&amp;provCode=ON&amp;language=" display_value="Blind River, ON" />
+<EnumValue value="cityCode=MB-37&amp;siteCode=s0000101&amp;provCode=MB&amp;language=" display_value="Bloodvein, MB" />
+<EnumValue value="cityCode=BC-22&amp;siteCode=s0000499&amp;provCode=BC&amp;language=" display_value="Blue River, BC" />
+<EnumValue value="cityCode=QC-53&amp;siteCode=s0000604&amp;provCode=QC&amp;language=" display_value="Boisbriand, QC" />
+<EnumValue value="cityCode=QC-54&amp;siteCode=s0000269&amp;provCode=QC&amp;language=" display_value="Bonaventure, QC" />
+<EnumValue value="cityCode=NL-14&amp;siteCode=s0000041&amp;provCode=NL&amp;language=" display_value="Bonavista, NL" />
+<EnumValue value="cityCode=NB-1&amp;siteCode=s0000033&amp;provCode=NB&amp;language=" display_value="Bouctouche, NB" />
+<EnumValue value="cityCode=AB-43&amp;siteCode=s0000382&amp;provCode=AB&amp;language=" display_value="Bow Island, AB" />
+<EnumValue value="cityCode=AB-42&amp;siteCode=s0000379&amp;provCode=AB&amp;language=" display_value="Bow Valley (Provincial Park), AB" />
+<EnumValue value="cityCode=ON-9&amp;siteCode=s0000641&amp;provCode=ON&amp;language=" display_value="Bracebridge, ON" />
+<EnumValue value="cityCode=ON-4&amp;siteCode=s0000658&amp;provCode=ON&amp;language=" display_value="Brampton, ON" />
+<EnumValue value="cityCode=MB-52&amp;siteCode=s0000492&amp;provCode=MB&amp;language=" display_value="Brandon, MB" />
+<EnumValue value="cityCode=ON-86&amp;siteCode=s0000550&amp;provCode=ON&amp;language=" display_value="Brantford, ON" />
+<EnumValue value="cityCode=AB-36&amp;siteCode=s0000277&amp;provCode=AB&amp;language=" display_value="Breton, AB" />
+<EnumValue value="cityCode=NS-5&amp;siteCode=s0000804&amp;provCode=NS&amp;language=" display_value="Bridgetown, NS" />
+<EnumValue value="cityCode=NS-6&amp;siteCode=s0000441&amp;provCode=NS&amp;language=" display_value="Bridgewater, NS" />
+<EnumValue value="cityCode=NS-27&amp;siteCode=s0000365&amp;provCode=NS&amp;language=" display_value="Brier Island, NS" />
+<EnumValue value="cityCode=SK-48&amp;siteCode=s0000192&amp;provCode=SK&amp;language=" display_value="Broadview, SK" />
+<EnumValue value="cityCode=MB-53&amp;siteCode=s0000778&amp;provCode=MB&amp;language=" display_value="Brochet, MB" />
+<EnumValue value="cityCode=ON-8&amp;siteCode=s0000168&amp;provCode=ON&amp;language=" display_value="Brockville, ON" />
+<EnumValue value="cityCode=AB-58&amp;siteCode=s0000093&amp;provCode=AB&amp;language=" display_value="Brooks, AB" />
+<EnumValue value="cityCode=NL-4&amp;siteCode=s0000117&amp;provCode=NL&amp;language=" display_value="Buchans, NL" />
+<EnumValue value="cityCode=SK-39&amp;siteCode=s0000723&amp;provCode=SK&amp;language=" display_value="Buffalo Narrows, SK" />
+<EnumValue value="cityCode=NL-31&amp;siteCode=s0000032&amp;provCode=NL&amp;language=" display_value="Burgeo, NL" />
+<EnumValue value="cityCode=ON-31&amp;siteCode=s0000637&amp;provCode=ON&amp;language=" display_value="Burk's Falls, ON" />
+<EnumValue value="cityCode=ON-95&amp;siteCode=s0000368&amp;provCode=ON&amp;language=" display_value="Burlington, ON" />
+<EnumValue value="cityCode=BC-43&amp;siteCode=s0000293&amp;provCode=BC&amp;language=" display_value="Burns Lake, BC" />
+<EnumValue value="cityCode=YT-7&amp;siteCode=s0000506&amp;provCode=YT&amp;language=" display_value="Burwash Landing, YT" />
+<EnumValue value="cityCode=BC-55&amp;siteCode=s0000569&amp;provCode=BC&amp;language=" display_value="Cache Creek, BC" />
+<EnumValue value="cityCode=ON-32&amp;siteCode=s0000787&amp;provCode=ON&amp;language=" display_value="Caledon, ON" />
+<EnumValue value="cityCode=AB-61&amp;siteCode=s0000126&amp;provCode=AB&amp;language=" display_value="Calgary (Olympic Park), AB" />
+<EnumValue value="cityCode=AB-52&amp;siteCode=s0000047&amp;provCode=AB&amp;language=" display_value="Calgary, AB" />
+<EnumValue value="cityCode=NU-15&amp;siteCode=s0000495&amp;provCode=NU&amp;language=" display_value="Cambridge Bay, NU" />
+<EnumValue value="cityCode=ON-81&amp;siteCode=s0000572&amp;provCode=ON&amp;language=" display_value="Cambridge, ON" />
+<EnumValue value="cityCode=BC-19&amp;siteCode=s0000488&amp;provCode=BC&amp;language=" display_value="Campbell River, BC" />
+<EnumValue value="cityCode=NB-2&amp;siteCode=s0000807&amp;provCode=NB&amp;language=" display_value="Campbellton, NB" />
+<EnumValue value="cityCode=NL-2&amp;siteCode=s0000668&amp;provCode=NL&amp;language=" display_value="Campbellton, NL" />
+<EnumValue value="cityCode=AB-18&amp;siteCode=s0000311&amp;provCode=AB&amp;language=" display_value="Camrose, AB" />
+<EnumValue value="cityCode=QC-55&amp;siteCode=s0000046&amp;provCode=QC&amp;language=" display_value="Candiac, QC" />
+<EnumValue value="cityCode=AB-3&amp;siteCode=s0000403&amp;provCode=AB&amp;language=" display_value="Canmore, AB" />
+<EnumValue value="cityCode=SK-3&amp;siteCode=s0000662&amp;provCode=SK&amp;language=" display_value="Canora, SK" />
+<EnumValue value="cityCode=QC-121&amp;siteCode=s0000598&amp;provCode=QC&amp;language=" display_value="Cap Chat, QC" />
+<EnumValue value="cityCode=NU-2&amp;siteCode=s0000694&amp;provCode=NU&amp;language=" display_value="Cape Dorset, NU" />
+<EnumValue value="cityCode=NS-41&amp;siteCode=s0000463&amp;provCode=NS&amp;language=" display_value="Cape George, NS" />
+<EnumValue value="cityCode=NL-28&amp;siteCode=s0000298&amp;provCode=NL&amp;language=" display_value="Cape Race, NL" />
+<EnumValue value="cityCode=MB-35&amp;siteCode=s0000401&amp;provCode=MB&amp;language=" display_value="Carberry, MB" />
+<EnumValue value="cityCode=YT-2&amp;siteCode=s0000760&amp;provCode=YT&amp;language=" display_value="Carcross, YT" />
+<EnumValue value="cityCode=AB-64&amp;siteCode=s0000159&amp;provCode=AB&amp;language=" display_value="Cardston, AB" />
+<EnumValue value="cityCode=NS-34&amp;siteCode=s0000090&amp;provCode=NS&amp;language=" display_value="Caribou, NS" />
+<EnumValue value="cityCode=QC-56&amp;siteCode=s0000553&amp;provCode=QC&amp;language=" display_value="Carignan, QC" />
+<EnumValue value="cityCode=QC-57&amp;siteCode=s0000811&amp;provCode=QC&amp;language=" display_value="Carleton-sur-Mer, QC" />
+<EnumValue value="cityCode=SK-4&amp;siteCode=s0000515&amp;provCode=SK&amp;language=" display_value="Carlyle, SK" />
+<EnumValue value="cityCode=YT-17&amp;siteCode=s0000421&amp;provCode=YT&amp;language=" display_value="Carmacks, YT" />
+<EnumValue value="cityCode=MB-65&amp;siteCode=s0000257&amp;provCode=MB&amp;language=" display_value="Carman, MB" />
+<EnumValue value="cityCode=NL-32&amp;siteCode=s0000100&amp;provCode=NL&amp;language=" display_value="Cartwright, NL" />
+<EnumValue value="cityCode=BC-6&amp;siteCode=s0000228&amp;provCode=BC&amp;language=" display_value="Cassiar, BC" />
+<EnumValue value="cityCode=BC-21&amp;siteCode=s0000497&amp;provCode=BC&amp;language=" display_value="Castlegar, BC" />
+<EnumValue value="cityCode=QC-58&amp;siteCode=s0000554&amp;provCode=QC&amp;language=" display_value="Chambly, QC" />
+<EnumValue value="cityCode=QC-D4&amp;siteCode=s0000315&amp;provCode=QC&amp;language=" display_value="Chandler, QC" />
+<EnumValue value="cityCode=NL-17&amp;siteCode=s0000400&amp;provCode=NL&amp;language=" display_value="Channel - Port aux Basques, NL" />
+<EnumValue value="cityCode=ON-91&amp;siteCode=s0000588&amp;provCode=ON&amp;language=" display_value="Chapleau, ON" />
+<EnumValue value="cityCode=QC-120&amp;siteCode=s0000320&amp;provCode=QC&amp;language=" display_value="Charlevoix, QC" />
+<EnumValue value="cityCode=NB-30&amp;siteCode=s0000809&amp;provCode=NB&amp;language=" display_value="Charlo, NB" />
+<EnumValue value="cityCode=PE-5&amp;siteCode=s0000583&amp;provCode=PE&amp;language=" display_value="Charlottetown, PE" />
+<EnumValue value="cityCode=ON-11&amp;siteCode=s0000454&amp;provCode=ON&amp;language=" display_value="Chatham-Kent, ON" />
+<EnumValue value="cityCode=QC-59&amp;siteCode=s0000615&amp;provCode=QC&amp;language=" display_value="Chelsea, QC" />
+<EnumValue value="cityCode=NU-17&amp;siteCode=s0000501&amp;provCode=NU&amp;language=" display_value="Chesterfield, NU" />
+<EnumValue value="cityCode=NS-38&amp;siteCode=s0000420&amp;provCode=NS&amp;language=" display_value="Ch&#233;ticamp, NS" />
+<EnumValue value="cityCode=BC-23&amp;siteCode=s0000500&amp;provCode=BC&amp;language=" display_value="Chetwynd, BC" />
+<EnumValue value="cityCode=QC-153&amp;siteCode=s0000123&amp;provCode=QC&amp;language=" display_value="Chevery, QC" />
+<EnumValue value="cityCode=QC-122&amp;siteCode=s0000599&amp;provCode=QC&amp;language=" display_value="Chibougamau, QC" />
+<EnumValue value="cityCode=BC-24&amp;siteCode=s0000398&amp;provCode=BC&amp;language=" display_value="Chilliwack, BC" />
+<EnumValue value="cityCode=NB-3&amp;siteCode=s0000502&amp;provCode=NB&amp;language=" display_value="Chipman, NB" />
+<EnumValue value="cityCode=NL-21&amp;siteCode=s0000832&amp;provCode=NL&amp;language=" display_value="Churchill Falls, NL" />
+<EnumValue value="cityCode=MB-42&amp;siteCode=s0000779&amp;provCode=MB&amp;language=" display_value="Churchill, MB" />
+<EnumValue value="cityCode=NL-1&amp;siteCode=s0000466&amp;provCode=NL&amp;language=" display_value="Clarenville, NL" />
+<EnumValue value="cityCode=AB-60&amp;siteCode=s0000120&amp;provCode=AB&amp;language=" display_value="Claresholm, AB" />
+<EnumValue value="cityCode=BC-12&amp;siteCode=s0000002&amp;provCode=BC&amp;language=" display_value="Clearwater, BC" />
+<EnumValue value="cityCode=BC-91&amp;siteCode=s0000107&amp;provCode=BC&amp;language=" display_value="Clinton, BC" />
+<EnumValue value="cityCode=NU-18&amp;siteCode=s0000504&amp;provCode=NU&amp;language=" display_value="Clyde River, NU" />
+<EnumValue value="cityCode=QC-60&amp;siteCode=s0000296&amp;provCode=QC&amp;language=" display_value="Coaticook, QC" />
+<EnumValue value="cityCode=ON-75&amp;siteCode=s0000251&amp;provCode=ON&amp;language=" display_value="Cobourg, ON" />
+<EnumValue value="cityCode=AB-1&amp;siteCode=s0000493&amp;provCode=AB&amp;language=" display_value="Cochrane, AB" />
+<EnumValue value="cityCode=ON-33&amp;siteCode=s0000706&amp;provCode=ON&amp;language=" display_value="Cochrane, ON" />
+<EnumValue value="cityCode=AB-23&amp;siteCode=s0000619&amp;provCode=AB&amp;language=" display_value="Cold Lake, AB" />
+<EnumValue value="cityCode=ON-150&amp;siteCode=s0000108&amp;provCode=ON&amp;language=" display_value="Collingwood, ON" />
+<EnumValue value="cityCode=SK-30&amp;siteCode=s0000369&amp;provCode=SK&amp;language=" display_value="Collins Bay, SK" />
+<EnumValue value="cityCode=NT-26&amp;siteCode=s0000164&amp;provCode=NT&amp;language=" display_value="Colville Lake, NT" />
+<EnumValue value="cityCode=BC-61&amp;siteCode=s0000656&amp;provCode=BC&amp;language=" display_value="Comox, BC" />
+<EnumValue value="cityCode=QC-46&amp;siteCode=s0000144&amp;provCode=QC&amp;language=" display_value="Contrecoeur, QC" />
+<EnumValue value="cityCode=NU-9&amp;siteCode=s0000798&amp;provCode=NU&amp;language=" display_value="Coral Harbour, NU" />
+<EnumValue value="cityCode=NL-41&amp;siteCode=s0000221&amp;provCode=NL&amp;language=" display_value="Corner Brook, NL" />
+<EnumValue value="cityCode=ON-152&amp;siteCode=s0000071&amp;provCode=ON&amp;language=" display_value="Cornwall, ON" />
+<EnumValue value="cityCode=SK-42&amp;siteCode=s0000081&amp;provCode=SK&amp;language=" display_value="Coronach, SK" />
+<EnumValue value="cityCode=AB-59&amp;siteCode=s0000111&amp;provCode=AB&amp;language=" display_value="Coronation, AB" />
+<EnumValue value="cityCode=BC-92&amp;siteCode=s0000657&amp;provCode=BC&amp;language=" display_value="Courtenay, BC" />
+<EnumValue value="cityCode=QC-61&amp;siteCode=s0000053&amp;provCode=QC&amp;language=" display_value="Cowansville, QC" />
+<EnumValue value="cityCode=BC-77&amp;siteCode=s0000741&amp;provCode=BC&amp;language=" display_value="Cranbrook, BC" />
+<EnumValue value="cityCode=BC-26&amp;siteCode=s0000212&amp;provCode=BC&amp;language=" display_value="Creston, BC" />
+<EnumValue value="cityCode=AB-17&amp;siteCode=s0000310&amp;provCode=AB&amp;language=" display_value="Crowsnest, AB" />
+<EnumValue value="cityCode=BC-95&amp;siteCode=s0000845&amp;provCode=BC&amp;language=" display_value="Cummins Lakes (Provincial Park), BC" />
+<EnumValue value="cityCode=SK-29&amp;siteCode=s0000360&amp;provCode=SK&amp;language=" display_value="Cypress Hills (Provincial Park), SK" />
+<EnumValue value="cityCode=NB-26&amp;siteCode=s0000808&amp;provCode=NB&amp;language=" display_value="Dalhousie, NB" />
+<EnumValue value="cityCode=NL-33&amp;siteCode=s0000115&amp;provCode=NL&amp;language=" display_value="Daniel's Harbour, NL" />
+<EnumValue value="cityCode=MB-58&amp;siteCode=s0000508&amp;provCode=MB&amp;language=" display_value="Dauphin, MB" />
+<EnumValue value="cityCode=BC-25&amp;siteCode=s0000509&amp;provCode=BC&amp;language=" display_value="Dawson Creek, BC" />
+<EnumValue value="cityCode=YT-6&amp;siteCode=s0000275&amp;provCode=YT&amp;language=" display_value="Dawson, YT" />
+<EnumValue value="cityCode=BC-14&amp;siteCode=s0000227&amp;provCode=BC&amp;language=" display_value="Dease Lake, BC" />
+<EnumValue value="cityCode=ON-83&amp;siteCode=s0000732&amp;provCode=ON&amp;language=" display_value="Deep River, ON" />
+<EnumValue value="cityCode=NL-39&amp;siteCode=s0000507&amp;provCode=NL&amp;language=" display_value="Deer Lake, NL" />
+<EnumValue value="cityCode=MB-49&amp;siteCode=s0000256&amp;provCode=MB&amp;language=" display_value="Deerwood, MB" />
+<EnumValue value="cityCode=NT-22&amp;siteCode=s0000423&amp;provCode=NT&amp;language=" display_value="Deline, NT" />
+<EnumValue value="cityCode=QC-62&amp;siteCode=s0000769&amp;provCode=QC&amp;language=" display_value="Delson, QC" />
+<EnumValue value="cityCode=MB-40&amp;siteCode=s0000831&amp;provCode=MB&amp;language=" display_value="Delta, MB" />
+<EnumValue value="cityCode=YT-4&amp;siteCode=s0000031&amp;provCode=YT&amp;language=" display_value="Dempster (Highway), YT" />
+<EnumValue value="cityCode=NT-1&amp;siteCode=s0000791&amp;provCode=NT&amp;language=" display_value="Detah, NT" />
+<EnumValue value="cityCode=QC-63&amp;siteCode=s0000361&amp;provCode=QC&amp;language=" display_value="Deux-Montagnes, QC" />
+<EnumValue value="cityCode=NS-20&amp;siteCode=s0000364&amp;provCode=NS&amp;language=" display_value="Digby, NS" />
+<EnumValue value="cityCode=NB-4&amp;siteCode=s0000503&amp;provCode=NB&amp;language=" display_value="Doaktown, NB" />
+<EnumValue value="cityCode=QC-64&amp;siteCode=s0000270&amp;provCode=QC&amp;language=" display_value="Dolbeau-Mistassini, QC" />
+<EnumValue value="cityCode=BC-8&amp;siteCode=s0000009&amp;provCode=BC&amp;language=" display_value="Dome Creek, BC" />
+<EnumValue value="cityCode=MB-2&amp;siteCode=s0000152&amp;provCode=MB&amp;language=" display_value="Dominion City, MB" />
+<EnumValue value="cityCode=QC-65&amp;siteCode=s0000182&amp;provCode=QC&amp;language=" display_value="Donnacona, QC" />
+<EnumValue value="cityCode=ON-34&amp;siteCode=s0000660&amp;provCode=ON&amp;language=" display_value="Dorion, ON" />
+<EnumValue value="cityCode=AB-48&amp;siteCode=s0000468&amp;provCode=AB&amp;language=" display_value="Drayton Valley, AB" />
+<EnumValue value="cityCode=AB-62&amp;siteCode=s0000129&amp;provCode=AB&amp;language=" display_value="Drumheller, AB" />
+<EnumValue value="cityCode=QC-2&amp;siteCode=s0000261&amp;provCode=QC&amp;language=" display_value="Drummondville, QC" />
+<EnumValue value="cityCode=ON-72&amp;siteCode=s0000546&amp;provCode=ON&amp;language=" display_value="Dryden, ON" />
+<EnumValue value="cityCode=ON-35&amp;siteCode=s0000452&amp;provCode=ON&amp;language=" display_value="Dunchurch, ON" />
+<EnumValue value="cityCode=ON-36&amp;siteCode=s0000237&amp;provCode=ON&amp;language=" display_value="Dundalk, ON" />
+<EnumValue value="cityCode=ON-167&amp;siteCode=s0000428&amp;provCode=ON&amp;language=" display_value="Ear Falls, ON" />
+<EnumValue value="cityCode=ON-136&amp;siteCode=s0000752&amp;provCode=ON&amp;language=" display_value="Earlton, ON" />
+<EnumValue value="cityCode=PE-6&amp;siteCode=s0000138&amp;provCode=PE&amp;language=" display_value="East Point, PE" />
+<EnumValue value="cityCode=SK-45&amp;siteCode=s0000134&amp;provCode=SK&amp;language=" display_value="Eastend, SK" />
+<EnumValue value="cityCode=NS-7&amp;siteCode=s0000814&amp;provCode=NS&amp;language=" display_value="Economy, NS" />
+<EnumValue value="cityCode=AB-71&amp;siteCode=s0000510&amp;provCode=AB&amp;language=" display_value="Edmonton (Int'l Aprt), AB" />
+<EnumValue value="cityCode=AB-50&amp;siteCode=s0000045&amp;provCode=AB&amp;language=" display_value="Edmonton, AB" />
+<EnumValue value="cityCode=NB-32&amp;siteCode=s0000043&amp;provCode=NB&amp;language=" display_value="Edmundston, NB" />
+<EnumValue value="cityCode=AB-72&amp;siteCode=s0000518&amp;provCode=AB&amp;language=" display_value="Edson, AB" />
+<EnumValue value="cityCode=NT-14&amp;siteCode=s0000618&amp;provCode=NT&amp;language=" display_value="Ekati (Lac de Gras), NT" />
+<EnumValue value="cityCode=SK-18&amp;siteCode=s0000274&amp;provCode=SK&amp;language=" display_value="Elbow, SK" />
+<EnumValue value="cityCode=AB-63&amp;siteCode=s0000156&amp;provCode=AB&amp;language=" display_value="Elk Island (National Park), AB" />
+<EnumValue value="cityCode=ON-170&amp;siteCode=s0000512&amp;provCode=ON&amp;language=" display_value="Elliot Lake, ON" />
+<EnumValue value="cityCode=MB-47&amp;siteCode=s0000153&amp;provCode=MB&amp;language=" display_value="Emerson, MB" />
+<EnumValue value="cityCode=NL-44&amp;siteCode=s0000112&amp;provCode=NL&amp;language=" display_value="Englee, NL" />
+<EnumValue value="cityCode=NU-19&amp;siteCode=s0000206&amp;provCode=NU&amp;language=" display_value="Ennadai, NU" />
+<EnumValue value="cityCode=NT-2&amp;siteCode=s0000560&amp;provCode=NT&amp;language=" display_value="Enterprise, NT" />
+<EnumValue value="cityCode=QC-26&amp;siteCode=s0000028&amp;provCode=QC&amp;language=" display_value="Escoumins, QC" />
+<EnumValue value="cityCode=BC-40&amp;siteCode=s0000286&amp;provCode=BC&amp;language=" display_value="Esquimalt, BC" />
+<EnumValue value="cityCode=BC-15&amp;siteCode=s0000132&amp;provCode=BC&amp;language=" display_value="Estevan Point, BC" />
+<EnumValue value="cityCode=SK-53&amp;siteCode=s0000516&amp;provCode=SK&amp;language=" display_value="Estevan, SK" />
+<EnumValue value="cityCode=AB-67&amp;siteCode=s0000176&amp;provCode=AB&amp;language=" display_value="Esther, AB" />
+<EnumValue value="cityCode=NU-11&amp;siteCode=s0000140&amp;provCode=NU&amp;language=" display_value="Eureka, NU" />
+<EnumValue value="cityCode=QC-141&amp;siteCode=s0000800&amp;provCode=QC&amp;language=" display_value="Farnham, QC" />
+<EnumValue value="cityCode=YT-12&amp;siteCode=s0000349&amp;provCode=YT&amp;language=" display_value="Faro, YT" />
+<EnumValue value="cityCode=QC-29&amp;siteCode=s0000738&amp;provCode=QC&amp;language=" display_value="Fermont, QC" />
+<EnumValue value="cityCode=MB-24&amp;siteCode=s0000339&amp;provCode=MB&amp;language=" display_value="Fisher Branch, MB" />
+<EnumValue value="cityCode=MB-60&amp;siteCode=s0000015&amp;provCode=MB&amp;language=" display_value="Flin Flon, MB" />
+<EnumValue value="cityCode=QC-27&amp;siteCode=s0000484&amp;provCode=QC&amp;language=" display_value="Forestville, QC" />
+<EnumValue value="cityCode=QC-95&amp;siteCode=s0000537&amp;provCode=QC&amp;language=" display_value="Forillon (National Park), QC" />
+<EnumValue value="cityCode=QC-67&amp;siteCode=s0000536&amp;provCode=QC&amp;language=" display_value="Forillon, QC" />
+<EnumValue value="cityCode=ON-173&amp;siteCode=s0000597&amp;provCode=ON&amp;language=" display_value="Fort Albany, ON" />
+<EnumValue value="cityCode=AB-28&amp;siteCode=s0000636&amp;provCode=AB&amp;language=" display_value="Fort Chipewyan, AB" />
+<EnumValue value="cityCode=ON-12&amp;siteCode=s0000282&amp;provCode=ON&amp;language=" display_value="Fort Erie, ON" />
+<EnumValue value="cityCode=ON-159&amp;siteCode=s0000104&amp;provCode=ON&amp;language=" display_value="Fort Frances, ON" />
+<EnumValue value="cityCode=NT-5&amp;siteCode=s0000818&amp;provCode=NT&amp;language=" display_value="Fort Good Hope, NT" />
+<EnumValue value="cityCode=NT-29&amp;siteCode=s0000210&amp;provCode=NT&amp;language=" display_value="Fort Liard, NT" />
+<EnumValue value="cityCode=AB-20&amp;siteCode=s0000595&amp;provCode=AB&amp;language=" display_value="Fort McMurray, AB" />
+<EnumValue value="cityCode=NT-10&amp;siteCode=s0000816&amp;provCode=NT&amp;language=" display_value="Fort McPherson, NT" />
+<EnumValue value="cityCode=BC-83&amp;siteCode=s0000771&amp;provCode=BC&amp;language=" display_value="Fort Nelson, BC" />
+<EnumValue value="cityCode=NT-27&amp;siteCode=s0000188&amp;provCode=NT&amp;language=" display_value="Fort Providence, NT" />
+<EnumValue value="cityCode=SK-5&amp;siteCode=s0000087&amp;provCode=SK&amp;language=" display_value="Fort Qu'Appelle, SK" />
+<EnumValue value="cityCode=NT-3&amp;siteCode=s0000524&amp;provCode=NT&amp;language=" display_value="Fort Resolution, NT" />
+<EnumValue value="cityCode=ON-171&amp;siteCode=s0000517&amp;provCode=ON&amp;language=" display_value="Fort Severn, ON" />
+<EnumValue value="cityCode=NT-4&amp;siteCode=s0000525&amp;provCode=NT&amp;language=" display_value="Fort Simpson, NT" />
+<EnumValue value="cityCode=NT-17&amp;siteCode=s0000690&amp;provCode=NT&amp;language=" display_value="Fort Smith, NT" />
+<EnumValue value="cityCode=BC-78&amp;siteCode=s0000746&amp;provCode=BC&amp;language=" display_value="Fort St. John, BC" />
+<EnumValue value="cityCode=NS-24&amp;siteCode=s0000020&amp;provCode=NS&amp;language=" display_value="Fourchu Head, NS" />
+<EnumValue value="cityCode=NB-29&amp;siteCode=s0000250&amp;provCode=NB&amp;language=" display_value="Fredericton, NB" />
+<EnumValue value="cityCode=NB-5&amp;siteCode=s0000688&amp;provCode=NB&amp;language=" display_value="Fundy (National Park), NB" />
+<EnumValue value="cityCode=NT-18&amp;siteCode=s0000388&amp;provCode=NT&amp;language=" display_value="Gameti, NT" />
+<EnumValue value="cityCode=ON-90&amp;siteCode=s0000169&amp;provCode=ON&amp;language=" display_value="Gananoque, ON" />
+<EnumValue value="cityCode=NL-16&amp;siteCode=s0000667&amp;provCode=NL&amp;language=" display_value="Gander, NL" />
+<EnumValue value="cityCode=AB-65&amp;siteCode=s0000167&amp;provCode=AB&amp;language=" display_value="Garden Creek, AB" />
+<EnumValue value="cityCode=QC-102&amp;siteCode=s0000244&amp;provCode=QC&amp;language=" display_value="Gasp&#233;, QC" />
+<EnumValue value="cityCode=QC-94&amp;siteCode=s0000321&amp;provCode=QC&amp;language=" display_value="Gasp&#233;sie (Parc national), QC" />
+<EnumValue value="cityCode=QC-127&amp;siteCode=s0000783&amp;provCode=QC&amp;language=" display_value="Gatineau, QC" />
+<EnumValue value="cityCode=BC-1&amp;siteCode=s0000316&amp;provCode=BC&amp;language=" display_value="Gibsons, BC" />
+<EnumValue value="cityCode=MB-64&amp;siteCode=s0000543&amp;provCode=MB&amp;language=" display_value="Gillam, MB" />
+<EnumValue value="cityCode=MB-62&amp;siteCode=s0000534&amp;provCode=MB&amp;language=" display_value="Gimli, MB" />
+<EnumValue value="cityCode=NU-24&amp;siteCode=s0000820&amp;provCode=NU&amp;language=" display_value="Gjoa Haven, NU" />
+<EnumValue value="cityCode=ON-160&amp;siteCode=s0000165&amp;provCode=ON&amp;language=" display_value="Goderich, ON" />
+<EnumValue value="cityCode=MB-63&amp;siteCode=s0000566&amp;provCode=MB&amp;language=" display_value="Gods Lake, MB" />
+<EnumValue value="cityCode=ON-37&amp;siteCode=s0000025&amp;provCode=ON&amp;language=" display_value="Gogama, ON" />
+<EnumValue value="cityCode=BC-34&amp;siteCode=s0000527&amp;provCode=BC&amp;language=" display_value="Golden, BC" />
+<EnumValue value="cityCode=BC-32&amp;siteCode=s0000234&amp;provCode=BC&amp;language=" display_value="Gonzales Point, BC" />
+<EnumValue value="cityCode=BC-9&amp;siteCode=s0000647&amp;provCode=BC&amp;language=" display_value="Good Hope Lake, BC" />
+<EnumValue value="cityCode=ON-144&amp;siteCode=s0000790&amp;provCode=ON&amp;language=" display_value="Gore Bay, ON" />
+<EnumValue value="cityCode=QC-A1&amp;siteCode=s0000288&amp;provCode=QC&amp;language=" display_value="Gouin (R&#233;servoir), QC" />
+<EnumValue value="cityCode=QC-5&amp;siteCode=s0000052&amp;provCode=QC&amp;language=" display_value="Granby, QC" />
+<EnumValue value="cityCode=NL-5&amp;siteCode=s0000475&amp;provCode=NL&amp;language=" display_value="Grand Bank, NL" />
+<EnumValue value="cityCode=MB-9&amp;siteCode=s0000191&amp;provCode=MB&amp;language=" display_value="Grand Beach, MB" />
+<EnumValue value="cityCode=NS-32&amp;siteCode=s0000405&amp;provCode=NS&amp;language=" display_value="Grand &#201;tang, NS" />
+<EnumValue value="cityCode=NB-6&amp;siteCode=s0000201&amp;provCode=NB&amp;language=" display_value="Grand Falls, NB" />
+<EnumValue value="cityCode=NL-6&amp;siteCode=s0000118&amp;provCode=NL&amp;language=" display_value="Grand Falls/Windsor, NL" />
+<EnumValue value="cityCode=BC-39&amp;siteCode=s0000004&amp;provCode=BC&amp;language=" display_value="Grand Forks, BC" />
+<EnumValue value="cityCode=NB-27&amp;siteCode=s0000622&amp;provCode=NB&amp;language=" display_value="Grand Manan, NB" />
+<EnumValue value="cityCode=MB-57&amp;siteCode=s0000207&amp;provCode=MB&amp;language=" display_value="Grand Rapids, MB" />
+<EnumValue value="cityCode=AB-45&amp;siteCode=s0000781&amp;provCode=AB&amp;language=" display_value="Grande Cache, AB" />
+<EnumValue value="cityCode=AB-31&amp;siteCode=s0000661&amp;provCode=AB&amp;language=" display_value="Grande Prairie, AB" />
+<EnumValue value="cityCode=QC-169&amp;siteCode=s0000319&amp;provCode=QC&amp;language=" display_value="Grande-Vall&#233;e, QC" />
+<EnumValue value="cityCode=ON-38&amp;siteCode=s0000638&amp;provCode=ON&amp;language=" display_value="Gravenhurst, ON" />
+<EnumValue value="cityCode=ON-39&amp;siteCode=s0000528&amp;provCode=ON&amp;language=" display_value="Greater Napanee, ON" />
+<EnumValue value="cityCode=ON-40&amp;siteCode=s0000680&amp;provCode=ON&amp;language=" display_value="Greater Sudbury, ON" />
+<EnumValue value="cityCode=ON-153&amp;siteCode=s0000418&amp;provCode=ON&amp;language=" display_value="Greenstone (Beardmore), ON" />
+<EnumValue value="cityCode=ON-70&amp;siteCode=s0000538&amp;provCode=ON&amp;language=" display_value="Greenstone (Geraldton), ON" />
+<EnumValue value="cityCode=ON-97&amp;siteCode=s0000539&amp;provCode=ON&amp;language=" display_value="Greenstone (Nakina), ON" />
+<EnumValue value="cityCode=NS-35&amp;siteCode=s0000803&amp;provCode=NS&amp;language=" display_value="Greenwood, NS" />
+<EnumValue value="cityCode=MB-48&amp;siteCode=s0000172&amp;provCode=MB&amp;language=" display_value="Gretna, MB" />
+<EnumValue value="cityCode=NU-12&amp;siteCode=s0000177&amp;provCode=NU&amp;language=" display_value="Grise Fiord, NU" />
+<EnumValue value="cityCode=NL-7&amp;siteCode=s0000457&amp;provCode=NL&amp;language=" display_value="Gros Morne, NL" />
+<EnumValue value="cityCode=ON-5&amp;siteCode=s0000571&amp;provCode=ON&amp;language=" display_value="Guelph, ON" />
+<EnumValue value="cityCode=BC-93&amp;siteCode=s0000155&amp;provCode=BC&amp;language=" display_value="Gulf Islands (Southern), BC" />
+<EnumValue value="cityCode=ON-41&amp;siteCode=s0000395&amp;provCode=ON&amp;language=" display_value="Gull Bay, ON" />
+<EnumValue value="cityCode=NS-8&amp;siteCode=s0000464&amp;provCode=NS&amp;language=" display_value="Guysborough, NS" />
+<EnumValue value="cityCode=YT-5&amp;siteCode=s0000183&amp;provCode=YT&amp;language=" display_value="Haines Junction, YT" />
+<EnumValue value="cityCode=ON-42&amp;siteCode=s0000548&amp;provCode=ON&amp;language=" display_value="Haldimand County, ON" />
+<EnumValue value="cityCode=ON-165&amp;siteCode=s0000303&amp;provCode=ON&amp;language=" display_value="Haliburton, ON" />
+<EnumValue value="cityCode=NS-40&amp;siteCode=s0000084&amp;provCode=NS&amp;language=" display_value="Halifax (Shearwater), NS" />
+<EnumValue value="cityCode=NS-19&amp;siteCode=s0000318&amp;provCode=NS&amp;language=" display_value="Halifax, NS" />
+<EnumValue value="cityCode=NU-4&amp;siteCode=s0000714&amp;provCode=NU&amp;language=" display_value="Hall Beach, NU" />
+<EnumValue value="cityCode=ON-68&amp;siteCode=s0000789&amp;provCode=ON&amp;language=" display_value="Halton Hills, ON" />
+<EnumValue value="cityCode=ON-77&amp;siteCode=s0000549&amp;provCode=ON&amp;language=" display_value="Hamilton, ON" />
+<EnumValue value="cityCode=NL-23&amp;siteCode=s0000780&amp;provCode=NL&amp;language=" display_value="Happy Valley-Goose Bay, NL" />
+<EnumValue value="cityCode=NS-23&amp;siteCode=s0000308&amp;provCode=NS&amp;language=" display_value="Hart Island, NS" />
+<EnumValue value="cityCode=QC-105&amp;siteCode=s0000542&amp;provCode=QC&amp;language=" display_value="Havre St-Pierre, QC" />
+<EnumValue value="cityCode=ON-71&amp;siteCode=s0000069&amp;provCode=ON&amp;language=" display_value="Hawkesbury, ON" />
+<EnumValue value="cityCode=NT-8&amp;siteCode=s0000561&amp;provCode=NT&amp;language=" display_value="Hay River, NT" />
+<EnumValue value="cityCode=ON-73&amp;siteCode=s0000266&amp;provCode=ON&amp;language=" display_value="Hearst, ON" />
+<EnumValue value="cityCode=AB-37&amp;siteCode=s0000279&amp;provCode=AB&amp;language=" display_value="Hendrickson Creek, AB" />
+<EnumValue value="cityCode=AB-24&amp;siteCode=s0000621&amp;provCode=AB&amp;language=" display_value="High Level, AB" />
+<EnumValue value="cityCode=AB-4&amp;siteCode=s0000383&amp;provCode=AB&amp;language=" display_value="High River, AB" />
+<EnumValue value="cityCode=AB-68&amp;siteCode=s0000066&amp;provCode=AB&amp;language=" display_value="Highvale, AB" />
+<EnumValue value="cityCode=AB-14&amp;siteCode=s0000217&amp;provCode=AB&amp;language=" display_value="Hinton, AB" />
+<EnumValue value="cityCode=BC-31&amp;siteCode=s0000226&amp;provCode=BC&amp;language=" display_value="Hope Slide, BC" />
+<EnumValue value="cityCode=BC-36&amp;siteCode=s0000547&amp;provCode=BC&amp;language=" display_value="Hope, BC" />
+<EnumValue value="cityCode=NL-38&amp;siteCode=s0000181&amp;provCode=NL&amp;language=" display_value="Hopedale, NL" />
+<EnumValue value="cityCode=NB-8&amp;siteCode=s0000655&amp;provCode=NB&amp;language=" display_value="Hopewell, NB" />
+<EnumValue value="cityCode=ON-78&amp;siteCode=s0000267&amp;provCode=ON&amp;language=" display_value="Hornepayne, ON" />
+<EnumValue value="cityCode=SK-17&amp;siteCode=s0000545&amp;provCode=SK&amp;language=" display_value="Hudson Bay, SK" />
+<EnumValue value="cityCode=SK-6&amp;siteCode=s0000196&amp;provCode=SK&amp;language=" display_value="Humboldt, SK" />
+<EnumValue value="cityCode=MB-50&amp;siteCode=s0000178&amp;provCode=MB&amp;language=" display_value="Hunters Point, MB" />
+<EnumValue value="cityCode=QC-68&amp;siteCode=s0000099&amp;provCode=QC&amp;language=" display_value="Huntingdon, QC" />
+<EnumValue value="cityCode=ON-88&amp;siteCode=s0000640&amp;provCode=ON&amp;language=" display_value="Huntsville, ON" />
+<EnumValue value="cityCode=NU-23&amp;siteCode=s0000540&amp;provCode=NU&amp;language=" display_value="Igloolik, NU" />
+<EnumValue value="cityCode=ON-156&amp;siteCode=s0000819&amp;provCode=ON&amp;language=" display_value="Ignace, ON" />
+<EnumValue value="cityCode=QC-104&amp;siteCode=s0000541&amp;provCode=QC&amp;language=" display_value="&#206;les-de-la-Madeleine, QC" />
+<EnumValue value="cityCode=SK-43&amp;siteCode=s0000086&amp;provCode=SK&amp;language=" display_value="Indian Head, SK" />
+<EnumValue value="cityCode=NT-28&amp;siteCode=s0000389&amp;provCode=NT&amp;language=" display_value="Indin River, NT" />
+<EnumValue value="cityCode=NS-16&amp;siteCode=s0000433&amp;provCode=NS&amp;language=" display_value="Ingonish, NS" />
+<EnumValue value="cityCode=QC-132&amp;siteCode=s0000709&amp;provCode=QC&amp;language=" display_value="Inukjuak, QC" />
+<EnumValue value="cityCode=NT-30&amp;siteCode=s0000519&amp;provCode=NT&amp;language=" display_value="Inuvik, NT" />
+<EnumValue value="cityCode=BC-72&amp;siteCode=s0000008&amp;provCode=BC&amp;language=" display_value="Invermere, BC" />
+<EnumValue value="cityCode=NU-21&amp;siteCode=s0000394&amp;provCode=NU&amp;language=" display_value="Iqaluit, NU" />
+<EnumValue value="cityCode=MB-59&amp;siteCode=s0000565&amp;provCode=MB&amp;language=" display_value="Island Lake, MB" />
+<EnumValue value="cityCode=QC-113&amp;siteCode=s0000284&amp;provCode=QC&amp;language=" display_value="Ivujivik, QC" />
+<EnumValue value="cityCode=AB-70&amp;siteCode=s0000218&amp;provCode=AB&amp;language=" display_value="Jasper, AB" />
+<EnumValue value="cityCode=QC-138&amp;siteCode=s0000393&amp;provCode=QC&amp;language=" display_value="Joliette, QC" />
+<EnumValue value="cityCode=ON-145&amp;siteCode=s0000659&amp;provCode=ON&amp;language=" display_value="Kakabeka Falls, ON" />
+<EnumValue value="cityCode=ON-43&amp;siteCode=s0000305&amp;provCode=ON&amp;language=" display_value="Kaladar, ON" />
+<EnumValue value="cityCode=BC-45&amp;siteCode=s0000568&amp;provCode=BC&amp;language=" display_value="Kamloops, BC" />
+<EnumValue value="cityCode=QC-70&amp;siteCode=s0000335&amp;provCode=QC&amp;language=" display_value="Kamouraska, QC" />
+<EnumValue value="cityCode=SK-7&amp;siteCode=s0000664&amp;provCode=SK&amp;language=" display_value="Kamsack, SK" />
+<EnumValue value="cityCode=AB-34&amp;siteCode=s0000263&amp;provCode=AB&amp;language=" display_value="Kananaskis (Nakiska Ridgetop), AB" />
+<EnumValue value="cityCode=QC-119&amp;siteCode=s0000194&amp;provCode=QC&amp;language=" display_value="Kangiqsualujjuaq, QC" />
+<EnumValue value="cityCode=QC-156&amp;siteCode=s0000142&amp;provCode=QC&amp;language=" display_value="Kangiqsujuaq, QC" />
+<EnumValue value="cityCode=QC-160&amp;siteCode=s0000483&amp;provCode=QC&amp;language=" display_value="Kangirsuk, QC" />
+<EnumValue value="cityCode=ON-142&amp;siteCode=s0000782&amp;provCode=ON&amp;language=" display_value="Kapuskasing, ON" />
+<EnumValue value="cityCode=ON-44&amp;siteCode=s0000632&amp;provCode=ON&amp;language=" display_value="Kawartha Lakes (Fenelon Falls), ON" />
+<EnumValue value="cityCode=ON-168&amp;siteCode=s0000631&amp;provCode=ON&amp;language=" display_value="Kawartha Lakes (Lindsay), ON" />
+<EnumValue value="cityCode=NS-42&amp;siteCode=s0000223&amp;provCode=NS&amp;language=" display_value="Kejimkujik (National Park), NS" />
+<EnumValue value="cityCode=BC-48&amp;siteCode=s0000592&amp;provCode=BC&amp;language=" display_value="Kelowna, BC" />
+<EnumValue value="cityCode=ON-74&amp;siteCode=s0000436&amp;provCode=ON&amp;language=" display_value="Kemptville, ON" />
+<EnumValue value="cityCode=ON-96&amp;siteCode=s0000651&amp;provCode=ON&amp;language=" display_value="Kenora, ON" />
+<EnumValue value="cityCode=NS-17&amp;siteCode=s0000439&amp;provCode=NS&amp;language=" display_value="Kentville, NS" />
+<EnumValue value="cityCode=SK-20&amp;siteCode=s0000576&amp;provCode=SK&amp;language=" display_value="Key Lake, SK" />
+<EnumValue value="cityCode=ON-146&amp;siteCode=s0000088&amp;provCode=ON&amp;language=" display_value="Killarney, ON" />
+<EnumValue value="cityCode=NU-26&amp;siteCode=s0000587&amp;provCode=NU&amp;language=" display_value="Kimmirut, NU" />
+<EnumValue value="cityCode=ON-28&amp;siteCode=s0000166&amp;provCode=ON&amp;language=" display_value="Kincardine, ON" />
+<EnumValue value="cityCode=SK-21&amp;siteCode=s0000581&amp;provCode=SK&amp;language=" display_value="Kindersley, SK" />
+<EnumValue value="cityCode=ON-69&amp;siteCode=s0000531&amp;provCode=ON&amp;language=" display_value="Kingston, ON" />
+<EnumValue value="cityCode=ON-76&amp;siteCode=s0000437&amp;provCode=ON&amp;language=" display_value="Kirkland Lake, ON" />
+<EnumValue value="cityCode=ON-82&amp;siteCode=s0000573&amp;provCode=ON&amp;language=" display_value="Kitchener-Waterloo, ON" />
+<EnumValue value="cityCode=BC-30&amp;siteCode=s0000756&amp;provCode=BC&amp;language=" display_value="Kitimat, BC" />
+<EnumValue value="cityCode=YT-1&amp;siteCode=s0000505&amp;provCode=YT&amp;language=" display_value="Kluane Lake, YT" />
+<EnumValue value="cityCode=BC-11&amp;siteCode=s0000391&amp;provCode=BC&amp;language=" display_value="Kootenay (National Park), BC" />
+<EnumValue value="cityCode=NB-9&amp;siteCode=s0000038&amp;provCode=NB&amp;language=" display_value="Kouchibouguac, NB" />
+<EnumValue value="cityCode=NU-13&amp;siteCode=s0000065&amp;provCode=NU&amp;language=" display_value="Kugaaruk, NU" />
+<EnumValue value="cityCode=NU-16&amp;siteCode=s0000498&amp;provCode=NU&amp;language=" display_value="Kugluktuk, NU" />
+<EnumValue value="cityCode=QC-151&amp;siteCode=s0000407&amp;provCode=QC&amp;language=" display_value="Kuujjuaq, QC" />
+<EnumValue value="cityCode=QC-106&amp;siteCode=s0000544&amp;provCode=QC&amp;language=" display_value="Kuujjuarapik, QC" />
+<EnumValue value="cityCode=QC-157&amp;siteCode=s0000054&amp;provCode=QC&amp;language=" display_value="L'Assomption, QC" />
+<EnumValue value="cityCode=QC-77&amp;siteCode=s0000336&amp;provCode=QC&amp;language=" display_value="L'Islet, QC" />
+<EnumValue value="cityCode=QC-159&amp;siteCode=s0000480&amp;provCode=QC&amp;language=" display_value="La Grande Rivière, QC" />
+<EnumValue value="cityCode=QC-101&amp;siteCode=s0000535&amp;provCode=QC&amp;language=" display_value="La Grande-Quatre, QC" />
+<EnumValue value="cityCode=SK-13&amp;siteCode=s0000722&amp;provCode=SK&amp;language=" display_value="La Loche, SK" />
+<EnumValue value="cityCode=QC-11&amp;siteCode=s0000333&amp;provCode=QC&amp;language=" display_value="La Malbaie, QC" />
+<EnumValue value="cityCode=QC-71&amp;siteCode=s0000048&amp;provCode=QC&amp;language=" display_value="La Prairie, QC" />
+<EnumValue value="cityCode=SK-38&amp;siteCode=s0000715&amp;provCode=SK&amp;language=" display_value="La Ronge, SK" />
+<EnumValue value="cityCode=QC-45&amp;siteCode=s0000354&amp;provCode=QC&amp;language=" display_value="La Sarre, QC" />
+<EnumValue value="cityCode=NL-22&amp;siteCode=s0000079&amp;provCode=NL&amp;language=" display_value="La Scie, NL" />
+<EnumValue value="cityCode=QC-155&amp;siteCode=s0000574&amp;provCode=QC&amp;language=" display_value="La Tuque, QC" />
+<EnumValue value="cityCode=QC-30&amp;siteCode=s0000245&amp;provCode=QC&amp;language=" display_value="La V&#233;rendrye (R&#233;serve faunique), QC" />
+<EnumValue value="cityCode=NL-20&amp;siteCode=s0000737&amp;provCode=NL&amp;language=" display_value="Labrador City, NL" />
+<EnumValue value="cityCode=AB-32&amp;siteCode=s0000229&amp;provCode=AB&amp;language=" display_value="Lac La Biche, AB" />
+<EnumValue value="cityCode=QC-99&amp;siteCode=s0000575&amp;provCode=QC&amp;language=" display_value="Lac Raglan, QC" />
+<EnumValue value="cityCode=QC-73&amp;siteCode=s0000674&amp;provCode=QC&amp;language=" display_value="Lac Saint-Jean, QC" />
+<EnumValue value="cityCode=QC-72&amp;siteCode=s0000186&amp;provCode=QC&amp;language=" display_value="Lac-M&#233;gantic, QC" />
+<EnumValue value="cityCode=QC-14&amp;siteCode=s0000602&amp;provCode=QC&amp;language=" display_value="Lachute, QC" />
+<EnumValue value="cityCode=AB-39&amp;siteCode=s0000297&amp;provCode=AB&amp;language=" display_value="Lacombe, AB" />
+<EnumValue value="cityCode=ON-45&amp;siteCode=s0000763&amp;provCode=ON&amp;language=" display_value="Lake Superior (Provincial Park), ON" />
+<EnumValue value="cityCode=ON-46&amp;siteCode=s0000744&amp;provCode=ON&amp;language=" display_value="Lambton Shores, ON" />
+<EnumValue value="cityCode=QC-74&amp;siteCode=s0000459&amp;provCode=QC&amp;language=" display_value="Lanaudière, QC" />
+<EnumValue value="cityCode=ON-87&amp;siteCode=s0000233&amp;provCode=ON&amp;language=" display_value="Lansdowne House, ON" />
+<EnumValue value="cityCode=SK-35&amp;siteCode=s0000381&amp;provCode=SK&amp;language=" display_value="Last Mountain Lake (Sanctuary), SK" />
+<EnumValue value="cityCode=QC-114&amp;siteCode=s0000287&amp;provCode=QC&amp;language=" display_value="Laurentides (R&#233;serve faunique), QC" />
+<EnumValue value="cityCode=QC-76&amp;siteCode=s0000712&amp;provCode=QC&amp;language=" display_value="Laval, QC" />
+<EnumValue value="cityCode=QC-D3&amp;siteCode=s0000149&amp;provCode=QC&amp;language=" display_value="Le Gardeur, QC" />
+<EnumValue value="cityCode=SK-52&amp;siteCode=s0000219&amp;provCode=SK&amp;language=" display_value="Leader, SK" />
+<EnumValue value="cityCode=MB-22&amp;siteCode=s0000776&amp;provCode=MB&amp;language=" display_value="Leaf Rapids, MB" />
+<EnumValue value="cityCode=ON-23&amp;siteCode=s0000431&amp;provCode=ON&amp;language=" display_value="Leamington, ON" />
+<EnumValue value="cityCode=AB-30&amp;siteCode=s0000652&amp;provCode=AB&amp;language=" display_value="Lethbridge, AB" />
+<EnumValue value="cityCode=QC-78&amp;siteCode=s0000416&amp;provCode=QC&amp;language=" display_value="L&#233;vis, QC" />
+<EnumValue value="cityCode=NL-9&amp;siteCode=s0000669&amp;provCode=NL&amp;language=" display_value="Lewisporte, NL" />
+<EnumValue value="cityCode=BC-87&amp;siteCode=s0000377&amp;provCode=BC&amp;language=" display_value="Liard River, BC" />
+<EnumValue value="cityCode=BC-28&amp;siteCode=s0000222&amp;provCode=BC&amp;language=" display_value="Lillooet, BC" />
+<EnumValue value="cityCode=ON-47&amp;siteCode=s0000470&amp;provCode=ON&amp;language=" display_value="Lincoln, ON" />
+<EnumValue value="cityCode=MB-18&amp;siteCode=s0000010&amp;provCode=MB&amp;language=" display_value="Little Grand Rapids, MB" />
+<EnumValue value="cityCode=NS-39&amp;siteCode=s0000371&amp;provCode=NS&amp;language=" display_value="Liverpool, NS" />
+<EnumValue value="cityCode=AB-15&amp;siteCode=s0000590&amp;provCode=AB&amp;language=" display_value="Lloydminster, AB" />
+<EnumValue value="cityCode=SK-56&amp;siteCode=s0000835&amp;provCode=SK&amp;language=" display_value="Lloydminster, SK" />
+<EnumValue value="cityCode=ON-137&amp;siteCode=s0000326&amp;provCode=ON&amp;language=" display_value="London, ON" />
+<EnumValue value="cityCode=QC-110&amp;siteCode=s0000260&amp;provCode=QC&amp;language=" display_value="Longueuil, QC" />
+<EnumValue value="cityCode=QC-81&amp;siteCode=s0000605&amp;provCode=QC&amp;language=" display_value="Lorraine, QC" />
+<EnumValue value="cityCode=QC-D2&amp;siteCode=s0000348&amp;provCode=QC&amp;language=" display_value="Louiseville, QC" />
+<EnumValue value="cityCode=SK-14&amp;siteCode=s0000230&amp;provCode=SK&amp;language=" display_value="Lucky Lake, SK" />
+<EnumValue value="cityCode=NS-21&amp;siteCode=s0000440&amp;provCode=NS&amp;language=" display_value="Lunenburg, NS" />
+<EnumValue value="cityCode=NT-31&amp;siteCode=s0000443&amp;provCode=NT&amp;language=" display_value="Lutselke, NT" />
+<EnumValue value="cityCode=MB-41&amp;siteCode=s0000777&amp;provCode=MB&amp;language=" display_value="Lynn Lake, MB" />
+<EnumValue value="cityCode=BC-33&amp;siteCode=s0000242&amp;provCode=BC&amp;language=" display_value="Lytton, BC" />
+<EnumValue value="cityCode=BC-90&amp;siteCode=s0000805&amp;provCode=BC&amp;language=" display_value="Mackenzie, BC" />
+<EnumValue value="cityCode=QC-83&amp;siteCode=s0000345&amp;provCode=QC&amp;language=" display_value="Magog, QC" />
+<EnumValue value="cityCode=NL-25&amp;siteCode=s0000526&amp;provCode=NL&amp;language=" display_value="Makkovik, NL" />
+<EnumValue value="cityCode=BC-29&amp;siteCode=s0000224&amp;provCode=BC&amp;language=" display_value="Malahat, BC" />
+<EnumValue value="cityCode=NS-22&amp;siteCode=s0000447&amp;provCode=NS&amp;language=" display_value="Malay Falls, NS" />
+<EnumValue value="cityCode=QC-154&amp;siteCode=s0000124&amp;provCode=QC&amp;language=" display_value="Manicouagan, QC" />
+<EnumValue value="cityCode=QC-103&amp;siteCode=s0000174&amp;provCode=QC&amp;language=" display_value="Maniwaki, QC" />
+<EnumValue value="cityCode=SK-16&amp;siteCode=s0000248&amp;provCode=SK&amp;language=" display_value="Maple Creek, SK" />
+<EnumValue value="cityCode=PE-2&amp;siteCode=s0000026&amp;provCode=PE&amp;language=" display_value="Maple Plains, PE" />
+<EnumValue value="cityCode=ON-108&amp;siteCode=s0000022&amp;provCode=ON&amp;language=" display_value="Marathon, ON" />
+<EnumValue value="cityCode=NL-26&amp;siteCode=s0000220&amp;provCode=NL&amp;language=" display_value="Marble Mountain, NL" />
+<EnumValue value="cityCode=QC-84&amp;siteCode=s0000060&amp;provCode=QC&amp;language=" display_value="Marieville, QC" />
+<EnumValue value="cityCode=ON-85&amp;siteCode=s0000585&amp;provCode=ON&amp;language=" display_value="Markham, ON" />
+<EnumValue value="cityCode=NL-29&amp;siteCode=s0000594&amp;provCode=NL&amp;language=" display_value="Mary's Harbour, NL" />
+<EnumValue value="cityCode=NL-3&amp;siteCode=s0000474&amp;provCode=NL&amp;language=" display_value="Marystown, NL" />
+<EnumValue value="cityCode=QC-85&amp;siteCode=s0000145&amp;provCode=QC&amp;language=" display_value="Mascouche, QC" />
+<EnumValue value="cityCode=BC-56&amp;siteCode=s0000007&amp;provCode=BC&amp;language=" display_value="Masset, BC" />
+<EnumValue value="cityCode=QC-130&amp;siteCode=s0000346&amp;provCode=QC&amp;language=" display_value="Matagami, QC" />
+<EnumValue value="cityCode=QC-15&amp;siteCode=s0000784&amp;provCode=QC&amp;language=" display_value="Matane, QC" />
+<EnumValue value="cityCode=QC-152&amp;siteCode=s0000121&amp;provCode=QC&amp;language=" display_value="Matapedia, QC" />
+<EnumValue value="cityCode=QC-89&amp;siteCode=s0000125&amp;provCode=QC&amp;language=" display_value="Mauricie, QC" />
+<EnumValue value="cityCode=YT-10&amp;siteCode=s0000593&amp;provCode=YT&amp;language=" display_value="Mayo, YT" />
+<EnumValue value="cityCode=BC-47&amp;siteCode=s0000005&amp;provCode=BC&amp;language=" display_value="McBride, BC" />
+<EnumValue value="cityCode=MB-15&amp;siteCode=s0000276&amp;provCode=MB&amp;language=" display_value="McCreary, MB" />
+<EnumValue value="cityCode=SK-22&amp;siteCode=s0000589&amp;provCode=SK&amp;language=" display_value="Meadow Lake, SK" />
+<EnumValue value="cityCode=AB-51&amp;siteCode=s0000745&amp;provCode=AB&amp;language=" display_value="Medicine Hat, AB" />
+<EnumValue value="cityCode=SK-46&amp;siteCode=s0000158&amp;provCode=SK&amp;language=" display_value="Melfort, SK" />
+<EnumValue value="cityCode=MB-45&amp;siteCode=s0000136&amp;provCode=MB&amp;language=" display_value="Melita, MB" />
+<EnumValue value="cityCode=SK-8&amp;siteCode=s0000665&amp;provCode=SK&amp;language=" display_value="Melville, SK" />
+<EnumValue value="cityCode=BC-49&amp;siteCode=s0000006&amp;provCode=BC&amp;language=" display_value="Merritt, BC" />
+<EnumValue value="cityCode=ON-169&amp;siteCode=s0000281&amp;provCode=ON&amp;language=" display_value="Midland, ON" />
+<EnumValue value="cityCode=AB-33&amp;siteCode=s0000523&amp;provCode=AB&amp;language=" display_value="Mildred Lake, AB" />
+<EnumValue value="cityCode=AB-19&amp;siteCode=s0000313&amp;provCode=AB&amp;language=" display_value="Milk River, AB" />
+<EnumValue value="cityCode=ON-48&amp;siteCode=s0000105&amp;provCode=ON&amp;language=" display_value="Mine Centre, ON" />
+<EnumValue value="cityCode=QC-90&amp;siteCode=s0000094&amp;provCode=QC&amp;language=" display_value="Mingan, QC" />
+<EnumValue value="cityCode=MB-10&amp;siteCode=s0000490&amp;provCode=MB&amp;language=" display_value="Minnedosa, MB" />
+<EnumValue value="cityCode=QC-124&amp;siteCode=s0000334&amp;provCode=QC&amp;language=" display_value="Mirabel, QC" />
+<EnumValue value="cityCode=NB-25&amp;siteCode=s0000036&amp;provCode=NB&amp;language=" display_value="Miramichi, NB" />
+<EnumValue value="cityCode=NB-31&amp;siteCode=s0000243&amp;provCode=NB&amp;language=" display_value="Miscou Island, NB" />
+<EnumValue value="cityCode=ON-24&amp;siteCode=s0000786&amp;provCode=ON&amp;language=" display_value="Mississauga, ON" />
+<EnumValue value="cityCode=NB-36&amp;siteCode=s0000654&amp;provCode=NB&amp;language=" display_value="Moncton, NB" />
+<EnumValue value="cityCode=QC-92&amp;siteCode=s0000555&amp;provCode=QC&amp;language=" display_value="Mont Saint-Hilaire, QC" />
+<EnumValue value="cityCode=QC-128&amp;siteCode=s0000793&amp;provCode=QC&amp;language=" display_value="Mont-Joli, QC" />
+<EnumValue value="cityCode=QC-47&amp;siteCode=s0000246&amp;provCode=QC&amp;language=" display_value="Mont-Laurier, QC" />
+<EnumValue value="cityCode=QC-167&amp;siteCode=s0000213&amp;provCode=QC&amp;language=" display_value="Mont-Tremblant, QC" />
+<EnumValue value="cityCode=QC-125&amp;siteCode=s0000610&amp;provCode=QC&amp;language=" display_value="Montmagny, QC" />
+<EnumValue value="cityCode=ON-163&amp;siteCode=s0000762&amp;provCode=ON&amp;language=" display_value="Montreal River Harbour, ON" />
+<EnumValue value="cityCode=QC-148&amp;siteCode=s0000353&amp;provCode=QC&amp;language=" display_value="Montr&#233;al, QC" />
+<EnumValue value="cityCode=SK-24&amp;siteCode=s0000822&amp;provCode=SK&amp;language=" display_value="Moose Jaw, SK" />
+<EnumValue value="cityCode=SK-9&amp;siteCode=s0000733&amp;provCode=SK&amp;language=" display_value="Moosomin, SK" />
+<EnumValue value="cityCode=ON-113&amp;siteCode=s0000596&amp;provCode=ON&amp;language=" display_value="Moosonee, ON" />
+<EnumValue value="cityCode=MB-17&amp;siteCode=s0000444&amp;provCode=MB&amp;language=" display_value="Morden, MB" />
+<EnumValue value="cityCode=MB-11&amp;siteCode=s0000150&amp;provCode=MB&amp;language=" display_value="Morris, MB" />
+<EnumValue value="cityCode=ON-92&amp;siteCode=s0000072&amp;provCode=ON&amp;language=" display_value="Morrisburg, ON" />
+<EnumValue value="cityCode=NB-10&amp;siteCode=s0000198&amp;provCode=NB&amp;language=" display_value="Mount Carleton (Provincial Park), NB" />
+<EnumValue value="cityCode=ON-89&amp;siteCode=s0000240&amp;provCode=ON&amp;language=" display_value="Mount Forest, ON" />
+<EnumValue value="cityCode=BC-63&amp;siteCode=s0000376&amp;provCode=BC&amp;language=" display_value="Muncho Lake, BC" />
+<EnumValue value="cityCode=QC-16&amp;siteCode=s0000027&amp;provCode=QC&amp;language=" display_value="Murdochville, QC" />
+<EnumValue value="cityCode=NL-10&amp;siteCode=s0000016&amp;provCode=NL&amp;language=" display_value="Musgrave Harbour, NL" />
+<EnumValue value="cityCode=ON-93&amp;siteCode=s0000642&amp;provCode=ON&amp;language=" display_value="Muskoka, ON" />
+<EnumValue value="cityCode=NT-12&amp;siteCode=s0000476&amp;provCode=NT&amp;language=" display_value="Nahanni Butte, NT" />
+<EnumValue value="cityCode=NL-40&amp;siteCode=s0000162&amp;provCode=NL&amp;language=" display_value="Nain, NL" />
+<EnumValue value="cityCode=BC-38&amp;siteCode=s0000259&amp;provCode=BC&amp;language=" display_value="Nakusp, BC" />
+<EnumValue value="cityCode=BC-20&amp;siteCode=s0000496&amp;provCode=BC&amp;language=" display_value="Nanaimo, BC" />
+<EnumValue value="cityCode=NU-1&amp;siteCode=s0000693&amp;provCode=NU&amp;language=" display_value="Nanisivik, NU" />
+<EnumValue value="cityCode=QC-126&amp;siteCode=s0000611&amp;provCode=QC&amp;language=" display_value="Natashquan, QC" />
+<EnumValue value="cityCode=BC-37&amp;siteCode=s0000258&amp;provCode=BC&amp;language=" display_value="Nelson, BC" />
+<EnumValue value="cityCode=QC-112&amp;siteCode=s0000563&amp;provCode=QC&amp;language=" display_value="New Carlisle, QC" />
+<EnumValue value="cityCode=NS-1&amp;siteCode=s0000089&amp;provCode=NS&amp;language=" display_value="New Glasgow, NS" />
+<EnumValue value="cityCode=ON-49&amp;siteCode=s0000429&amp;provCode=ON&amp;language=" display_value="New Tecumseth, ON" />
+<EnumValue value="cityCode=NL-42&amp;siteCode=s0000017&amp;provCode=NL&amp;language=" display_value="New-Wes-Valley, NL" />
+<EnumValue value="cityCode=ON-25&amp;siteCode=s0000582&amp;provCode=ON&amp;language=" display_value="Newmarket, ON" />
+<EnumValue value="cityCode=ON-125&amp;siteCode=s0000692&amp;provCode=ON&amp;language=" display_value="Niagara Falls, ON" />
+<EnumValue value="cityCode=QC-111&amp;siteCode=s0000268&amp;provCode=QC&amp;language=" display_value="Nicolet, QC" />
+<EnumValue value="cityCode=SK-47&amp;siteCode=s0000095&amp;provCode=SK&amp;language=" display_value="Nipawin, SK" />
+<EnumValue value="cityCode=ON-26&amp;siteCode=s0000419&amp;provCode=ON&amp;language=" display_value="Nipigon, ON" />
+<EnumValue value="cityCode=AB-38&amp;siteCode=s0000448&amp;provCode=AB&amp;language=" display_value="Nordegg, AB" />
+<EnumValue value="cityCode=ON-50&amp;siteCode=s0000426&amp;provCode=ON&amp;language=" display_value="Norfolk, ON" />
+<EnumValue value="cityCode=NT-21&amp;siteCode=s0000720&amp;provCode=NT&amp;language=" display_value="Norman Wells, NT" />
+<EnumValue value="cityCode=SK-34&amp;siteCode=s0000666&amp;provCode=SK&amp;language=" display_value="North Battleford, SK" />
+<EnumValue value="cityCode=ON-139&amp;siteCode=s0000765&amp;provCode=ON&amp;language=" display_value="North Bay, ON" />
+<EnumValue value="cityCode=PE-1&amp;siteCode=s0000252&amp;provCode=PE&amp;language=" display_value="North Cape, PE" />
+<EnumValue value="cityCode=NS-18&amp;siteCode=s0000264&amp;provCode=NS&amp;language=" display_value="North East Margaree, NS" />
+<EnumValue value="cityCode=NS-43&amp;siteCode=s0000021&amp;provCode=NS&amp;language=" display_value="North Mountain (Cape Breton), NS" />
+<EnumValue value="cityCode=ON-51&amp;siteCode=s0000238&amp;provCode=ON&amp;language=" display_value="North Perth, ON" />
+<EnumValue value="cityCode=MB-25&amp;siteCode=s0000616&amp;provCode=MB&amp;language=" display_value="Norway House, MB" />
+<EnumValue value="cityCode=MB-14&amp;siteCode=s0000273&amp;provCode=MB&amp;language=" display_value="Oak Point, MB" />
+<EnumValue value="cityCode=ON-79&amp;siteCode=s0000367&amp;provCode=ON&amp;language=" display_value="Oakville, ON" />
+<EnumValue value="cityCode=ON-101&amp;siteCode=s0000231&amp;provCode=ON&amp;language=" display_value="Ogoki, ON" />
+<EnumValue value="cityCode=AB-11&amp;siteCode=s0000767&amp;provCode=AB&amp;language=" display_value="Okotoks, AB" />
+<EnumValue value="cityCode=YT-11&amp;siteCode=s0000823&amp;provCode=YT&amp;language=" display_value="Old Crow, YT" />
+<EnumValue value="cityCode=AB-35&amp;siteCode=s0000272&amp;provCode=AB&amp;language=" display_value="Onefour, AB" />
+<EnumValue value="cityCode=ON-140&amp;siteCode=s0000815&amp;provCode=ON&amp;language=" display_value="Orangeville, ON" />
+<EnumValue value="cityCode=ON-13&amp;siteCode=s0000414&amp;provCode=ON&amp;language=" display_value="Orillia, ON" />
+<EnumValue value="cityCode=NB-11&amp;siteCode=s0000521&amp;provCode=NB&amp;language=" display_value="Oromocto, NB" />
+<EnumValue value="cityCode=ON-117&amp;siteCode=s0000707&amp;provCode=ON&amp;language=" display_value="Oshawa, ON" />
+<EnumValue value="cityCode=BC-69&amp;siteCode=s0000397&amp;provCode=BC&amp;language=" display_value="Osoyoos, BC" />
+<EnumValue value="cityCode=ON-118&amp;siteCode=s0000430&amp;provCode=ON&amp;language=" display_value="Ottawa (Kanata - Orl&#233;ans), ON" />
+<EnumValue value="cityCode=ON-52&amp;siteCode=s0000623&amp;provCode=ON&amp;language=" display_value="Ottawa (Richmond - Metcalfe), ON" />
+<EnumValue value="cityCode=QC-93&amp;siteCode=s0000556&amp;provCode=QC&amp;language=" display_value="Otterburn Park, QC" />
+<EnumValue value="cityCode=SK-37&amp;siteCode=s0000387&amp;provCode=SK&amp;language=" display_value="Outlook, SK" />
+<EnumValue value="cityCode=ON-7&amp;siteCode=s0000728&amp;provCode=ON&amp;language=" display_value="Owen Sound, ON" />
+<EnumValue value="cityCode=SK-10&amp;siteCode=s0000514&amp;provCode=SK&amp;language=" display_value="Oxbow, SK" />
+<EnumValue value="cityCode=MB-27&amp;siteCode=s0000011&amp;provCode=MB&amp;language=" display_value="Oxford House, MB" />
+<EnumValue value="cityCode=ON-53&amp;siteCode=s0000075&amp;provCode=ON&amp;language=" display_value="Oxtongue Lake, ON" />
+<EnumValue value="cityCode=NU-7&amp;siteCode=s0000750&amp;provCode=NU&amp;language=" display_value="Pangnirtung, NU" />
+<EnumValue value="cityCode=QC-17&amp;siteCode=s0000612&amp;provCode=QC&amp;language=" display_value="Papineau, QC" />
+<EnumValue value="cityCode=QC-115&amp;siteCode=s0000577&amp;provCode=QC&amp;language=" display_value="Parent, QC" />
+<EnumValue value="cityCode=NS-13&amp;siteCode=s0000040&amp;provCode=NS&amp;language=" display_value="Parrsboro, NS" />
+<EnumValue value="cityCode=ON-103&amp;siteCode=s0000451&amp;provCode=ON&amp;language=" display_value="Parry Sound, ON" />
+<EnumValue value="cityCode=NT-16&amp;siteCode=s0000759&amp;provCode=NT&amp;language=" display_value="Paulatuk, NT" />
+<EnumValue value="cityCode=AB-25&amp;siteCode=s0000625&amp;provCode=AB&amp;language=" display_value="Peace River, AB" />
+<EnumValue value="cityCode=ON-99&amp;siteCode=s0000374&amp;provCode=ON&amp;language=" display_value="Peawanuck, ON" />
+<EnumValue value="cityCode=SK-55&amp;siteCode=s0000067&amp;provCode=SK&amp;language=" display_value="Pelican Narrows, SK" />
+<EnumValue value="cityCode=BC-16&amp;siteCode=s0000173&amp;provCode=BC&amp;language=" display_value="Pemberton, BC" />
+<EnumValue value="cityCode=ON-131&amp;siteCode=s0000730&amp;provCode=ON&amp;language=" display_value="Pembroke, ON" />
+<EnumValue value="cityCode=BC-84&amp;siteCode=s0000772&amp;provCode=BC&amp;language=" display_value="Penticton, BC" />
+<EnumValue value="cityCode=QC-18&amp;siteCode=s0000314&amp;provCode=QC&amp;language=" display_value="Perc&#233;, QC" />
+<EnumValue value="cityCode=ON-112&amp;siteCode=s0000729&amp;provCode=ON&amp;language=" display_value="Petawawa, ON" />
+<EnumValue value="cityCode=ON-121&amp;siteCode=s0000629&amp;provCode=ON&amp;language=" display_value="Peterborough, ON" />
+<EnumValue value="cityCode=ON-54&amp;siteCode=s0000710&amp;provCode=ON&amp;language=" display_value="Pickering, ON" />
+<EnumValue value="cityCode=ON-120&amp;siteCode=s0000628&amp;provCode=ON&amp;language=" display_value="Pickle Lake, ON" />
+<EnumValue value="cityCode=ON-55&amp;siteCode=s0000677&amp;provCode=ON&amp;language=" display_value="Pikangikum, ON" />
+<EnumValue value="cityCode=MB-19&amp;siteCode=s0000289&amp;provCode=MB&amp;language=" display_value="Pilot Mound, MB" />
+<EnumValue value="cityCode=MB-44&amp;siteCode=s0000130&amp;provCode=MB&amp;language=" display_value="Pinawa, MB" />
+<EnumValue value="cityCode=AB-46&amp;siteCode=s0000824&amp;provCode=AB&amp;language=" display_value="Pincher Creek, AB" />
+<EnumValue value="cityCode=QC-96&amp;siteCode=s0000363&amp;provCode=QC&amp;language=" display_value="Pincourt, QC" />
+<EnumValue value="cityCode=MB-4&amp;siteCode=s0000189&amp;provCode=MB&amp;language=" display_value="Pine Falls, MB" />
+<EnumValue value="cityCode=BC-35&amp;siteCode=s0000247&amp;provCode=BC&amp;language=" display_value="Pitt Meadows, BC" />
+<EnumValue value="cityCode=NB-34&amp;siteCode=s0000037&amp;provCode=NB&amp;language=" display_value="Point Escuminac, NB" />
+<EnumValue value="cityCode=NB-33&amp;siteCode=s0000285&amp;provCode=NB&amp;language=" display_value="Point Lepreau, NB" />
+<EnumValue value="cityCode=QC-20&amp;siteCode=s0000810&amp;provCode=QC&amp;language=" display_value="Pointe-à-la-Croix, QC" />
+<EnumValue value="cityCode=NU-25&amp;siteCode=s0000564&amp;provCode=NU&amp;language=" display_value="Pond Inlet, NU" />
+<EnumValue value="cityCode=QC-19&amp;siteCode=s0000613&amp;provCode=QC&amp;language=" display_value="Pontiac, QC" />
+<EnumValue value="cityCode=MB-5&amp;siteCode=s0000378&amp;provCode=MB&amp;language=" display_value="Poplar River, MB" />
+<EnumValue value="cityCode=BC-46&amp;siteCode=s0000294&amp;provCode=BC&amp;language=" display_value="Port Alberni, BC" />
+<EnumValue value="cityCode=NL-11&amp;siteCode=s0000114&amp;provCode=NL&amp;language=" display_value="Port au Choix, NL" />
+<EnumValue value="cityCode=ON-56&amp;siteCode=s0000639&amp;provCode=ON&amp;language=" display_value="Port Carling, ON" />
+<EnumValue value="cityCode=ON-80&amp;siteCode=s0000283&amp;provCode=ON&amp;language=" display_value="Port Colborne, ON" />
+<EnumValue value="cityCode=ON-19&amp;siteCode=s0000725&amp;provCode=ON&amp;language=" display_value="Port Elgin, ON" />
+<EnumValue value="cityCode=BC-89&amp;siteCode=s0000799&amp;provCode=BC&amp;language=" display_value="Port Hardy, BC" />
+<EnumValue value="cityCode=NS-26&amp;siteCode=s0000460&amp;provCode=NS&amp;language=" display_value="Port Hawkesbury, NS" />
+<EnumValue value="cityCode=ON-149&amp;siteCode=s0000630&amp;provCode=ON&amp;language=" display_value="Port Perry, ON" />
+<EnumValue value="cityCode=QC-97&amp;siteCode=s0000801&amp;provCode=QC&amp;language=" display_value="Port-Cartier, QC" />
+<EnumValue value="cityCode=QC-143&amp;siteCode=s0000098&amp;provCode=QC&amp;language=" display_value="Port-Menier, QC" />
+<EnumValue value="cityCode=MB-29&amp;siteCode=s0000626&amp;provCode=MB&amp;language=" display_value="Portage la Prairie, MB" />
+<EnumValue value="cityCode=BC-58&amp;siteCode=s0000634&amp;provCode=BC&amp;language=" display_value="Powell River, BC" />
+<EnumValue value="cityCode=QC-98&amp;siteCode=s0000055&amp;provCode=QC&amp;language=" display_value="Pr&#233;vost, QC" />
+<EnumValue value="cityCode=SK-27&amp;siteCode=s0000624&amp;provCode=SK&amp;language=" display_value="Prince Albert, SK" />
+<EnumValue value="cityCode=ON-27&amp;siteCode=s0000702&amp;provCode=ON&amp;language=" display_value="Prince Edward (Picton), ON" />
+<EnumValue value="cityCode=BC-79&amp;siteCode=s0000146&amp;provCode=BC&amp;language=" display_value="Prince George, BC" />
+<EnumValue value="cityCode=BC-57&amp;siteCode=s0000633&amp;provCode=BC&amp;language=" display_value="Prince Rupert, BC" />
+<EnumValue value="cityCode=BC-41&amp;siteCode=s0000291&amp;provCode=BC&amp;language=" display_value="Princeton, BC" />
+<EnumValue value="cityCode=MB-67&amp;siteCode=s0000161&amp;provCode=MB&amp;language=" display_value="Pukatawagan, MB" />
+<EnumValue value="cityCode=BC-42&amp;siteCode=s0000292&amp;provCode=BC&amp;language=" display_value="Puntzi Mountain, BC" />
+<EnumValue value="cityCode=QC-40&amp;siteCode=s0000711&amp;provCode=QC&amp;language=" display_value="Puvirnituq, QC" />
+<EnumValue value="cityCode=NU-5&amp;siteCode=s0000716&amp;provCode=NU&amp;language=" display_value="Qikiqtarjuaq, NU" />
+<EnumValue value="cityCode=QC-107&amp;siteCode=s0000295&amp;provCode=QC&amp;language=" display_value="Quaqtaq, QC" />
+<EnumValue value="cityCode=QC-134&amp;siteCode=s0000673&amp;provCode=QC&amp;language=" display_value="Qu&#233;bec, QC" />
+<EnumValue value="cityCode=BC-64&amp;siteCode=s0000671&amp;provCode=BC&amp;language=" display_value="Quesnel, BC" />
+<EnumValue value="cityCode=ON-57&amp;siteCode=s0000704&amp;provCode=ON&amp;language=" display_value="Quinte West, ON" />
+<EnumValue value="cityCode=NB-12&amp;siteCode=s0000685&amp;provCode=NB&amp;language=" display_value="Quispamsis, NB" />
+<EnumValue value="cityCode=AB-21&amp;siteCode=s0000643&amp;provCode=AB&amp;language=" display_value="Rainbow Lake, AB" />
+<EnumValue value="cityCode=YT-3&amp;siteCode=s0000030&amp;provCode=YT&amp;language=" display_value="Rancheria, YT" />
+<EnumValue value="cityCode=NU-28&amp;siteCode=s0000678&amp;provCode=NU&amp;language=" display_value="Rankin Inlet, NU" />
+<EnumValue value="cityCode=AB-29&amp;siteCode=s0000645&amp;provCode=AB&amp;language=" display_value="Red Deer, AB" />
+<EnumValue value="cityCode=AB-40&amp;siteCode=s0000299&amp;provCode=AB&amp;language=" display_value="Red Earth Creek, AB" />
+<EnumValue value="cityCode=ON-104&amp;siteCode=s0000676&amp;provCode=ON&amp;language=" display_value="Red Lake, ON" />
+<EnumValue value="cityCode=SK-32&amp;siteCode=s0000788&amp;provCode=SK&amp;language=" display_value="Regina, SK" />
+<EnumValue value="cityCode=ON-58&amp;siteCode=s0000731&amp;provCode=ON&amp;language=" display_value="Renfrew, ON" />
+<EnumValue value="cityCode=QC-A0&amp;siteCode=s0000755&amp;provCode=QC&amp;language=" display_value="Repentigny, QC" />
+<EnumValue value="cityCode=NU-3&amp;siteCode=s0000713&amp;provCode=NU&amp;language=" display_value="Repulse Bay, NU" />
+<EnumValue value="cityCode=NU-27&amp;siteCode=s0000672&amp;provCode=NU&amp;language=" display_value="Resolute, NU" />
+<EnumValue value="cityCode=BC-65&amp;siteCode=s0000679&amp;provCode=BC&amp;language=" display_value="Revelstoke, BC" />
+<EnumValue value="cityCode=QC-21&amp;siteCode=s0000552&amp;provCode=QC&amp;language=" display_value="Richelieu, QC" />
+<EnumValue value="cityCode=MB-6&amp;siteCode=s0000734&amp;provCode=MB&amp;language=" display_value="Richer, MB" />
+<EnumValue value="cityCode=NB-13&amp;siteCode=s0000034&amp;provCode=NB&amp;language=" display_value="Richibucto, NB" />
+<EnumValue value="cityCode=ON-59&amp;siteCode=s0000773&amp;provCode=ON&amp;language=" display_value="Richmond Hill, ON" />
+<EnumValue value="cityCode=QC-A2&amp;siteCode=s0000061&amp;provCode=QC&amp;language=" display_value="Rigaud, QC" />
+<EnumValue value="cityCode=QC-139&amp;siteCode=s0000085&amp;provCode=QC&amp;language=" display_value="Rimouski, QC" />
+<EnumValue value="cityCode=QC-109&amp;siteCode=s0000551&amp;provCode=QC&amp;language=" display_value="Rivière-du-Loup, QC" />
+<EnumValue value="cityCode=QC-135&amp;siteCode=s0000163&amp;provCode=QC&amp;language=" display_value="Roberval, QC" />
+<EnumValue value="cityCode=MB-32&amp;siteCode=s0000380&amp;provCode=MB&amp;language=" display_value="Roblin, MB" />
+<EnumValue value="cityCode=BC-10&amp;siteCode=s0000396&amp;provCode=BC&amp;language=" display_value="Rock Creek, BC" />
+<EnumValue value="cityCode=YT-9&amp;siteCode=s0000309&amp;provCode=YT&amp;language=" display_value="Rock River, YT" />
+<EnumValue value="cityCode=SK-54&amp;siteCode=s0000225&amp;provCode=SK&amp;language=" display_value="Rockglen, SK" />
+<EnumValue value="cityCode=NL-13&amp;siteCode=s0000456&amp;provCode=NL&amp;language=" display_value="Rocky Harbour, NL" />
+<EnumValue value="cityCode=AB-16&amp;siteCode=s0000306&amp;provCode=AB&amp;language=" display_value="Rocky Mountain House, AB" />
+<EnumValue value="cityCode=ON-172&amp;siteCode=s0000455&amp;provCode=ON&amp;language=" display_value="Rodney, ON" />
+<EnumValue value="cityCode=NB-14&amp;siteCode=s0000035&amp;provCode=NB&amp;language=" display_value="Rogersville, NB" />
+<EnumValue value="cityCode=ON-141&amp;siteCode=s0000080&amp;provCode=ON&amp;language=" display_value="Rondeau (Provincial Park), ON" />
+<EnumValue value="cityCode=QC-A3&amp;siteCode=s0000606&amp;provCode=QC&amp;language=" display_value="Rosemère, QC" />
+<EnumValue value="cityCode=SK-23&amp;siteCode=s0000300&amp;provCode=SK&amp;language=" display_value="Rosetown, SK" />
+<EnumValue value="cityCode=YT-8&amp;siteCode=s0000350&amp;provCode=YT&amp;language=" display_value="Ross River, YT" />
+<EnumValue value="cityCode=SK-1&amp;siteCode=s0000743&amp;provCode=SK&amp;language=" display_value="Rosthern, SK" />
+<EnumValue value="cityCode=QC-149&amp;siteCode=s0000717&amp;provCode=QC&amp;language=" display_value="Rouyn-Noranda, QC" />
+<EnumValue value="cityCode=ON-105&amp;siteCode=s0000696&amp;provCode=ON&amp;language=" display_value="Sachigo Lake, ON" />
+<EnumValue value="cityCode=NT-19&amp;siteCode=s0000338&amp;provCode=NT&amp;language=" display_value="Sachs Harbour, NT" />
+<EnumValue value="cityCode=NB-15&amp;siteCode=s0000449&amp;provCode=NB&amp;language=" display_value="Sackville, NB" />
+<EnumValue value="cityCode=QC-166&amp;siteCode=s0000211&amp;provCode=QC&amp;language=" display_value="Saguenay, QC" />
+<EnumValue value="cityCode=NB-18&amp;siteCode=s0000331&amp;provCode=NB&amp;language=" display_value="Saint Andrews, NB" />
+<EnumValue value="cityCode=NB-23&amp;siteCode=s0000687&amp;provCode=NB&amp;language=" display_value="Saint John, NB" />
+<EnumValue value="cityCode=QC-A5&amp;siteCode=s0000557&amp;provCode=QC&amp;language=" display_value="Saint-Amable, QC" />
+<EnumValue value="cityCode=QC-A6&amp;siteCode=s0000558&amp;provCode=QC&amp;language=" display_value="Saint-Basile Le Grand, QC" />
+<EnumValue value="cityCode=QC-A7&amp;siteCode=s0000049&amp;provCode=QC&amp;language=" display_value="Saint-Constant, QC" />
+<EnumValue value="cityCode=QC-B4&amp;siteCode=s0000609&amp;provCode=QC&amp;language=" display_value="Saint-Eustache, QC" />
+<EnumValue value="cityCode=QC-B5&amp;siteCode=s0000675&amp;provCode=QC&amp;language=" display_value="Saint-F&#233;licien, QC" />
+<EnumValue value="cityCode=QC-B6&amp;siteCode=s0000187&amp;provCode=QC&amp;language=" display_value="Saint-Georges, QC" />
+<EnumValue value="cityCode=QC-22&amp;siteCode=s0000059&amp;provCode=QC&amp;language=" display_value="Saint-Hyacinthe, QC" />
+<EnumValue value="cityCode=QC-28&amp;siteCode=s0000202&amp;provCode=QC&amp;language=" display_value="Saint-Jean-sur-Richelieu, QC" />
+<EnumValue value="cityCode=QC-13&amp;siteCode=s0000601&amp;provCode=QC&amp;language=" display_value="Saint-J&#233;rôme, QC" />
+<EnumValue value="cityCode=QC-B7&amp;siteCode=s0000062&amp;provCode=QC&amp;language=" display_value="Saint-Lazare, QC" />
+<EnumValue value="cityCode=QC-B8&amp;siteCode=s0000057&amp;provCode=QC&amp;language=" display_value="Saint-Lin-Laurentides, QC" />
+<EnumValue value="cityCode=QC-B9&amp;siteCode=s0000203&amp;provCode=QC&amp;language=" display_value="Saint-Luc, QC" />
+<EnumValue value="cityCode=QC-C0&amp;siteCode=s0000029&amp;provCode=QC&amp;language=" display_value="Saint-Michel-des-Saints, QC" />
+<EnumValue value="cityCode=QC-C1&amp;siteCode=s0000262&amp;provCode=QC&amp;language=" display_value="Saint-Nic&#233;phore, QC" />
+<EnumValue value="cityCode=NB-16&amp;siteCode=s0000199&amp;provCode=NB&amp;language=" display_value="Saint-Quentin, NB" />
+<EnumValue value="cityCode=QC-C2&amp;siteCode=s0000051&amp;provCode=QC&amp;language=" display_value="Saint-R&#233;mi, QC" />
+<EnumValue value="cityCode=QC-C3&amp;siteCode=s0000058&amp;provCode=QC&amp;language=" display_value="Saint-Sauveur, QC" />
+<EnumValue value="cityCode=QC-C4&amp;siteCode=s0000742&amp;provCode=QC&amp;language=" display_value="Saint-Timoth&#233;e, QC" />
+<EnumValue value="cityCode=QC-33&amp;siteCode=s0000214&amp;provCode=QC&amp;language=" display_value="Sainte-Agathe, QC" />
+<EnumValue value="cityCode=QC-A8&amp;siteCode=s0000322&amp;provCode=QC&amp;language=" display_value="Sainte-Anne-Des-Monts, QC" />
+<EnumValue value="cityCode=QC-A9&amp;siteCode=s0000607&amp;provCode=QC&amp;language=" display_value="Sainte-Anne-Des-Plaines, QC" />
+<EnumValue value="cityCode=QC-B0&amp;siteCode=s0000050&amp;provCode=QC&amp;language=" display_value="Sainte-Catherine, QC" />
+<EnumValue value="cityCode=QC-B1&amp;siteCode=s0000559&amp;provCode=QC&amp;language=" display_value="Sainte-Julie, QC" />
+<EnumValue value="cityCode=QC-B2&amp;siteCode=s0000056&amp;provCode=QC&amp;language=" display_value="Sainte-Sophie, QC" />
+<EnumValue value="cityCode=QC-B3&amp;siteCode=s0000608&amp;provCode=QC&amp;language=" display_value="Sainte-Th&#233;rèse, QC" />
+<EnumValue value="cityCode=QC-144&amp;siteCode=s0000197&amp;provCode=QC&amp;language=" display_value="Salaberry-de-Valleyfield, QC" />
+<EnumValue value="cityCode=QC-129&amp;siteCode=s0000617&amp;provCode=QC&amp;language=" display_value="Salluit, QC" />
+<EnumValue value="cityCode=BC-51&amp;siteCode=s0000324&amp;provCode=BC&amp;language=" display_value="Salmon Arm, BC" />
+<EnumValue value="cityCode=BC-88&amp;siteCode=s0000795&amp;provCode=BC&amp;language=" display_value="Sandspit, BC" />
+<EnumValue value="cityCode=ON-129&amp;siteCode=s0000826&amp;provCode=ON&amp;language=" display_value="Sandy Lake, ON" />
+<EnumValue value="cityCode=NU-29&amp;siteCode=s0000689&amp;provCode=NU&amp;language=" display_value="Sanikiluaq, NU" />
+<EnumValue value="cityCode=ON-147&amp;siteCode=s0000796&amp;provCode=ON&amp;language=" display_value="Sarnia, ON" />
+<EnumValue value="cityCode=SK-40&amp;siteCode=s0000797&amp;provCode=SK&amp;language=" display_value="Saskatoon, SK" />
+<EnumValue value="cityCode=ON-60&amp;siteCode=s0000726&amp;provCode=ON&amp;language=" display_value="Saugeen Shores, ON" />
+<EnumValue value="cityCode=ON-162&amp;siteCode=s0000479&amp;provCode=ON&amp;language=" display_value="Sault Ste. Marie, ON" />
+<EnumValue value="cityCode=ON-134&amp;siteCode=s0000747&amp;provCode=ON&amp;language=" display_value="Savant Lake, ON" />
+<EnumValue value="cityCode=QC-116&amp;siteCode=s0000579&amp;provCode=QC&amp;language=" display_value="Schefferville, QC" />
+<EnumValue value="cityCode=SK-26&amp;siteCode=s0000344&amp;provCode=SK&amp;language=" display_value="Scott, SK" />
+<EnumValue value="cityCode=BC-3&amp;siteCode=s0000317&amp;provCode=BC&amp;language=" display_value="Sechelt, BC" />
+<EnumValue value="cityCode=QC-142&amp;siteCode=s0000097&amp;provCode=QC&amp;language=" display_value="Sept-Îles, QC" />
+<EnumValue value="cityCode=MB-39&amp;siteCode=s0000013&amp;provCode=MB&amp;language=" display_value="Shamattawa, MB" />
+<EnumValue value="cityCode=ON-61&amp;siteCode=s0000435&amp;provCode=ON&amp;language=" display_value="Sharbot Lake, ON" />
+<EnumValue value="cityCode=SK-11&amp;siteCode=s0000133&amp;provCode=SK&amp;language=" display_value="Shaunavon, SK" />
+<EnumValue value="cityCode=QC-133&amp;siteCode=s0000620&amp;provCode=QC&amp;language=" display_value="Shawinigan, QC" />
+<EnumValue value="cityCode=NB-17&amp;siteCode=s0000653&amp;provCode=NB&amp;language=" display_value="Shediac, NB" />
+<EnumValue value="cityCode=NS-10&amp;siteCode=s0000446&amp;provCode=NS&amp;language=" display_value="Sheet Harbour, NS" />
+<EnumValue value="cityCode=NS-11&amp;siteCode=s0000109&amp;provCode=NS&amp;language=" display_value="Shelburne, NS" />
+<EnumValue value="cityCode=ON-84&amp;siteCode=s0000239&amp;provCode=ON&amp;language=" display_value="Shelburne, ON" />
+<EnumValue value="cityCode=QC-137&amp;siteCode=s0000721&amp;provCode=QC&amp;language=" display_value="Sherbrooke, QC" />
+<EnumValue value="cityCode=MB-61&amp;siteCode=s0000402&amp;provCode=MB&amp;language=" display_value="Shilo, MB" />
+<EnumValue value="cityCode=MB-28&amp;siteCode=s0000352&amp;provCode=MB&amp;language=" display_value="Shoal Lake, MB" />
+<EnumValue value="cityCode=ON-161&amp;siteCode=s0000424&amp;provCode=ON&amp;language=" display_value="Simcoe, ON" />
+<EnumValue value="cityCode=ON-135&amp;siteCode=s0000748&amp;provCode=ON&amp;language=" display_value="Sioux Lookout, ON" />
+<EnumValue value="cityCode=ON-166&amp;siteCode=s0000650&amp;provCode=ON&amp;language=" display_value="Sioux Narrows, ON" />
+<EnumValue value="cityCode=AB-54&amp;siteCode=s0000794&amp;provCode=AB&amp;language=" display_value="Slave Lake, AB" />
+<EnumValue value="cityCode=BC-82&amp;siteCode=s0000770&amp;provCode=BC&amp;language=" display_value="Smithers, BC" />
+<EnumValue value="cityCode=ON-106&amp;siteCode=s0000434&amp;provCode=ON&amp;language=" display_value="Smiths Falls, ON" />
+<EnumValue value="cityCode=MB-12&amp;siteCode=s0000160&amp;provCode=MB&amp;language=" display_value="Snow Lake, MB" />
+<EnumValue value="cityCode=QC-C6&amp;siteCode=s0000147&amp;provCode=QC&amp;language=" display_value="Sorel-Tracy, QC" />
+<EnumValue value="cityCode=MB-16&amp;siteCode=s0000491&amp;provCode=MB&amp;language=" display_value="Souris, MB" />
+<EnumValue value="cityCode=ON-62&amp;siteCode=s0000727&amp;provCode=ON&amp;language=" display_value="South Bruce Peninsula, ON" />
+<EnumValue value="cityCode=SK-50&amp;siteCode=s0000208&amp;provCode=SK&amp;language=" display_value="Southend Reindeer, SK" />
+<EnumValue value="cityCode=BC-52&amp;siteCode=s0000175&amp;provCode=BC&amp;language=" display_value="Sparwood, BC" />
+<EnumValue value="cityCode=SK-25&amp;siteCode=s0000330&amp;provCode=SK&amp;language=" display_value="Spiritwood, SK" />
+<EnumValue value="cityCode=MB-23&amp;siteCode=s0000337&amp;provCode=MB&amp;language=" display_value="Sprague, MB" />
+<EnumValue value="cityCode=BC-50&amp;siteCode=s0000323&amp;provCode=BC&amp;language=" display_value="Squamish, BC" />
+<EnumValue value="cityCode=NL-8&amp;siteCode=s0000019&amp;provCode=NL&amp;language=" display_value="St Alban's, NL" />
+<EnumValue value="cityCode=NL-37&amp;siteCode=s0000128&amp;provCode=NL&amp;language=" display_value="St. Anthony, NL" />
+<EnumValue value="cityCode=ON-107&amp;siteCode=s0000691&amp;provCode=ON&amp;language=" display_value="St. Catharines, ON" />
+<EnumValue value="cityCode=NL-24&amp;siteCode=s0000280&amp;provCode=NL&amp;language=" display_value="St. John's, NL" />
+<EnumValue value="cityCode=NL-36&amp;siteCode=s0000039&amp;provCode=NL&amp;language=" display_value="St. Lawrence, NL" />
+<EnumValue value="cityCode=NB-24&amp;siteCode=s0000200&amp;provCode=NB&amp;language=" display_value="St. Leonard, NB" />
+<EnumValue value="cityCode=NS-12&amp;siteCode=s0000307&amp;provCode=NS&amp;language=" display_value="St. Peter's, NS" />
+<EnumValue value="cityCode=PE-4&amp;siteCode=s0000827&amp;provCode=PE&amp;language=" display_value="St. Peters Bay, PE" />
+<EnumValue value="cityCode=NB-35&amp;siteCode=s0000332&amp;provCode=NB&amp;language=" display_value="St. Stephen, NB" />
+<EnumValue value="cityCode=ON-98&amp;siteCode=s0000329&amp;provCode=ON&amp;language=" display_value="St. Thomas, ON" />
+<EnumValue value="cityCode=AB-44&amp;siteCode=s0000384&amp;provCode=AB&amp;language=" display_value="Stavely, AB" />
+<EnumValue value="cityCode=MB-13&amp;siteCode=s0000151&amp;provCode=MB&amp;language=" display_value="Steinbach, MB" />
+<EnumValue value="cityCode=NL-27&amp;siteCode=s0000567&amp;provCode=NL&amp;language=" display_value="Stephenville, NL" />
+<EnumValue value="cityCode=AB-5&amp;siteCode=s0000829&amp;provCode=AB&amp;language=" display_value="Stettler, AB" />
+<EnumValue value="cityCode=BC-73&amp;siteCode=s0000828&amp;provCode=BC&amp;language=" display_value="Stewart, BC" />
+<EnumValue value="cityCode=ON-115&amp;siteCode=s0000700&amp;provCode=ON&amp;language=" display_value="Stirling, ON" />
+<EnumValue value="cityCode=AB-22&amp;siteCode=s0000453&amp;provCode=AB&amp;language=" display_value="Stony Plain, AB" />
+<EnumValue value="cityCode=SK-36&amp;siteCode=s0000684&amp;provCode=SK&amp;language=" display_value="Stony Rapids, SK" />
+<EnumValue value="cityCode=ON-116&amp;siteCode=s0000325&amp;provCode=ON&amp;language=" display_value="Stratford, ON" />
+<EnumValue value="cityCode=AB-6&amp;siteCode=s0000068&amp;provCode=AB&amp;language=" display_value="Strathmore, AB" />
+<EnumValue value="cityCode=ON-18&amp;siteCode=s0000328&amp;provCode=ON&amp;language=" display_value="Strathroy, ON" />
+<EnumValue value="cityCode=ON-174&amp;siteCode=s0000843&amp;provCode=ON&amp;language=" display_value="Sudbury (Greater), ON" />
+<EnumValue value="cityCode=AB-47&amp;siteCode=s0000683&amp;provCode=AB&amp;language=" display_value="Suffield, AB" />
+<EnumValue value="cityCode=BC-54&amp;siteCode=s0000351&amp;provCode=BC&amp;language=" display_value="Summerland, BC" />
+<EnumValue value="cityCode=PE-3&amp;siteCode=s0000562&amp;provCode=PE&amp;language=" display_value="Summerside, PE" />
+<EnumValue value="cityCode=AB-53&amp;siteCode=s0000083&amp;provCode=AB&amp;language=" display_value="Sundre, AB" />
+<EnumValue value="cityCode=NB-19&amp;siteCode=s0000686&amp;provCode=NB&amp;language=" display_value="Sussex, NB" />
+<EnumValue value="cityCode=QC-136&amp;siteCode=s0000681&amp;provCode=QC&amp;language=" display_value="Sutton, QC" />
+<EnumValue value="cityCode=MB-46&amp;siteCode=s0000139&amp;provCode=MB&amp;language=" display_value="Swan River, MB" />
+<EnumValue value="cityCode=SK-41&amp;siteCode=s0000355&amp;provCode=SK&amp;language=" display_value="Swift Current, SK" />
+<EnumValue value="cityCode=ON-63&amp;siteCode=s0000529&amp;provCode=ON&amp;language=" display_value="Sydenham, ON" />
+<EnumValue value="cityCode=NS-31&amp;siteCode=s0000670&amp;provCode=NS&amp;language=" display_value="Sydney, NS" />
+<EnumValue value="cityCode=AB-7&amp;siteCode=s0000359&amp;provCode=AB&amp;language=" display_value="Taber, AB" />
+<EnumValue value="cityCode=MB-51&amp;siteCode=s0000417&amp;provCode=MB&amp;language=" display_value="Tadoule Lake, MB" />
+<EnumValue value="cityCode=QC-108&amp;siteCode=s0000253&amp;provCode=QC&amp;language=" display_value="Tadoussac, QC" />
+<EnumValue value="cityCode=NU-8&amp;siteCode=s0000774&amp;provCode=NU&amp;language=" display_value="Taloyoak, NU" />
+<EnumValue value="cityCode=QC-146&amp;siteCode=s0000406&amp;provCode=QC&amp;language=" display_value="Tasiujaq, QC" />
+<EnumValue value="cityCode=NS-14&amp;siteCode=s0000812&amp;provCode=NS&amp;language=" display_value="Tatamagouche, NS" />
+<EnumValue value="cityCode=BC-60&amp;siteCode=s0000465&amp;provCode=BC&amp;language=" display_value="Tatlayoko Lake, BC" />
+<EnumValue value="cityCode=QC-140&amp;siteCode=s0000063&amp;provCode=QC&amp;language=" display_value="T&#233;miscamingue, QC" />
+<EnumValue value="cityCode=QC-35&amp;siteCode=s0000255&amp;provCode=QC&amp;language=" display_value="Temiscouata, QC" />
+<EnumValue value="cityCode=ON-22&amp;siteCode=s0000753&amp;provCode=ON&amp;language=" display_value="Temiskaming Shores, ON" />
+<EnumValue value="cityCode=NL-15&amp;siteCode=s0000467&amp;provCode=NL&amp;language=" display_value="Terra Nova (National Park), NL" />
+<EnumValue value="cityCode=ON-123&amp;siteCode=s0000023&amp;provCode=ON&amp;language=" display_value="Terrace Bay, ON" />
+<EnumValue value="cityCode=BC-80&amp;siteCode=s0000757&amp;provCode=BC&amp;language=" display_value="Terrace, BC" />
+<EnumValue value="cityCode=QC-C7&amp;siteCode=s0000290&amp;provCode=QC&amp;language=" display_value="Terrebonne, QC" />
+<EnumValue value="cityCode=YT-14&amp;siteCode=s0000410&amp;provCode=YT&amp;language=" display_value="Teslin, YT" />
+<EnumValue value="cityCode=BC-53&amp;siteCode=s0000341&amp;provCode=BC&amp;language=" display_value="Tetsa River (Provincial Park), BC" />
+<EnumValue value="cityCode=MB-30&amp;siteCode=s0000644&amp;provCode=MB&amp;language=" display_value="The Pas, MB" />
+<EnumValue value="cityCode=QC-C8&amp;siteCode=s0000064&amp;provCode=QC&amp;language=" display_value="Thetford Mines, QC" />
+<EnumValue value="cityCode=MB-34&amp;siteCode=s0000695&amp;provCode=MB&amp;language=" display_value="Thompson, MB" />
+<EnumValue value="cityCode=AB-69&amp;siteCode=s0000179&amp;provCode=AB&amp;language=" display_value="Three Hills, AB" />
+<EnumValue value="cityCode=ON-100&amp;siteCode=s0000411&amp;provCode=ON&amp;language=" display_value="Thunder Bay, ON" />
+<EnumValue value="cityCode=ON-17&amp;siteCode=s0000425&amp;provCode=ON&amp;language=" display_value="Tillsonburg, ON" />
+<EnumValue value="cityCode=ON-127&amp;siteCode=s0000705&amp;provCode=ON&amp;language=" display_value="Timmins, ON" />
+<EnumValue value="cityCode=SK-12&amp;siteCode=s0000157&amp;provCode=SK&amp;language=" display_value="Tisdale, SK" />
+<EnumValue value="cityCode=ON-157&amp;siteCode=s0000422&amp;provCode=ON&amp;language=" display_value="Tobermory, ON" />
+<EnumValue value="cityCode=BC-17&amp;siteCode=s0000481&amp;provCode=BC&amp;language=" display_value="Tofino, BC" />
+<EnumValue value="cityCode=ON-128&amp;siteCode=s0000785&amp;provCode=ON&amp;language=" display_value="Toronto Island, ON" />
+<EnumValue value="cityCode=ON-143&amp;siteCode=s0000458&amp;provCode=ON&amp;language=" display_value="Toronto, ON" />
+<EnumValue value="cityCode=NB-20&amp;siteCode=s0000385&amp;provCode=NB&amp;language=" display_value="Tracadie-Sheila, NB" />
+<EnumValue value="cityCode=NS-28&amp;siteCode=s0000461&amp;provCode=NS&amp;language=" display_value="Tracadie, NS" />
+<EnumValue value="cityCode=QC-C9&amp;siteCode=s0000148&amp;provCode=QC&amp;language=" display_value="Tracy, QC" />
+<EnumValue value="cityCode=BC-71&amp;siteCode=s0000471&amp;provCode=BC&amp;language=" display_value="Trail, BC" />
+<EnumValue value="cityCode=ON-126&amp;siteCode=s0000701&amp;provCode=ON&amp;language=" display_value="Trenton, ON" />
+<EnumValue value="cityCode=QC-24&amp;siteCode=s0000254&amp;provCode=QC&amp;language=" display_value="Trois-Pistoles, QC" />
+<EnumValue value="cityCode=QC-131&amp;siteCode=s0000627&amp;provCode=QC&amp;language=" display_value="Trois-Rivières, QC" />
+<EnumValue value="cityCode=NT-15&amp;siteCode=s0000340&amp;provCode=NT&amp;language=" display_value="Trout Lake, NT" />
+<EnumValue value="cityCode=NS-25&amp;siteCode=s0000813&amp;provCode=NS&amp;language=" display_value="Truro, NS" />
+<EnumValue value="cityCode=NT-20&amp;siteCode=s0000830&amp;provCode=NT&amp;language=" display_value="Tuktoyaktuk, NT" />
+<EnumValue value="cityCode=NT-11&amp;siteCode=s0000817&amp;provCode=NT&amp;language=" display_value="Tulita, NT" />
+<EnumValue value="cityCode=MB-66&amp;siteCode=s0000137&amp;provCode=MB&amp;language=" display_value="Turtle Mountain (Provincial Park), MB" />
+<EnumValue value="cityCode=NL-35&amp;siteCode=s0000122&amp;provCode=NL&amp;language=" display_value="Twillingate, NL" />
+<EnumValue value="cityCode=BC-5&amp;siteCode=s0000482&amp;provCode=BC&amp;language=" display_value="Ucluelet, BC" />
+<EnumValue value="cityCode=NT-7&amp;siteCode=s0000432&amp;provCode=NT&amp;language=" display_value="Ulukhaktok, NT" />
+<EnumValue value="cityCode=QC-123&amp;siteCode=s0000600&amp;provCode=QC&amp;language=" display_value="Umiujaq, QC" />
+<EnumValue value="cityCode=ON-154&amp;siteCode=s0000127&amp;provCode=ON&amp;language=" display_value="Upsala, ON" />
+<EnumValue value="cityCode=SK-44&amp;siteCode=s0000113&amp;provCode=SK&amp;language=" display_value="Uranium City, SK" />
+<EnumValue value="cityCode=SK-28&amp;siteCode=s0000357&amp;provCode=SK&amp;language=" display_value="Val Marie, SK" />
+<EnumValue value="cityCode=QC-150&amp;siteCode=s0000719&amp;provCode=QC&amp;language=" display_value="Val-d'Or, QC" />
+<EnumValue value="cityCode=QC-42&amp;siteCode=s0000614&amp;provCode=QC&amp;language=" display_value="Val-des-Monts, QC" />
+<EnumValue value="cityCode=BC-13&amp;siteCode=s0000003&amp;provCode=BC&amp;language=" display_value="Valemount, BC" />
+<EnumValue value="cityCode=QC-D0&amp;siteCode=s0000408&amp;provCode=QC&amp;language=" display_value="Vall&#233;e de la Matap&#233;dia, QC" />
+<EnumValue value="cityCode=BC-74&amp;siteCode=s0000141&amp;provCode=BC&amp;language=" display_value="Vancouver, BC" />
+<EnumValue value="cityCode=BC-44&amp;siteCode=s0000754&amp;provCode=BC&amp;language=" display_value="Vanderhoof, BC" />
+<EnumValue value="cityCode=QC-41&amp;siteCode=s0000204&amp;provCode=QC&amp;language=" display_value="Vanier, QC" />
+<EnumValue value="cityCode=QC-163&amp;siteCode=s0000494&amp;provCode=QC&amp;language=" display_value="Varennes, QC" />
+<EnumValue value="cityCode=QC-66&amp;siteCode=s0000362&amp;provCode=QC&amp;language=" display_value="Vaudreuil-Dorion, QC" />
+<EnumValue value="cityCode=ON-64&amp;siteCode=s0000584&amp;provCode=ON&amp;language=" display_value="Vaughan, ON" />
+<EnumValue value="cityCode=AB-27&amp;siteCode=s0000358&amp;provCode=AB&amp;language=" display_value="Vauxhall, AB" />
+<EnumValue value="cityCode=AB-26&amp;siteCode=s0000356&amp;provCode=AB&amp;language=" display_value="Vegreville, AB" />
+<EnumValue value="cityCode=BC-27&amp;siteCode=s0000216&amp;provCode=BC&amp;language=" display_value="Vernon, BC" />
+<EnumValue value="cityCode=BC-59&amp;siteCode=s0000792&amp;provCode=BC&amp;language=" display_value="Victoria (Hartland), BC" />
+<EnumValue value="cityCode=BC-66&amp;siteCode=s0000390&amp;provCode=BC&amp;language=" display_value="Victoria (University of), BC" />
+<EnumValue value="cityCode=MB-55&amp;siteCode=s0000190&amp;provCode=MB&amp;language=" display_value="Victoria Beach, MB" />
+<EnumValue value="cityCode=BC-75&amp;siteCode=s0000735&amp;provCode=BC&amp;language=" display_value="Victoria Harbour, BC" />
+<EnumValue value="cityCode=BC-85&amp;siteCode=s0000775&amp;provCode=BC&amp;language=" display_value="Victoria, BC" />
+<EnumValue value="cityCode=QC-158&amp;siteCode=s0000532&amp;provCode=QC&amp;language=" display_value="Victoriaville, QC" />
+<EnumValue value="cityCode=ON-109&amp;siteCode=s0000469&amp;provCode=ON&amp;language=" display_value="Vineland, ON" />
+<EnumValue value="cityCode=MB-20&amp;siteCode=s0000135&amp;provCode=MB&amp;language=" display_value="Virden, MB" />
+<EnumValue value="cityCode=MB-7&amp;siteCode=s0000154&amp;provCode=MB&amp;language=" display_value="Vita, MB" />
+<EnumValue value="cityCode=NL-12&amp;siteCode=s0000736&amp;provCode=NL&amp;language=" display_value="Wabush Lake, NL" />
+<EnumValue value="cityCode=AB-55&amp;siteCode=s0000833&amp;provCode=AB&amp;language=" display_value="Wainwright, AB" />
+<EnumValue value="cityCode=ON-16&amp;siteCode=s0000236&amp;provCode=ON&amp;language=" display_value="Walkerton, ON" />
+<EnumValue value="cityCode=MB-31&amp;siteCode=s0000375&amp;provCode=MB&amp;language=" display_value="Wasagaming, MB" />
+<EnumValue value="cityCode=QC-117&amp;siteCode=s0000586&amp;provCode=QC&amp;language=" display_value="Waskaganish, QC" />
+<EnumValue value="cityCode=SK-15&amp;siteCode=s0000241&amp;provCode=SK&amp;language=" display_value="Waskesiu Lake, SK" />
+<EnumValue value="cityCode=AB-66&amp;siteCode=s0000170&amp;provCode=AB&amp;language=" display_value="Waterton Park, AB" />
+<EnumValue value="cityCode=SK-49&amp;siteCode=s0000195&amp;provCode=SK&amp;language=" display_value="Watrous, SK" />
+<EnumValue value="cityCode=YT-13&amp;siteCode=s0000648&amp;provCode=YT&amp;language=" display_value="Watson Lake, YT" />
+<EnumValue value="cityCode=ON-138&amp;siteCode=s0000761&amp;provCode=ON&amp;language=" display_value="Wawa, ON" />
+<EnumValue value="cityCode=ON-132&amp;siteCode=s0000232&amp;provCode=ON&amp;language=" display_value="Webequie, ON" />
+<EnumValue value="cityCode=NT-9&amp;siteCode=s0000442&amp;provCode=NT&amp;language=" display_value="Wekweeti, NT" />
+<EnumValue value="cityCode=ON-14&amp;siteCode=s0000076&amp;provCode=ON&amp;language=" display_value="Welland, ON" />
+<EnumValue value="cityCode=ON-65&amp;siteCode=s0000766&amp;provCode=ON&amp;language=" display_value="West Nipissing, ON" />
+<EnumValue value="cityCode=NS-30&amp;siteCode=s0000370&amp;provCode=NS&amp;language=" display_value="Western Head, NS" />
+<EnumValue value="cityCode=AB-8&amp;siteCode=s0000427&amp;provCode=AB&amp;language=" display_value="Westlock, AB" />
+<EnumValue value="cityCode=ON-66&amp;siteCode=s0000530&amp;provCode=ON&amp;language=" display_value="Westport, ON" />
+<EnumValue value="cityCode=AB-9&amp;siteCode=s0000312&amp;provCode=AB&amp;language=" display_value="Wetaskiwin, AB" />
+<EnumValue value="cityCode=SK-31&amp;siteCode=s0000372&amp;provCode=SK&amp;language=" display_value="Weyburn, SK" />
+<EnumValue value="cityCode=NU-6&amp;siteCode=s0000749&amp;provCode=NU&amp;language=" display_value="Whale Cove, NU" />
+<EnumValue value="cityCode=NT-6&amp;siteCode=s0000249&amp;provCode=NT&amp;language=" display_value="Whati, NT" />
+<EnumValue value="cityCode=BC-86&amp;siteCode=s0000078&amp;provCode=BC&amp;language=" display_value="Whistler, BC" />
+<EnumValue value="cityCode=ON-119&amp;siteCode=s0000708&amp;provCode=ON&amp;language=" display_value="Whitby, ON" />
+<EnumValue value="cityCode=ON-67&amp;siteCode=s0000764&amp;provCode=ON&amp;language=" display_value="White River, ON" />
+<EnumValue value="cityCode=BC-62&amp;siteCode=s0000373&amp;provCode=BC&amp;language=" display_value="White Rock, BC" />
+<EnumValue value="cityCode=AB-56&amp;siteCode=s0000477&amp;provCode=AB&amp;language=" display_value="Whitecourt, AB" />
+<EnumValue value="cityCode=YT-16&amp;siteCode=s0000825&amp;provCode=YT&amp;language=" display_value="Whitehorse, YT" />
+<EnumValue value="cityCode=MB-8&amp;siteCode=s0000131&amp;provCode=MB&amp;language=" display_value="Whiteshell, MB" />
+<EnumValue value="cityCode=ON-130&amp;siteCode=s0000724&amp;provCode=ON&amp;language=" display_value="Wiarton, ON" />
+<EnumValue value="cityCode=BC-76&amp;siteCode=s0000739&amp;provCode=BC&amp;language=" display_value="Williams Lake, BC" />
+<EnumValue value="cityCode=AB-41&amp;siteCode=s0000119&amp;provCode=AB&amp;language=" display_value="Willow Creek (Provincial Park), AB" />
+<EnumValue value="cityCode=ON-155&amp;siteCode=s0000077&amp;provCode=ON&amp;language=" display_value="Winchester, ON" />
+<EnumValue value="cityCode=NS-15&amp;siteCode=s0000438&amp;provCode=NS&amp;language=" display_value="Windsor, NS" />
+<EnumValue value="cityCode=ON-94&amp;siteCode=s0000646&amp;provCode=ON&amp;language=" display_value="Windsor, ON" />
+<EnumValue value="cityCode=ON-110&amp;siteCode=s0000235&amp;provCode=ON&amp;language=" display_value="Wingham, ON" />
+<EnumValue value="cityCode=MB-26&amp;siteCode=s0000445&amp;provCode=MB&amp;language=" display_value="Winkler, MB" />
+<EnumValue value="cityCode=MB-36&amp;siteCode=s0000472&amp;provCode=MB&amp;language=" display_value="Winnipeg (The Forks), MB" />
+<EnumValue value="cityCode=MB-38&amp;siteCode=s0000193&amp;provCode=MB&amp;language=" display_value="Winnipeg, MB" />
+<EnumValue value="cityCode=NL-19&amp;siteCode=s0000473&amp;provCode=NL&amp;language=" display_value="Winterland, NL" />
+<EnumValue value="cityCode=NB-21&amp;siteCode=s0000522&amp;provCode=NB&amp;language=" display_value="Woodstock, NB" />
+<EnumValue value="cityCode=ON-15&amp;siteCode=s0000327&amp;provCode=ON&amp;language=" display_value="Woodstock, ON" />
+<EnumValue value="cityCode=NL-18&amp;siteCode=s0000042&amp;provCode=NL&amp;language=" display_value="Wreckhouse, NL" />
+<EnumValue value="cityCode=NT-23&amp;siteCode=s0000740&amp;provCode=NT&amp;language=" display_value="Wrigley, NT" />
+<EnumValue value="cityCode=ON-158&amp;siteCode=s0000698&amp;provCode=ON&amp;language=" display_value="Wunnummin Lake, ON" />
+<EnumValue value="cityCode=SK-19&amp;siteCode=s0000278&amp;provCode=SK&amp;language=" display_value="Wynyard, SK" />
+<EnumValue value="cityCode=NS-29&amp;siteCode=s0000649&amp;provCode=NS&amp;language=" display_value="Yarmouth, NS" />
+<EnumValue value="cityCode=NT-24&amp;siteCode=s0000366&amp;provCode=NT&amp;language=" display_value="Yellowknife, NT" />
+<EnumValue value="cityCode=BC-68&amp;siteCode=s0000392&amp;provCode=BC&amp;language=" display_value="Yoho (National Park), BC" />
+<EnumValue value="cityCode=MB-56&amp;siteCode=s0000014&amp;provCode=MB&amp;language=" display_value="York Factory, MB" />
+<EnumValue value="cityCode=SK-33&amp;siteCode=s0000663&amp;provCode=SK&amp;language=" display_value="Yorkton, SK" />
+</UserPref>
+-
+ <Content type="html"  >
+    <![CDATA[
 <!-- Begin WeatherLink Flash Fragment -->
 <div id="content__MODULE_ID__" style="text-align:center;"><i>__MSG_loading__</i></div>
 <!-- End WeatherLink Flash Fragment -->
 
 <script type="text/javascript">
   function onLoadFunc__MODULE_ID__() {
-    var output = _gel("content" + __MODULE_ID__)
+    var output = _gel("content" + __MODULE_ID__);
     var theLocation = "__UP_location__";
     var theLanguage = "__MSG_prefix__";
-
-    output.innerHTML = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="180" height="110"><param name=movie value="http://www.weatheroffice.com/FlashFeed/WxLinks' + theLanguage + '/' + theLocation + '.swf"><param name=quality value=high><embed src="http://www.weatheroffice.com/FlashFeed/WxLinks' + theLanguage + '/' + theLocation + '.swf" quality="high"  pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="180" height="110"></object>';
+    var url_fragment = "weatheroffice";
+    
+    if (theLanguage == "f") {
+      url_fragment = "meteo";
+    }
+    else {
+      theLanguage = "e";
+    }    
+   output.innerHTML = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" width="190" height="125" data="' + theLocation + theLanguage + '">	<param name="movie" value="http://dd.' + url_fragment + '.gc.ca/lib/flash/wxlink_' + theLanguage + '.swf" />	<param name="FlashVars" value="' + theLocation + theLanguage + '" >	<param name="quality" value="high" > 	<embed src="http://dd.' + url_fragment + '.gc.ca/lib/flash/wxlink_' + theLanguage + '.swf" FlashVars="' + theLocation + theLanguage + '" quality="high" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" width="190" height="125" > </object>';
   }
   
   _IG_RegisterOnloadHandler(onLoadFunc__MODULE_ID__);
 </script>
-    ]]> 
-  </Content>
+]]>   
+</Content>
 </Module>
