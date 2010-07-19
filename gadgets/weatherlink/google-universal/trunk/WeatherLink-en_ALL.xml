@@ -1,20 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" ?> 
-
 <messagebundle>
-  <!--
+-
+<!--
+
     $Id$
     
     $HeadURL$
 
     Localized English (en) messages for WeatherLink Google Gadget.  Also used as the default message bundle.
     
-  -->
   
-    <msg name="title">WeatherLink</msg>
-	<msg name="dirtitle">Environment Canada's WeatherLink</msg>
-	<msg name="description">Daily forecast and current observations for Canadian cities, based on WeatherLink service from Environment Canada</msg>
-
-    <msg name="location">Location</msg>
-    <msg name="loading">Loading...</msg>
-    <msg name="prefix"/>
-</messagebundle> 
+-->
+<msg name="title">WeatherLink</msg>
+<msg name="dirtitle">Environment Canada's WeatherLink</msg>
+-
+<msg name="description">
+Daily forecast and current observations for Canadian cities, based on WeatherLink service from Environment Canada
+</msg>
+<msg name="location">Location</msg>
+<msg name="loading">Loading...</msg>
+<msg name="prefix">e</msg>
+<msg name="url">weatheroffice</msg>
+</messagebundle>

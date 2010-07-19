@@ -17,4 +17,5 @@
     <msg name="location">Endroit</msg>
     <msg name="loading">En chargement...</msg>
     <msg name="prefix">f</msg>
+	<msg name="url">meteo</msg>
 </messagebundle> 
