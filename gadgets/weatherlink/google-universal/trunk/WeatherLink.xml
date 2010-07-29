@@ -606,7 +606,7 @@
 <EnumValue value="cityCode=bc-35&amp;siteCode=s0000247&amp;provCode=BC&amp;language=" display_value="Pitt Meadows, BC" />
 <EnumValue value="cityCode=nb-34&amp;siteCode=s0000037&amp;provCode=NB&amp;language=" display_value="Point Escuminac, NB" />
 <EnumValue value="cityCode=nb-33&amp;siteCode=s0000285&amp;provCode=NB&amp;language=" display_value="Point Lepreau, NB" />
-<EnumValue value="cityCode=qc-20&amp;siteCode=s0000810&amp;provCode=QC&amp;language=" display_value="Pointe-à-la-Croix, QC" />
+<EnumValue value="cityCode=qc-20&amp;siteCode=s0000810&amp;provCode=QC&amp;language=" display_value="Pointe-&#224;-la-Croix, QC" />
 <EnumValue value="cityCode=nu-25&amp;siteCode=s0000564&amp;provCode=NU&amp;language=" display_value="Pond Inlet, NU" />
 <EnumValue value="cityCode=qc-19&amp;siteCode=s0000613&amp;provCode=QC&amp;language=" display_value="Pontiac, QC" />
 <EnumValue value="cityCode=mb-5&amp;siteCode=s0000378&amp;provCode=MB&amp;language=" display_value="Poplar River, MB" />
