@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 <!--
-
     $Id$
-
+    
     $HeadURL$
 
     This is basically just a rebuild of the Weather on your Website service
@@ -44,11 +43,12 @@
                author_photo="http://fsoss.senecac.on.ca/2012/sites/fsoss.senecac.on.ca.2012/files/headshots/picture-136.jpg"
                author_aboutme="Computer hobbyist, open source aficionado, outdoor adventurer, and United Church Minister"
                author_link="http://opensourcespiritseeker.wordpress.com"
-               author_quote="As soon as you can put God in a box, it is not God"
+               author_quote="As soon as you can put God in a box it is not God"
   >
   <Locale lang="en" messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-en_ALL.xml" />
   <Locale lang="fr" messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-fr_ALL.xml" />
   <Locale           messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-en_ALL.xml" />
+  <MayRequire type="plugin" value="flash"/>
  </ModulePrefs>
 <UserPref name="location" display_name="__MSG_location__" required="true" datatype="enum" default_value="nt-24&amp;lang=">
 <EnumValue value="bc-7&amp;lang=" display_value="100 Mile House, BC" />
