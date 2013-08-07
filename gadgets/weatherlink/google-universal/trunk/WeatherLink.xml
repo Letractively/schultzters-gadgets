@@ -897,7 +897,7 @@
 <!-- End WeatherLink Fragment -->
 <script type="text/javascript">
   function onLoadFunc__MODULE_ID__() {
-    var output = _document.getElementByID("content" + __MODULE_ID__);
+    var output = document.getElementByID("content" + __MODULE_ID__);
     var theLocation = "__UP_location__";
     var theLanguage = "__MSG_prefix__";
     var url_fragment = "__MSG_url__";
