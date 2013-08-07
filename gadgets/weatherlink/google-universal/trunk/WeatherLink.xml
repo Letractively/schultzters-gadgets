@@ -35,7 +35,7 @@
                height="250"
                width="350"
                scaling="false"
-               scrolling="true"
+               scrolling="false"
                singleton="false"
                author="Peter Chynoweth; Original Idea: Eric Schultz"
                author_email="pcchynoweth+feedback.WeatherLink@alumni.uwaterloo.ca"
@@ -902,7 +902,10 @@
     var theLocation = "__UP_location__";
     var theLanguage = "__MSG_prefix__";
     var url_fragment = "__MSG_url__";
-    output.innerHTML = '<!-- Begin WeatherLink Fragment --><iframe title="Environment Canada Weather" width="287px" height="191px" src="http://' + url_fragment + '.gc.ca/wxlink/wxlink.html?cityCode='+ theLocation + theLanguage + '" frameborder="0"></iframe><!-- End WeatherLink Fragment -->';
+    html = '<!-- Begin WeatherLink Fragment --><iframe title="Environment Canada Weather" width="287px" height="191px" src="http://';
+    html += url_fragment + '.gc.ca/wxlink/wxlink.html?cityCode=' + theLocation + theLanguage;
+    html += '" frameborder="0"></iframe><!-- End WeatherLink Fragment -->';
+    output.innerHTML = html;
   }
   gadgets.util.registerOnLoadHandler(onLoadFunc__MODULE_ID__);
 </script>
