@@ -34,7 +34,7 @@
                render_inline="never"
                height="250"
                width="350"
-               scaling="true"
+               scaling="false"
                scrolling="true"
                singleton="false"
                author="Peter Chynoweth; Original Idea: Eric Schultz"
@@ -50,7 +50,6 @@
   <Locale lang="fr" messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-fr_ALL.xml" />
   <Locale           messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-en_ALL.xml" />
  </ModulePrefs>
-  
 <UserPref name="location" display_name="__MSG_location__" required="true" datatype="enum" default_value="nt-24&amp;lang=">
 <EnumValue value="bc-7&amp;lang=" display_value="100 Mile House, BC" />
 <EnumValue value="bc-81&amp;lang=" display_value="Abbotsford, BC" />
@@ -891,7 +890,7 @@
 <EnumValue value="mb-56&amp;lang=" display_value="York Factory, MB" />
 <EnumValue value="sk-33&amp;lang=" display_value="Yorkton, SK" />
 </UserPref>
- <Content type="html"  >
+ <Content type="html">
     <![CDATA[
 <!-- Begin WeatherLink Fragment -->
 <div id="content__MODULE_ID__" style="text-align:center;"><i>__MSG_loading__</i></div>
@@ -903,7 +902,7 @@
     var theLocation = "__UP_location__";
     var theLanguage = "__MSG_prefix__";
     var url_fragment = "__MSG_url__";
-    output.innerHTML = '<!-- Begin WeatherLink Fragment --><iframe title="Environment Canada Weather" width="287px" height="191px" src="http://weather.gc.ca/wxlink/wxlink.html?cityCode='+ theLocation + theLanguage + '" frameborder="0"></iframe><!-- End WeatherLink Fragment -->'
+    output.innerHTML = '<!-- Begin WeatherLink Fragment --><iframe title="Environment Canada Weather" width="287px" height="191px" src="http://' + url_fragment + '.gc.ca/wxlink/wxlink.html?cityCode='+ theLocation + theLanguage + '" frameborder="0"></iframe><!-- End WeatherLink Fragment -->'
   }
   gadgets.util.registerOnLoadHandler(onLoadFunc__MODULE_ID__);
 </script>
