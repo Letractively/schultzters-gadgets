@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<messagebundle>
+  <!--
+    $Id$
+    
+    $HeadURL$
+
+    Localized French (fr) messages for WeatherLink Google Gadget. 
+    
+  -->
+  
+    <msg name="title">MeteoLien</msg>
+	<msg name="dirtitle">MeteoLien de Environment Canada</msg>
+	<msg name="description">Previsions and observations pour les villes canadienne.  Utilisant la service MeteoLien d'Environment Canada</msg>
+
+    <msg name="location">Endroit</msg>
+    <msg name="loading">En chargement...</msg>
+    <msg name="prefix">f</msg>
+	<msg name="url">meteo</msg>
+</messagebundle> 
