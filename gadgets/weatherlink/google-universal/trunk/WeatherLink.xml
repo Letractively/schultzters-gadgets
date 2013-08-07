@@ -900,14 +900,13 @@
 
 <script type="text/javascript">
   function onLoadFunc__MODULE_ID__() {
-    var output = _gel("content" + __MODULE_ID__);
+    var output = _document.getElementByID("content" + __MODULE_ID__);
     var theLocation = "__UP_location__";
     var theLanguage = "__MSG_prefix__";
     var url_fragment = "__MSG_url__";
-   output.innerHTML = '<!-- Begin WeatherLink Fragment --><iframe title="Environment Canada Weather" width="287px" height="191px" src="http://weather.gc.ca/wxlink/wxlink.html?cityCode='+ theLocation + theLanguage + '" frameborder="0"></iframe><!-- End WeatherLink Fragment -->'
+    output.innerHTML = '<!-- Begin WeatherLink Fragment --><iframe title="Environment Canada Weather" width="287px" height="191px" src="http://weather.gc.ca/wxlink/wxlink.html?cityCode='+ theLocation + theLanguage + '" frameborder="0"></iframe><!-- End WeatherLink Fragment -->'
   }
- 
-  _IG_RegisterOnloadHandler(onLoadFunc__MODULE_ID__);
+  gadgets.util.registerOnLoadHandler(onLoadFunc__MODULE_ID__);
 </script>
 ]]>  
 </Content>
