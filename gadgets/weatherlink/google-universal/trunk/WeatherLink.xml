@@ -904,7 +904,6 @@
     html = '<!-- Begin WeatherLink Fragment --><iframe title="Environment Canada Weather" width="287px" height="191px" src="http://';
     html += url_fragment + '.gc.ca/wxlink/wxlink.html?cityCode=' + theLocation + theLanguage;
     html += '" frameborder="0"></iframe><!-- End WeatherLink Fragment -->';
-    alert(html);
     output.innerHTML = html;
   }
   gadgets.util.registerOnLoadHandler(onLoadFunc__MODULE_ID__);
