@@ -906,7 +906,7 @@
     html += '" frameborder="0"></iframe><!-- End WeatherLink Fragment -->';
     output.innerHTML = html;
   }
-  gadgets.util.registerOnLoadHandler(onLoadFunc__MODULE_ID__);
+  _IG_RegisterOnloadHandler(onLoadFunc__MODULE_ID__);
 </script>
 ]]>  
 </Content>
