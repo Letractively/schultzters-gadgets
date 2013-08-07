@@ -31,8 +31,8 @@
                screenshot="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLinkHTML5Screenshot.png"
                thumbnail="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLinkHTML5Thumbnail.png"
                render_inline="never"
-               height="250"
-               width="350"
+               height="250px"
+               width="350px"
                scaling="false"
                scrolling="false"
                singleton="false"
@@ -890,7 +890,7 @@
 <EnumValue value="mb-56&amp;lang=" display_value="York Factory, MB" />
 <EnumValue value="sk-33&amp;lang=" display_value="Yorkton, SK" />
 </UserPref>
- <Content type="html">
+ <Content type="html"  >
     <![CDATA[
 <!-- Begin WeatherLink Fragment -->
 <div id="content__MODULE_ID__" style="text-align:center;"><i>__MSG_loading__</i></div>
@@ -906,7 +906,7 @@
     html += '" frameborder="0"></iframe><!-- End WeatherLink Fragment -->';
     output.innerHTML = html;
   }
-  _IG_RegisterOnloadHandler(onLoadFunc__MODULE_ID__);
+  gadgets.util.registerOnLoadHandler(onLoadFunc__MODULE_ID__);
 </script>
 ]]>  
 </Content>
