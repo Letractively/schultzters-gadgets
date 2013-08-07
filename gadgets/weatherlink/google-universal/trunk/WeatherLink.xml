@@ -34,23 +34,22 @@
                render_inline="never"
                height="250"
                width="350"
-               scaling="false"
-               scrolling="false"
+               scaling="true"
+               scrolling="true"
                singleton="false"
-               author="Peter Chynoweth; Original Idea: Eric Shultz"
+               author="Peter Chynoweth; Original Idea: Eric Schultz"
                author_email="pcchynoweth+feedback.WeatherLink@alumni.uwaterloo.ca"
                author_affiliation="None/Independent"
                author_location="Yellowknife, NT"
                author_photo="http://fsoss.senecac.on.ca/2012/sites/fsoss.senecac.on.ca.2012/files/headshots/picture-136.jpg"
                author_aboutme="Computer hobbyist, open source aficionado, outdoor adventurer, and United Church Minister"
                author_link="http://opensourcespiritseeker.wordpress.com"
-               author_quote=""
+               author_quote="As soon as you can put God in a box, it is not God"
   >
   <Locale lang="en" messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-en_ALL.xml" />
   <Locale lang="fr" messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-fr_ALL.xml" />
   <Locale           messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-en_ALL.xml" />
-    <MayRequire type="plugin" value="flash"/>
-  </ModulePrefs>
+ </ModulePrefs>
   
 <UserPref name="location" display_name="__MSG_location__" required="true" datatype="enum" default_value="nt-24&amp;lang=">
 <EnumValue value="bc-7&amp;lang=" display_value="100 Mile House, BC" />
