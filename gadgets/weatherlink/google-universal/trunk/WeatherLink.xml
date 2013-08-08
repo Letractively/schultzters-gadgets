@@ -13,42 +13,40 @@
    
     Updated in July 2010 by Peter Chynoweth to accommodate the adjustments made
     by Environment Canada.
+    
+    Updated again in August 2013 by Peter Chynoweth to use the new HTML5 version
    
     See the following links for more information about these services:
-    Environment Canada: http://www.ec.gc.ca/envhome.html
-    Weather Office: http://www.weatheroffice.ec.gc.ca/canada_e.html
-    British Columbia and Yukon: http://www.weatheroffice.pyr.ec.gc.ca/default_e.html
-    WeatherLink: http://www.weatheroffice.pyr.ec.gc.ca/wxlink/index_e.asp
+    Environment Canada: http://www.ec.gc.ca/
+    Weather Office: http://www.weather.ec.gc.ca/canada_e.html
+    WeatherLink: http://www.weather.ec.gc.ca/business#weatherlink
        
-        The mysterious "siteCode" can be derived by calling:
-       
-        http://www.weatheroffice.gc.ca/business/include/getSnipet.php?provCode=xx&cityCode=xx-yy&lang=e
-       
-        The provCode and cityCode values can be found at: http://www.weatheroffice.gc.ca/city/js/forecastQuickLinkArraysEn.js
-       
+    The cityCode values can be found at: http://www.weatheroffice.gc.ca/city/js/forecastQuickLinkArraysEn.js
+      
    
  
 -->
  
   <ModulePrefs title="__MSG_title__"
                directory_title="__MSG_dirtitle__"
-               title_url="http://www.weatheroffice.pyr.ec.gc.ca/"
+               title_url="http://www.weather.gc.ca/"
                description="__MSG_description__"
-               screenshot="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/screenshot.png"
-               thumbnail="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/thumbnail.png"
+               screenshot="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLinkHTML5Screenshot.png"
+               thumbnail="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLinkHTML5Thumbnail.png"
                render_inline="never"
-               height="125"
+               height="225"
+               width="300"
                scaling="false"
                scrolling="false"
                singleton="false"
-               author="Eric Schultz"
-               author_email="eric+feedback.gadgets@schultzter.ca"
+               author="Peter Chynoweth based on the original idea of Eric Schultz"
+               author_email="pcchynoweth+feedback.weatherlink@alumni.uwaterloo.ca"
                author_affiliation="None/Independent"
-               author_location="Montreal, QC"
-               author_photo="http://schultzter.googlepages.com/MiloFace_99x99.png"
-               author_aboutme="Computer hobbyist, home owner, outdoor adventurer, and CTI Technical Leader"
+               author_location="Yellowknife, NT"
+               author_photo=""
+               author_aboutme="Computer hobbyist, open source aficionado, outdoor adventurer, United Church Minister"
                author_link="http://www.schultzter.ca"
-               author_quote="Headed for the second star to the right and straight on 'til morning..."
+               author_quote="As soon as you put God in a box it is not God"
   >
   <Locale lang="en" messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-en_ALL.xml" />
   <Locale lang="fr" messages="http://schultzters-gadgets.googlecode.com/svn/gadgets/weatherlink/google-universal/trunk/WeatherLink-fr_ALL.xml" />
