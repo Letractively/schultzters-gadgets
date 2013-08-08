@@ -29,7 +29,6 @@
    
  
 -->
--
  
   <ModulePrefs title="__MSG_title__"
                directory_title="__MSG_dirtitle__"
@@ -42,7 +41,6 @@
                scaling="false"
                scrolling="false"
                singleton="false"
-
                author="Eric Schultz"
                author_email="eric+feedback.gadgets@schultzter.ca"
                author_affiliation="None/Independent"
@@ -902,14 +900,14 @@
 
 <script type="text/javascript">
   function onLoadFunc__MODULE_ID__() {
-    var output = _gel("content" + __MODULE_ID__);
+    var output = document.getElementById("content" + __MODULE_ID__);
     var theLocation = "__UP_location__";
     var theLanguage = "__MSG_prefix__";
     var url_fragment = "__MSG_url__";
    output.innerHTML = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" width="190" height="125" data="' + theLocation + theLanguage + '">  <param name="movie" value="http://dd.' + url_fragment + '.gc.ca/lib/flash/wxlink_' + theLanguage + '.swf" />    <param name="FlashVars" value="' + theLocation + theLanguage + '" >     <param name="quality" value="high" >    <embed src="http://dd.' + url_fragment + '.gc.ca/lib/flash/wxlink_' + theLanguage + '.swf" FlashVars="' + theLocation + theLanguage + '" quality="high" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" width="190" height="125" > </object>';
   }
  
-  _IG_RegisterOnloadHandler(onLoadFunc__MODULE_ID__);
+  gadgets.util.registerOnLoadHandler(onLoadFunc__MODULE_ID__);
 </script>
 ]]>  
 </Content>
