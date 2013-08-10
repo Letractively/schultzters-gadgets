@@ -86,7 +86,6 @@
 <EnumValue value="bc-67&amp;lang=" display_value="Atlin, BC" />
 <EnumValue value="on-164&amp;lang=" display_value="Attawapiskat, ON" />
 <EnumValue value="qc-117&amp;lang=" display_value="Aupaluk, QC" />
-<EnumValue value="qc-50&amp;lang=" display_value="B&#233;cancour, QC" />
 <EnumValue value="ns-37&amp;lang=" display_value="Baccaro Point, NS" />
 <EnumValue value="mb-43&amp;lang=" display_value="Bachelors Island, MB" />
 <EnumValue value="ns-4&amp;lang=" display_value="Baddeck, NS" />
@@ -109,14 +108,15 @@
 <EnumValue value="yt-15&amp;lang=" display_value="Beaver Creek, YT" />
 <EnumValue value="ns-36&amp;lang=" display_value="Beaver Island, NS" />
 <EnumValue value="ab-57&amp;lang=" display_value="Beaverlodge, AB" />
+<EnumValue value="qc-50&amp;lang=" display_value="B&#233;cancour, QC" />
 <EnumValue value="bc-94&amp;lang=" display_value="Bella Bella, BC" />
 <EnumValue value="bc-18&amp;lang=" display_value="Bella Coola, BC" />
 <EnumValue value="on-3&amp;lang=" display_value="Belleville, ON" />
 <EnumValue value="mb-54&amp;lang=" display_value="Berens River, MB" />
 <EnumValue value="qc-51&amp;lang=" display_value="Berni&#232;res, QC" />
 <EnumValue value="qc-25&amp;lang=" display_value="Berthierville, QC" />
-<EnumValue value="on-124&amp;lang=" display_value="Big Trout Lake, ON" />
 <EnumValue value="sk-2&amp;lang=" display_value="Biggar, SK" />
+<EnumValue value="on-124&amp;lang=" display_value="Big Trout Lake, ON" />
 <EnumValue value="mb-33&amp;lang=" display_value="Bissett, MB" />
 <EnumValue value="qc-52&amp;lang=" display_value="Blainville, QC" />
 <EnumValue value="qc-163&amp;lang=" display_value="Blanc-Sablon, QC" />
@@ -150,8 +150,8 @@
 <EnumValue value="yt-7&amp;lang=" display_value="Burwash Landing, YT" />
 <EnumValue value="bc-55&amp;lang=" display_value="Cache Creek, BC" />
 <EnumValue value="on-32&amp;lang=" display_value="Caledon, ON" />
-<EnumValue value="ab-61&amp;lang=" display_value="Calgary (Olympic Park), AB" />
 <EnumValue value="ab-52&amp;lang=" display_value="Calgary, AB" />
+<EnumValue value="ab-61&amp;lang=" display_value="Calgary (Olympic Park), AB" />
 <EnumValue value="nu-15&amp;lang=" display_value="Cambridge Bay, NU" />
 <EnumValue value="on-81&amp;lang=" display_value="Cambridge, ON" />
 <EnumValue value="bc-19&amp;lang=" display_value="Campbell River, BC" />
@@ -174,10 +174,10 @@
 <EnumValue value="sk-4&amp;lang=" display_value="Carlyle, SK" />
 <EnumValue value="yt-17&amp;lang=" display_value="Carmacks, YT" />
 <EnumValue value="mb-65&amp;lang=" display_value="Carman, MB" />
+<EnumValue value="nl-47&amp;lang=" display_value="Cartwright Junction (Trans-Labrador Hwy), NL" />
 <EnumValue value="nl-32&amp;lang=" display_value="Cartwright, NL" />
 <EnumValue value="bc-6&amp;lang=" display_value="Cassiar, BC" />
 <EnumValue value="bc-21&amp;lang=" display_value="Castlegar, BC" />
-<EnumValue value="ns-38&amp;lang=" display_value="Ch&#233;ticamp, NS" />
 <EnumValue value="qc-58&amp;lang=" display_value="Chambly, QC" />
 <EnumValue value="qc-D4&amp;lang=" display_value="Chandler, QC" />
 <EnumValue value="nl-17&amp;lang=" display_value="Channel - Port aux Basques, NL" />
@@ -188,6 +188,7 @@
 <EnumValue value="on-11&amp;lang=" display_value="Chatham-Kent, ON" />
 <EnumValue value="qc-59&amp;lang=" display_value="Chelsea, QC" />
 <EnumValue value="nu-17&amp;lang=" display_value="Chesterfield, NU" />
+<EnumValue value="ns-38&amp;lang=" display_value="Ch&#233;ticamp, NS" />
 <EnumValue value="bc-23&amp;lang=" display_value="Chetwynd, BC" />
 <EnumValue value="qc-152&amp;lang=" display_value="Chevery, QC" />
 <EnumValue value="qc-121&amp;lang=" display_value="Chibougamau, QC" />
@@ -252,11 +253,11 @@
 <EnumValue value="on-36&amp;lang=" display_value="Dundalk, ON" />
 <EnumValue value="on-167&amp;lang=" display_value="Ear Falls, ON" />
 <EnumValue value="on-136&amp;lang=" display_value="Earlton, ON" />
-<EnumValue value="pe-6&amp;lang=" display_value="East Point, PE" />
 <EnumValue value="sk-45&amp;lang=" display_value="Eastend, SK" />
+<EnumValue value="pe-6&amp;lang=" display_value="East Point, PE" />
 <EnumValue value="ns-7&amp;lang=" display_value="Economy, NS" />
-<EnumValue value="ab-71&amp;lang=" display_value="Edmonton (Int'l Aprt), AB" />
 <EnumValue value="ab-50&amp;lang=" display_value="Edmonton, AB" />
+<EnumValue value="ab-71&amp;lang=" display_value="Edmonton (Int'l Aprt), AB" />
 <EnumValue value="nb-32&amp;lang=" display_value="Edmundston, NB" />
 <EnumValue value="ab-72&amp;lang=" display_value="Edson, AB" />
 <EnumValue value="nt-14&amp;lang=" display_value="Ekati (Lac de Gras), NT" />
@@ -320,9 +321,9 @@
 <EnumValue value="on-144&amp;lang=" display_value="Gore Bay, ON" />
 <EnumValue value="qc-A1&amp;lang=" display_value="Gouin (R&#233;servoir), QC" />
 <EnumValue value="qc-5&amp;lang=" display_value="Granby, QC" />
-<EnumValue value="ns-32&amp;lang=" display_value="Grand &#233;tang, NS" />
 <EnumValue value="nl-5&amp;lang=" display_value="Grand Bank, NL" />
 <EnumValue value="mb-9&amp;lang=" display_value="Grand Beach, MB" />
+<EnumValue value="ns-32&amp;lang=" display_value="Grand &#233;tang, NS" />
 <EnumValue value="nb-6&amp;lang=" display_value="Grand Falls, NB" />
 <EnumValue value="nl-6&amp;lang=" display_value="Grand Falls/Windsor, NL" />
 <EnumValue value="bc-39&amp;lang=" display_value="Grand Forks, BC" />
@@ -344,12 +345,13 @@
 <EnumValue value="on-5&amp;lang=" display_value="Guelph, ON" />
 <EnumValue value="bc-93&amp;lang=" display_value="Gulf Islands (Southern), BC" />
 <EnumValue value="on-41&amp;lang=" display_value="Gull Bay, ON" />
+<EnumValue value="nl-48&amp;lang=" display_value="Gull Island Rapids (Trans-Labrador Hwy), NL" />
 <EnumValue value="ns-8&amp;lang=" display_value="Guysborough, NS" />
 <EnumValue value="yt-5&amp;lang=" display_value="Haines Junction, YT" />
 <EnumValue value="on-42&amp;lang=" display_value="Haldimand County, ON" />
 <EnumValue value="on-165&amp;lang=" display_value="Haliburton, ON" />
-<EnumValue value="ns-40&amp;lang=" display_value="Halifax (Shearwater), NS" />
 <EnumValue value="ns-19&amp;lang=" display_value="Halifax, NS" />
+<EnumValue value="ns-40&amp;lang=" display_value="Halifax (Shearwater), NS" />
 <EnumValue value="nu-4&amp;lang=" display_value="Hall Beach, NU" />
 <EnumValue value="on-68&amp;lang=" display_value="Halton Hills, ON" />
 <EnumValue value="on-77&amp;lang=" display_value="Hamilton, ON" />
@@ -364,8 +366,8 @@
 <EnumValue value="ab-4&amp;lang=" display_value="High River, AB" />
 <EnumValue value="ab-68&amp;lang=" display_value="Highvale, AB" />
 <EnumValue value="ab-14&amp;lang=" display_value="Hinton, AB" />
-<EnumValue value="bc-31&amp;lang=" display_value="Hope Slide, BC" />
 <EnumValue value="bc-36&amp;lang=" display_value="Hope, BC" />
+<EnumValue value="bc-31&amp;lang=" display_value="Hope Slide, BC" />
 <EnumValue value="nl-38&amp;lang=" display_value="Hopedale, NL" />
 <EnumValue value="nb-8&amp;lang=" display_value="Hopewell, NB" />
 <EnumValue value="on-78&amp;lang=" display_value="Hornepayne, ON" />
@@ -423,7 +425,6 @@
 <EnumValue value="qc-105&amp;lang=" display_value="Kuujjuarapik, QC" />
 <EnumValue value="qc-156&amp;lang=" display_value="L'Assomption, QC" />
 <EnumValue value="qc-77&amp;lang=" display_value="L'Islet, QC" />
-<EnumValue value="qc-78&amp;lang=" display_value="L&#233;vis, QC" />
 <EnumValue value="qc-158&amp;lang=" display_value="La Grande Rivi&#232;re, QC" />
 <EnumValue value="qc-100&amp;lang=" display_value="La Grande-Quatre, QC" />
 <EnumValue value="sk-13&amp;lang=" display_value="La Loche, SK" />
@@ -445,6 +446,7 @@
 <EnumValue value="on-46&amp;lang=" display_value="Lambton Shores, ON" />
 <EnumValue value="qc-74&amp;lang=" display_value="Lanaudi&#232;re, QC" />
 <EnumValue value="on-87&amp;lang=" display_value="Lansdowne House, ON" />
+<EnumValue value="nl-45&amp;lang=" display_value="L'Anse-au-Loup, NL" />
 <EnumValue value="sk-35&amp;lang=" display_value="Last Mountain Lake (Sanctuary), SK" />
 <EnumValue value="qc-113&amp;lang=" display_value="Laurentides (R&#233;serve faunique), QC" />
 <EnumValue value="qc-76&amp;lang=" display_value="Laval, QC" />
@@ -453,6 +455,7 @@
 <EnumValue value="mb-22&amp;lang=" display_value="Leaf Rapids, MB" />
 <EnumValue value="on-23&amp;lang=" display_value="Leamington, ON" />
 <EnumValue value="ab-30&amp;lang=" display_value="Lethbridge, AB" />
+<EnumValue value="qc-78&amp;lang=" display_value="L&#233;vis, QC" />
 <EnumValue value="nl-9&amp;lang=" display_value="Lewisporte, NL" />
 <EnumValue value="bc-87&amp;lang=" display_value="Liard River, BC" />
 <EnumValue value="bc-28&amp;lang=" display_value="Lillooet, BC" />
@@ -599,6 +602,7 @@
 <EnumValue value="qc-96&amp;lang=" display_value="Pincourt, QC" />
 <EnumValue value="mb-4&amp;lang=" display_value="Pine Falls, MB" />
 <EnumValue value="bc-35&amp;lang=" display_value="Pitt Meadows, BC" />
+<EnumValue value="nl-30&amp;lang=" display_value="Placentia, NL" />
 <EnumValue value="nb-34&amp;lang=" display_value="Point Escuminac, NB" />
 <EnumValue value="nb-33&amp;lang=" display_value="Point Lepreau, NB" />
 <EnumValue value="qc-20&amp;lang=" display_value="Pointe-&#224;-la-Croix, QC" />
@@ -627,8 +631,8 @@
 <EnumValue value="bc-42&amp;lang=" display_value="Puntzi Mountain, BC" />
 <EnumValue value="qc-40&amp;lang=" display_value="Puvirnituq, QC" />
 <EnumValue value="nu-5&amp;lang=" display_value="Qikiqtarjuaq, NU" />
-<EnumValue value="qc-133&amp;lang=" display_value="Qu&#233;bec, QC" />
 <EnumValue value="qc-106&amp;lang=" display_value="Quaqtaq, QC" />
+<EnumValue value="qc-133&amp;lang=" display_value="Qu&#233;bec, QC" />
 <EnumValue value="bc-64&amp;lang=" display_value="Quesnel, BC" />
 <EnumValue value="on-57&amp;lang=" display_value="Quinte West, ON" />
 <EnumValue value="nb-12&amp;lang=" display_value="Quispamsis, NB" />
@@ -649,6 +653,7 @@
 <EnumValue value="nb-13&amp;lang=" display_value="Richibucto, NB" />
 <EnumValue value="on-59&amp;lang=" display_value="Richmond Hill, ON" />
 <EnumValue value="qc-A2&amp;lang=" display_value="Rigaud, QC" />
+<EnumValue value="nl-46&amp;lang=" display_value="Rigolet, NL" />
 <EnumValue value="qc-138&amp;lang=" display_value="Rimouski, QC" />
 <EnumValue value="qc-108&amp;lang=" display_value="Rivi&#232;re-du-Loup, QC" />
 <EnumValue value="qc-134&amp;lang=" display_value="Roberval, QC" />
@@ -770,7 +775,6 @@
 <EnumValue value="sk-41&amp;lang=" display_value="Swift Current, SK" />
 <EnumValue value="on-63&amp;lang=" display_value="Sydenham, ON" />
 <EnumValue value="ns-31&amp;lang=" display_value="Sydney, NS" />
-<EnumValue value="qc-139&amp;lang=" display_value="T&#233;miscamingue, QC" />
 <EnumValue value="ab-7&amp;lang=" display_value="Taber, AB" />
 <EnumValue value="mb-51&amp;lang=" display_value="Tadoule Lake, MB" />
 <EnumValue value="qc-107&amp;lang=" display_value="Tadoussac, QC" />
@@ -778,6 +782,7 @@
 <EnumValue value="qc-145&amp;lang=" display_value="Tasiujaq, QC" />
 <EnumValue value="ns-14&amp;lang=" display_value="Tatamagouche, NS" />
 <EnumValue value="bc-60&amp;lang=" display_value="Tatlayoko Lake, BC" />
+<EnumValue value="qc-139&amp;lang=" display_value="T&#233;miscamingue, QC" />
 <EnumValue value="qc-35&amp;lang=" display_value="Temiscouata, QC" />
 <EnumValue value="on-22&amp;lang=" display_value="Temiskaming Shores, ON" />
 <EnumValue value="nl-15&amp;lang=" display_value="Terra Nova (National Park), NL" />
@@ -830,11 +835,11 @@
 <EnumValue value="ab-27&amp;lang=" display_value="Vauxhall, AB" />
 <EnumValue value="ab-26&amp;lang=" display_value="Vegreville, AB" />
 <EnumValue value="bc-27&amp;lang=" display_value="Vernon, BC" />
-<EnumValue value="bc-59&amp;lang=" display_value="Victoria (Hartland), BC" />
-<EnumValue value="bc-66&amp;lang=" display_value="Victoria (University of), BC" />
+<EnumValue value="bc-85&amp;lang=" display_value="Victoria, BC" />
 <EnumValue value="mb-55&amp;lang=" display_value="Victoria Beach, MB" />
 <EnumValue value="bc-75&amp;lang=" display_value="Victoria Harbour, BC" />
-<EnumValue value="bc-85&amp;lang=" display_value="Victoria, BC" />
+<EnumValue value="bc-59&amp;lang=" display_value="Victoria (Hartland), BC" />
+<EnumValue value="bc-66&amp;lang=" display_value="Victoria (University of), BC" />
 <EnumValue value="qc-157&amp;lang=" display_value="Victoriaville, QC" />
 <EnumValue value="on-109&amp;lang=" display_value="Vineland, ON" />
 <EnumValue value="mb-20&amp;lang=" display_value="Virden, MB" />
@@ -875,8 +880,8 @@
 <EnumValue value="on-94&amp;lang=" display_value="Windsor, ON" />
 <EnumValue value="on-110&amp;lang=" display_value="Wingham, ON" />
 <EnumValue value="mb-26&amp;lang=" display_value="Winkler, MB" />
-<EnumValue value="mb-36&amp;lang=" display_value="Winnipeg (The Forks), MB" />
 <EnumValue value="mb-38&amp;lang=" display_value="Winnipeg, MB" />
+<EnumValue value="mb-36&amp;lang=" display_value="Winnipeg (The Forks), MB" />
 <EnumValue value="nl-19&amp;lang=" display_value="Winterland, NL" />
 <EnumValue value="nb-21&amp;lang=" display_value="Woodstock, NB" />
 <EnumValue value="on-15&amp;lang=" display_value="Woodstock, ON" />

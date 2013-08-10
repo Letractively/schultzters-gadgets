@@ -19,5 +19,5 @@ Daily forecast and current observations for Canadian cities, based on WeatherLin
 <msg name="location">Location</msg>
 <msg name="loading">Loading...</msg>
 <msg name="prefix">e</msg>
-<msg name="url">weatheroffice</msg>
+<msg name="url">weather</msg>
 </messagebundle>
