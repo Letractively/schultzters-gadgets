@@ -1,0 +1,15 @@
+# Introduction #
+
+This is a list of items that needs to be worked-on for this gadget.  This are things I would like to-do (features & enhancements, either from a user or code point-of-view) and things I have to-do (i.e.: bug fixes).
+
+
+# Details #
+
+This is list in no particular order.  Well, the order that I thought of the items or they were suggested.
+
+## Platform: Google Gadgets ##
+
+  * Alias from old location at schultzter.googlepages.com/weatherlink.xml
+  * Implement using Flash library
+  * Implement mini-message library to display news from a feed (i.e.: of new gadgets)
+  * Localize directory title and description (if possible?)
